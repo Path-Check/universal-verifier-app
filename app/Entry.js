@@ -43,13 +43,16 @@ class Entry extends Component {
     return (
       <QRCodeScanner
         onRead={this.onVaccineRead}
+        reactivate={true}
+        reactivateTimeout={3000}
+        cameraStyle={styles.cameraStyle}
         topContent={
           <Text style={styles.centerText}>
             Load your Vacccine Certificate via the QR Code Reader below. 
           </Text>
         }
         bottomContent={
-            <View style={styles.sectionContainerFlex}>
+          <View style={styles.sectionContainerFlex}>
             <Text style={styles.sectionTitle}>Vaccine Certificates</Text>
             <FlatList
                 data={this.state.vaccines}
@@ -65,15 +68,22 @@ class Entry extends Component {
 
 const styles = StyleSheet.create({
   centerText: {
-    flex: 1,
+    flex: 0,
     fontSize: 18,
-    padding: 10,
+    padding: 30,
     color: '#777',
   },
-  sectionContainerFlex: {
+  cameraStyle: {
     flex: 1,
+    marginTop: -20,
+    margin: 60,
+    width: 300,
+  },
+  sectionContainerFlex: {
+    flex: 0,
     marginTop: 12,
     marginBottom: 12,
+    height: 200,
     paddingHorizontal: 24,
   },
   sectionTitle: {
