@@ -44,7 +44,7 @@ class Entry extends Component {
       <QRCodeScanner
         onRead={this.onVaccineRead}
         reactivate={true}
-        reactivateTimeout={3000}
+        reactivateTimeout={5000}
         cameraStyle={styles.cameraStyle}
         topContent={
           <Text style={styles.centerText}>
