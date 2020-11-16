@@ -75,7 +75,7 @@ class Entry extends Component {
             <Text style={styles.sectionTitle}>Verified Vaccines</Text>
             <FlatList
                 data={this.state.vaccines}
-                renderItem={({item}) => <Text style={styles.itemStyle}>{item.manufacturer} - {item.verified}</Text>}
+                renderItem={({item}) => <Text style={styles.itemStyle}>{item.manufacturer} Vaccine by {item.user} - {item.verified}</Text>}
                 keyExtractor={item => item.date}
                 /> 
           </View>
