@@ -135,6 +135,7 @@ android {
         versionCode 1
         versionName "1.0"
         missingDimensionStrategy 'react-native-camera', 'general'
+        multiDexEnabled true // <-- ADD THIS in the defaultConfig section
     }
     splits {
         abi {
@@ -183,6 +184,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.multidex:multidex:2.0.1'  // <-- ADD THIS DEPENDENCY
+    
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
 

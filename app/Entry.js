@@ -9,6 +9,23 @@ import {
 } from 'react-native';
 
 import QRCodeScanner from 'react-native-qrcode-scanner';
+import RNSimpleCrypto from "react-native-simple-crypto";
+
+const PUB_KEY = "-----BEGIN PUBLIC KEY-----\n"+
+"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDlOJu6TyygqxfWT7eLtGDwajtN\n"+
+"FOb9I5XRb6khyfD1Yt3YiCgQWMNW649887VGJiGr/L5i2osbl8C9+WJTeucF+S76\n"+
+"xFxdU6jE0NQ+Z+zEdhUTooNRaY5nZiu5PgDB0ED/ZKBUSLKL7eibMxZtMlUDHjm4\n"+
+"gwQco1KRMDSmXSMkDwIDAQAB\n"+
+"-----END PUBLIC KEY-----\n";
+
+function str2ab(str) {
+  var buf = new ArrayBuffer(str.length * 2); // 2 bytes for each char
+  var bufView = new Uint16Array(buf);
+  for (var i = 0, strLen = str.length; i < strLen; i++) {
+    bufView[i] = str.charCodeAt(i);
+  }
+  return buf;
+}
 
 class Entry extends Component {
   constructor(props) {
@@ -18,16 +35,27 @@ class Entry extends Component {
         }
   }
 
-  onVaccineRead = (e) => {
+  onVaccineRead = async (e) => {
     const vaccineInfo = e.data.split("|");
-    const vaccine = { type: vaccineInfo[0], 
-                    date: vaccineInfo[1], 
-                    manufacturer: vaccineInfo[2], 
-                    lot: vaccineInfo[3],
-                    route: vaccineInfo[4],
-                    site: vaccineInfo[5],
-                    user: vaccineInfo[6] };
 
+    const message = e.data.replace("|"+vaccineInfo[7], "");              
+    const signedCert = vaccineInfo[7];
+    const validSignature2 = await RNSimpleCrypto.RSA.verify(
+      signedCert,
+      message,
+      PUB_KEY,
+      "SHA256"
+    );
+
+    var vaccine = { type: vaccineInfo[0], 
+                date: vaccineInfo[1], 
+                manufacturer: vaccineInfo[2], 
+                lot: vaccineInfo[3],
+                route: vaccineInfo[4],
+                site: vaccineInfo[5],
+                user: vaccineInfo[6], 
+                signature: vaccineInfo[7], 
+                verified: validSignature2 ? "Valid" : "Not Valid" };
 
     console.log(e.data.split("|"));
     this.setState(state => {
@@ -53,10 +81,10 @@ class Entry extends Component {
         }
         bottomContent={
           <View style={styles.sectionContainerFlex}>
-            <Text style={styles.sectionTitle}>Vaccine Certificates</Text>
+            <Text style={styles.sectionTitle}>Verified Vaccines</Text>
             <FlatList
                 data={this.state.vaccines}
-                renderItem={({item}) => <Text style={styles.itemStyle}>{item.date} - {item.manufacturer}</Text>}
+                renderItem={({item}) => <Text style={styles.itemStyle}>{item.manufacturer} - {item.verified}</Text>}
                 keyExtractor={item => item.date}
                 /> 
           </View>
