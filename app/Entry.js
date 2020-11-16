@@ -50,7 +50,7 @@ class Entry extends Component {
 
     console.log(e.data.split("|"));
     this.setState(state => {
-      const vaccines = state.vaccines.concat([vaccine]);
+      const vaccines = [vaccine];
  
       return {
         vaccines
