@@ -10,6 +10,7 @@ import {
 
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import RNSimpleCrypto from "react-native-simple-crypto";
+import Moment from 'moment';
 
 const PUB_KEY = "-----BEGIN PUBLIC KEY-----\n"+
 "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDlOJu6TyygqxfWT7eLtGDwajtN\n"+
