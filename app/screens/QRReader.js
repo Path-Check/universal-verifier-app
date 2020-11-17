@@ -10,7 +10,7 @@ import {
 
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import RNSimpleCrypto from "react-native-simple-crypto";
-import Moment from 'moment';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const PUB_KEY = "-----BEGIN PUBLIC KEY-----\n"+
 "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDlOJu6TyygqxfWT7eLtGDwajtN\n"+
@@ -19,15 +19,8 @@ const PUB_KEY = "-----BEGIN PUBLIC KEY-----\n"+
 "gwQco1KRMDSmXSMkDwIDAQAB\n"+
 "-----END PUBLIC KEY-----\n";
 
-class Entry extends Component {
-  constructor(props) {
-        super(props);
-        this.state = {
-            vaccines:[]
-        }
-  }
-
-  onVaccineRead = async (e) => {
+function QRReader({ navigation }) {
+  const onVaccineRead = async (e) => {
     const msg = e.data.split("?");
     const what = msg[0].split(":");
     if (what[0] != "healthpass") {
@@ -51,56 +44,38 @@ class Entry extends Component {
       "SHA256"
     );
 
-    var vaccine = { type: what[1],
+    const vaccine = { type: what[1],
                 name: params.name, 
                 date: params.date, 
                 manufacturer: params.manuf, 
                 lot: params.lot,
                 route: params.route,
                 site: params.site,
+                dose: params.dose,
                 vaccinee: params.vaccinee, 
                 vaccinator: params.vaccinator,
                 signature: params.signed, 
                 verified: validSignature2 ? "Valid" : "Not Valid" };
 
-    
-    this.setState(state => {
-      const vaccines = [vaccine];
- 
-      return {
-        vaccines
-      };
-    });
+    AsyncStorage.setItem('CARDS'+params.signed, JSON.stringify(vaccine));
+
+    navigation.goBack();
   }
 
-  render() {
-    return (
-      <QRCodeScanner
-        onRead={this.onVaccineRead}
+  return (
+    <QRCodeScanner
+        onRead={onVaccineRead}
         reactivate={true}
         reactivateTimeout={5000}
         cameraStyle={styles.cameraStyle}
-        topContent={
-          <Text style={styles.centerText}>
-            Load your Vacccine Certificate via the QR Code Reader below. 
-          </Text>
-        }
-        bottomContent={
-          <View style={styles.sectionContainerFlex}>
-            <Text style={styles.sectionTitle}>Verified Vaccines</Text>
-            <FlatList
-                data={this.state.vaccines}
-                renderItem={({item}) => <Text style={styles.itemStyle}>{item.manufacturer} {item.name} {item.type} by {item.vaccinator} given to {item.vaccinee} on {Moment(item.date).format('MMM, d')} - {item.verified}</Text>}
-                keyExtractor={item => item.date}
-                /> 
-          </View>
-        }
       />
-    );
-  }
-};
+  )
+}
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
   centerText: {
     flex: 0,
     fontSize: 18,
@@ -108,29 +83,8 @@ const styles = StyleSheet.create({
     color: '#777',
   },
   cameraStyle: {
-    flex: 1,
-    marginTop: -20,
-    margin: 60,
-    width: 300,
-  },
-  sectionContainerFlex: {
-    flex: 0,
-    marginTop: 12,
-    marginBottom: 12,
-    height: 200,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    marginBottom: 8,
-    fontWeight: '600',
-    textAlign: 'center'
-  },
-  itemStyle: {
-      padding: 3,
-      fontSize: 18,
-      fontWeight: '400',
+    flex: 1
   }
 });
 
-export default Entry;
+export default QRReader;

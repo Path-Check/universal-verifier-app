@@ -10,13 +10,25 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.13.2",
+    "@react-native-community/masked-view": "^0.1.10",
+    "@react-navigation/native": "^5.8.9",
+    "@react-navigation/stack": "^5.12.6",
     "moment": "^2.29.1",
     "react": "16.13.1",
     "react-native": "0.63.3",
     "react-native-camera": "^3.40.0",
+    "react-native-elements": "^3.0.0-alpha.1",
+    "react-native-floating-action": "^1.21.0",
+    "react-native-gesture-handler": "^1.8.0",
     "react-native-permissions": "^2.2.2",
     "react-native-qrcode-scanner": "^1.4.1",
-    "react-native-simple-crypto": "^0.2.15"
+    "react-native-reanimated": "^1.13.2",
+    "react-native-safe-area-context": "^3.1.9",
+    "react-native-screens": "^2.15.0",
+    "react-native-simple-crypto": "^0.2.15",
+    "react-native-svg": "^12.1.0",
+    "react-native-vector-icons": "^7.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
