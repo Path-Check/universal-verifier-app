@@ -30,7 +30,7 @@ class Entry extends Component {
   onVaccineRead = async (e) => {
     const msg = e.data.split("?");
     const what = msg[0].split(":");
-    if (what[0] != "vaccine") {
+    if (what[0] != "healthpass") {
       return;
     }
 
@@ -51,7 +51,8 @@ class Entry extends Component {
       "SHA256"
     );
 
-    var vaccine = { type: what[1] + " " + what[0], 
+    var vaccine = { type: what[1],
+                name: params.name, 
                 date: params.date, 
                 manufacturer: params.manuf, 
                 lot: params.lot,
@@ -89,7 +90,7 @@ class Entry extends Component {
             <Text style={styles.sectionTitle}>Verified Vaccines</Text>
             <FlatList
                 data={this.state.vaccines}
-                renderItem={({item}) => <Text style={styles.itemStyle}>{item.manufacturer} {item.type} by {item.vaccinator} given to {item.vaccinee} on {item.date} - {item.verified}</Text>}
+                renderItem={({item}) => <Text style={styles.itemStyle}>{item.manufacturer} {item.name} {item.type} by {item.vaccinator} given to {item.vaccinee} on {Moment(item.date).format('MMM, d')} - {item.verified}</Text>}
                 keyExtractor={item => item.date}
                 /> 
           </View>
