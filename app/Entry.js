@@ -27,10 +27,22 @@ class Entry extends Component {
   }
 
   onVaccineRead = async (e) => {
-    const vaccineInfo = e.data.split("|");
+    const msg = e.data.split("?");
+    const what = msg[0].split(":");
+    if (what[0] != "vaccine") {
+      return;
+    }
 
-    const message = e.data.replace("|"+vaccineInfo[7], "");              
-    const signedCert = vaccineInfo[7];
+    var regex = /[?&]([^=#]+)=([^&#]*)/g,
+      params = {},
+      match;
+    while (match = regex.exec(e.data)) {
+      params[match[1]] = match[2];
+    }
+    console.log(params);
+
+    const message = e.data.replace("&signed="+params.signed, "");              
+    const signedCert = params.signed;
     const validSignature2 = await RNSimpleCrypto.RSA.verify(
       signedCert,
       message,
@@ -38,17 +50,18 @@ class Entry extends Component {
       "SHA256"
     );
 
-    var vaccine = { type: vaccineInfo[0], 
-                date: vaccineInfo[1], 
-                manufacturer: vaccineInfo[2], 
-                lot: vaccineInfo[3],
-                route: vaccineInfo[4],
-                site: vaccineInfo[5],
-                user: vaccineInfo[6], 
-                signature: vaccineInfo[7], 
+    var vaccine = { type: what[1] + " " + what[0], 
+                date: params.date, 
+                manufacturer: params.manuf, 
+                lot: params.lot,
+                route: params.route,
+                site: params.site,
+                vaccinee: params.vaccinee, 
+                vaccinator: params.vaccinator,
+                signature: params.signed, 
                 verified: validSignature2 ? "Valid" : "Not Valid" };
 
-    console.log(e.data.split("|"));
+    
     this.setState(state => {
       const vaccines = [vaccine];
  
@@ -75,7 +88,7 @@ class Entry extends Component {
             <Text style={styles.sectionTitle}>Verified Vaccines</Text>
             <FlatList
                 data={this.state.vaccines}
-                renderItem={({item}) => <Text style={styles.itemStyle}>{item.manufacturer} Vaccine by {item.user} - {item.verified}</Text>}
+                renderItem={({item}) => <Text style={styles.itemStyle}>{item.manufacturer} {item.type} by {item.vaccinator} given to {item.vaccinee} on {item.date} - {item.verified}</Text>}
                 keyExtractor={item => item.date}
                 /> 
           </View>
