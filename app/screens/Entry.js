@@ -79,36 +79,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1
   },
-  centerText: {
-    flex: 0,
-    fontSize: 18,
-    padding: 30,
-    color: '#777',
-  },
-  cameraStyle: {
-    flex: 1,
-    marginTop: -20,
-    margin: 60,
-    width: 300,
-  },
-  sectionContainerFlex: {
-    flex: 0,
-    marginTop: 12,
-    marginBottom: 12,
-    height: 200,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    marginBottom: 8,
-    fontWeight: '600',
-    textAlign: 'center'
-  },
-  itemStyle: {
-      padding: 3,
-      fontSize: 18,
-      fontWeight: '400',
-  },
   icon:{
 		color:'#fff',
 		paddingRight: 0,
