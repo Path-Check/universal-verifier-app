@@ -13,11 +13,11 @@ export default class VaccineCard extends Component {
 				<Text style={styles.notes}>{Moment(this.props.detail.date).format('MMM DD, ha')}</Text>
 				
         <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.time}>{this.props.detail.manufacturer} {this.props.detail.type}</Text>
+					<Text style={styles.time}>{this.props.detail.vaccinee}</Text>
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>{this.props.detail.vaccinee}</Text>
+					<Text style={styles.notes}>{this.props.detail.manufacturer} {this.props.detail.type}</Text>
 				</View>
 				
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
