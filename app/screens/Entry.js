@@ -68,16 +68,19 @@ function Entry({ navigation }) {
     }
   };
 
+  const removeItem = (signature) => {
+    AsyncStorage.removeItem('CARDS'+signature);
+    const removedVaccine = vaccines.filter(item => item.signature !== signature);
+    setVaccines(removedVaccine);
+    setFilteredVaccines(filter(removedVaccine, search));
+    console.log("RemoveItem" + signature);
+  }
+
+
   useEffect(() => {
     load();
     console.log("useEffect Called");
   }, [isFocused]);
-
-  const onDelete = (e) => {
-    console.log("OnDelete");
-		AsyncStorage.clear();
-    load();
-  }
 
   return (
     <View style={styles.container}>
@@ -90,7 +93,7 @@ function Entry({ navigation }) {
       <FlatList 
         data={filteredVaccines} 
         keyExtractor={item => item.signature} 
-        renderItem={({item}) => <VaccineCard detail={item} />} />
+        renderItem={({item}) => <VaccineCard detail={item} removeItem={removeItem} />} />
 
       <FloatingAction
         actions={actions}

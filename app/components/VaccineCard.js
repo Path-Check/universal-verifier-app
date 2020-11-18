@@ -7,10 +7,14 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Moment from 'moment';
 
 export default class VaccineCard extends Component {
+
 	render() {
 		return (
 			<Card containerStyle={styles.card}>
-				<Text style={styles.notes}>{Moment(this.props.detail.date).format('MMM DD, ha')}</Text>
+				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+					<Text style={styles.notes}>{Moment(this.props.detail.date).format('MMM DD, ha')}</Text>
+					<FontAwesome5 style={styles.icon} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
+				</View>
 				
         <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
 					<Text style={styles.time}>{this.props.detail.vaccinee}</Text>
