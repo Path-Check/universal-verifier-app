@@ -21,7 +21,7 @@ const App = () => {
         <Stack.Screen
           name="Home"
           component={Entry}
-          options={{ title: 'PathCheck Passport Reader' }}
+          options={{ headerShown: false }}
         />
 
         <Stack.Screen

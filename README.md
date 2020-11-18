@@ -22,9 +22,9 @@ You will find the latest APK on our release files [here](https://github.com/vito
 - [x] Signature Validation (v0.0.2)
 - [x] Local Storage (v0.0.5)
 - [x] Card Layout UI (v0.0.6)
+- [x] Search on header (v0.0.8)
 - [ ] Card Layout Grouped by Vacinee ID
 - [ ] Sort by Scan Date
-- [ ] Search on header
 - [ ] Delete Cards
 - [ ] App Icon
 - [ ] App Navigation Design (Top Header)

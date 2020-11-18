@@ -12,11 +12,14 @@ import { useIsFocused } from "@react-navigation/native";
 import VaccineCard from './../components/VaccineCard';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AsyncStorage from '@react-native-community/async-storage';
+import { SearchBar } from 'react-native-elements';
 
 import { FloatingAction } from "react-native-floating-action";
 
 function Entry({ navigation }) {
   const [vaccines, setVaccines] = useState([]);
+  const [filteredVaccines, setFilteredVaccines] = useState([]);
+  const [search, setSearch] = useState('');
   const isFocused = useIsFocused();
 
   const onNewVaccine = (e) => {
@@ -31,6 +34,23 @@ function Entry({ navigation }) {
     }
   ];
 
+  const filter = (vaccines, text) => {
+    if (text && text.length > 0) { 
+      const lowerText = text.toLowerCase();
+      return vaccines.filter(function (item) {
+          return (item.vaccinee && item.vaccinee.toLowerCase().includes(lowerText))
+              || (item.vaccinator && item.vaccinator.toLowerCase().includes(lowerText));
+        });
+    } else {
+      return vaccines;
+    }
+  }
+
+  const searchFilter = (text) => {
+    setFilteredVaccines(filter(vaccines, text));
+    setSearch(text);
+  }
+
   const load = async () => {
     try {
       let ks = await AsyncStorage.getAllKeys();
@@ -40,9 +60,9 @@ function Entry({ navigation }) {
       vaccinesStr.forEach((item) =>
           vaccines.push(JSON.parse(item[1]))
       );
-      // sort descending
       vaccines = vaccines.sort((a,b) => new Date(b.date) - new Date(a.date));
       setVaccines(vaccines);
+      setFilteredVaccines(filter(vaccines, search));
     } catch (err) {
       alert(err);
     }
@@ -61,8 +81,14 @@ function Entry({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <SearchBar round 
+          placeholder="Type Here..."
+          onChangeText={text => searchFilter(text)}
+          value={search}
+        />
+
       <FlatList 
-        data={vaccines} 
+        data={filteredVaccines} 
         keyExtractor={item => item.signature} 
         renderItem={({item}) => <VaccineCard detail={item} />} />
 
