@@ -1,6 +1,6 @@
 # Signed Health Passport Reader
 
-<img align="right" src="./docs/HomePage.png" data-canonical-src="./docs/HomePage.png" width="350px"/>
+<img align="right" src="./docs/screenshots/HomePage.png" data-canonical-src="./docs/screenshots/HomePage.png" width="350px"/>
 
 App to read and import Vaccine/Test Certificates using the Signed-by-Provider QR Code format. 
 
