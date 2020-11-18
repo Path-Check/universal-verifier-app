@@ -16,6 +16,10 @@ export default class ForecastCard extends Component {
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
+					<Text style={styles.notes}>{this.props.detail.vaccinee}</Text>
+				</View>
+				
+				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
 					<Text style={styles.notes}>{this.props.detail.site}, {this.props.detail.route}, {this.props.detail.dose}ml</Text>
 				</View>
 
