@@ -16,6 +16,19 @@ Together with the server, this app allows anyone to track the health status of p
 
 You will find the latest APK on our release files [here](https://github.com/vitorpamplona/vaccine-certificate-tracking-app/releases)
 
+## Features / TO-DO List
+
+- [x] QR Certificate Scanner (v0.0.1)
+- [x] Signature Validation (v0.0.2)
+- [x] Local Storage (v0.0.5)
+- [x] Card Layout UI (v0.0.6)
+- [ ] Card Layout Grouped by Vacinee ID
+- [ ] Sort by Scan Date
+- [ ] Search on header
+- [ ] Delete Cards
+- [ ] App Icon
+- [ ] App Navigation Design (Top Header)
+
 # Development Overview
 
 This is a React Native app version 61.5
