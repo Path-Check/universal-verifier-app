@@ -3,7 +3,7 @@ name: Build
 on:
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   build_debug_android:
