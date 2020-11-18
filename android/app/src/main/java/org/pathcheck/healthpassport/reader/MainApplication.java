@@ -1,4 +1,4 @@
-package com.vaccinecertificatetrackingapp;
+package org.pathcheck.healthpassport.reader;
 
 import android.app.Application;
 import android.content.Context;
