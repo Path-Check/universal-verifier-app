@@ -12,6 +12,10 @@ Together with the server, this app allows anyone to track the health status of p
 2. The app reads the QR Code, validates the signature and imports multiple certificates for the user and other vacinees.
 3. All certificates are showed as cards on the main home page.  
 
+## Download the latest release
+
+You will find the latest APK on our release files [here](https://github.com/vitorpamplona/vaccine-certificate-tracking-app/releases)
+
 # Development Overview
 
 This is a React Native app version 61.5
