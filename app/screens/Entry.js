@@ -40,6 +40,8 @@ function Entry({ navigation }) {
       vaccinesStr.forEach((item) =>
           vaccines.push(JSON.parse(item[1]))
       );
+      // sort descending
+      vaccines = vaccines.sort((a,b) => new Date(b.date) - new Date(a.date));
       setVaccines(vaccines);
     } catch (err) {
       alert(err);
