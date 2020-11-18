@@ -32,7 +32,7 @@ export default class VaccineCard extends Component {
 				
 				<View style={{flexDirection:'row', alignItems: 'center'}}>
 					<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
-					<Text style={styles.notes}>Signed By {this.props.detail.vaccinator}, approved by the FDA</Text>
+					<Text style={styles.notes}>Signed by {this.props.detail.vaccinator}</Text>
 				</View>
 			</Card>
 		);
