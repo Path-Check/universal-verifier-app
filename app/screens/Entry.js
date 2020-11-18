@@ -25,7 +25,7 @@ function Entry({ navigation }) {
 
   const actions = [{
       text: "New Vaccine",
-      icon:  <FontAwesome5.Button name={'syringe'} backgroundColor="#00000000" underlayColor="#00000000" solid onPress={onNewVaccine} />,
+      icon:  <FontAwesome5 name={'syringe'} style={styles.icon} solid />,
       name: "bt_vaccine",
       position: 0
     }
@@ -108,7 +108,12 @@ const styles = StyleSheet.create({
       padding: 3,
       fontSize: 18,
       fontWeight: '400',
-  }
+  },
+  icon:{
+		color:'#fff',
+		paddingRight: 0,
+		fontSize:25
+	}
 });
 
 export default Entry;
