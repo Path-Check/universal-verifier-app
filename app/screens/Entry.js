@@ -60,7 +60,7 @@ function Entry({ navigation }) {
       vaccinesStr.forEach((item) =>
           vaccines.push(JSON.parse(item[1]))
       );
-      vaccines = vaccines.sort((a,b) => new Date(b.date) - new Date(a.date));
+      vaccines = vaccines.sort((a,b) => new Date(b.scanDate) - new Date(a.scanDate));
       setVaccines(vaccines);
       setFilteredVaccines(filter(vaccines, search));
     } catch (err) {

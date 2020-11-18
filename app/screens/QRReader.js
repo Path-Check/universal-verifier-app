@@ -58,6 +58,7 @@ function QRReader({ navigation }) {
                 vaccinee: params.vaccinee, 
                 vaccinator: params.vaccinator,
                 signature: params.signed, 
+                scanDate: new Date().toJSON(),
                 verified: validSignature2 ? "Valid" : "Not Valid" };
 
     AsyncStorage.setItem('CARDS'+params.signed, JSON.stringify(vaccine));
