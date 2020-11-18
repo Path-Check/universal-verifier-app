@@ -2,13 +2,13 @@
 
 <img align="right" src="./docs/screenshots/HomePage.png" data-canonical-src="./docs/screenshots/HomePage.png" width="350px"/>
 
-App to read and import Vaccine/Test Certificates using the Signed-by-Provider QR Code format. 
+App to read and import Vaccine/Test Certificates using the [Signed-by-Provider QR Code format](https://github.com/vitorpamplona/vaccine-certificate-qrcode-generator). 
 
 Together with the server, this app allows anyone to track the health status of people participating in activities or entering in certain spaces. 
 
 ## Behavior
 
-1. Vaccine provider emits a Certificate of Vaccination that is Singned by the Provider (impossible to forge)
+1. Vaccine provider emits a Certificate of Vaccination ([here](https://github.com/vitorpamplona/vaccine-certificate-qrcode-generator)) that is Singned by the Provider (impossible to forge)
 2. The app reads the QR Code, validates the signature and imports multiple certificates for the user and other vacinees.
 3. All certificates are showed as cards on the main home page.  
 
@@ -53,3 +53,10 @@ npm install
 npx react-native run-android
 ```
 
+## Generating new Version
+
+GitHub Actions generates a new [Release](https://github.com/vitorpamplona/vaccine-certificate-tracking-app/releases) when npm version is run and pushed to the repo.
+
+```
+npm version <version number: x.x.x>
+```
