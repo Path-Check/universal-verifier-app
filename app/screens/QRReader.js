@@ -6,6 +6,7 @@ import {
   Text, View,
   TouchableOpacity,
   FlatList,
+  Dimensions
 } from 'react-native';
 
 import QRCodeScanner from 'react-native-qrcode-scanner';
@@ -18,6 +19,8 @@ const PUB_KEY = "-----BEGIN PUBLIC KEY-----\n"+
 "xFxdU6jE0NQ+Z+zEdhUTooNRaY5nZiu5PgDB0ED/ZKBUSLKL7eibMxZtMlUDHjm4\n"+
 "gwQco1KRMDSmXSMkDwIDAQAB\n"+
 "-----END PUBLIC KEY-----\n";
+
+const screenHeight = Math.round(Dimensions.get('window').height);
 
 function QRReader({ navigation }) {
   const onVaccineRead = async (e) => {
@@ -67,7 +70,9 @@ function QRReader({ navigation }) {
         onRead={onVaccineRead}
         reactivate={true}
         reactivateTimeout={5000}
-        cameraStyle={styles.cameraStyle}
+        cameraStyle={{ height: screenHeight }}
+        topViewStyle={{height: 0, flex: 0}}
+        bottomViewStyle={{height: 0, flex: 0}}
       />
   )
 }
@@ -82,9 +87,6 @@ const styles = StyleSheet.create({
     padding: 30,
     color: '#777',
   },
-  cameraStyle: {
-    flex: 1
-  }
 });
 
 export default QRReader;
