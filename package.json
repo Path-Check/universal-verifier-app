@@ -23,6 +23,7 @@
     "react-native-elements": "^3.0.0-alpha.1",
     "react-native-floating-action": "^1.21.0",
     "react-native-gesture-handler": "^1.8.0",
+    "react-native-navigation-bar-color": "^2.0.1",
     "react-native-permissions": "^2.2.2",
     "react-native-qrcode-scanner": "^1.4.1",
     "react-native-reanimated": "^1.13.2",

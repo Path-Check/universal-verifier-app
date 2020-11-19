@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Text, View,
   TouchableOpacity,
-  FlatList,
+  FlatList, StatusBar
 } from 'react-native';
 import { useIsFocused } from "@react-navigation/native";
 
@@ -15,6 +15,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import { SearchBar } from 'react-native-elements';
 import { FloatingAction } from "react-native-floating-action";
 import {useTheme} from '../themes/ThemeProvider';
+import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
 function Entry({ navigation }) {
   const [vaccines, setVaccines] = useState([]);
@@ -78,16 +79,21 @@ function Entry({ navigation }) {
   }
 
   useEffect(() => {
+    changeNavigationBarColor(colors.background, !isDark);
     load();
     console.log("useEffect Called");
   }, [isFocused]);
 
   return (
     <View style={styles.container} backgroundColor={colors.background}>
+      <StatusBar 
+        backgroundColor={colors.background}
+        barStyle={isDark ? "light-content" : "dark-content"}/>
+
       <SearchBar round lightTheme={!isDark}
           containerStyle={{backgroundColor:colors.background, 
                            borderBottomColor: colors.divisor,  
-                           borderTopColor: colors.background, paddingBottom: 4}}
+                           borderTopColor: colors.background, paddingBottom: 4, paddingTop: 0}}
           placeholder="Search Here..."
           onChangeText={text => searchFilter(text)}
           value={search}
