@@ -13,14 +13,15 @@ import VaccineCard from './../components/VaccineCard';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AsyncStorage from '@react-native-community/async-storage';
 import { SearchBar } from 'react-native-elements';
-
 import { FloatingAction } from "react-native-floating-action";
+import {useTheme} from '../themes/ThemeProvider';
 
 function Entry({ navigation }) {
   const [vaccines, setVaccines] = useState([]);
   const [filteredVaccines, setFilteredVaccines] = useState([]);
   const [search, setSearch] = useState('');
   const isFocused = useIsFocused();
+  const {colors, isDark} = useTheme();
 
   const onNewVaccine = (e) => {
     navigation.navigate('QRReader')
@@ -76,18 +77,18 @@ function Entry({ navigation }) {
     console.log("RemoveItem" + signature);
   }
 
-
   useEffect(() => {
     load();
     console.log("useEffect Called");
   }, [isFocused]);
 
   return (
-    <View style={styles.container}>
-      <SearchBar round 
+    <View style={styles.container} backgroundColor={colors.background}>
+      <SearchBar round lightTheme={!isDark}
           placeholder="Type Here..."
           onChangeText={text => searchFilter(text)}
           value={search}
+          inputContainerStyle={styles.searchBarStyle}
         />
 
       <FlatList 
@@ -105,6 +106,10 @@ function Entry({ navigation }) {
 };
 
 const styles = StyleSheet.create({
+  searchBarStyle: {
+    marginLeft: 7,
+    marginRight: 7
+  },
   container: {
     flex: 1
   },

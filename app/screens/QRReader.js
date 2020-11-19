@@ -12,6 +12,7 @@ import {
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import RNSimpleCrypto from "react-native-simple-crypto";
 import AsyncStorage from '@react-native-community/async-storage';
+import {useTheme} from '../themes/ThemeProvider';
 
 const PUB_KEY = "-----BEGIN PUBLIC KEY-----\n"+
 "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDlOJu6TyygqxfWT7eLtGDwajtN\n"+
@@ -23,6 +24,8 @@ const PUB_KEY = "-----BEGIN PUBLIC KEY-----\n"+
 const screenHeight = Math.round(Dimensions.get('window').height);
 
 function QRReader({ navigation }) {
+  const {colors, isDark} = useTheme();
+
   const onVaccineRead = async (e) => {
     const msg = e.data.split("?");
     const what = msg[0].split(":");
@@ -65,6 +68,11 @@ function QRReader({ navigation }) {
 
     navigation.goBack();
   }
+
+  navigation.setOptions({
+    headerStyle: { backgroundColor: colors.background }, 
+    headerTintColor: colors.text
+  });
 
   return (
     <QRCodeScanner
