@@ -1,4 +1,4 @@
-import React, {Component } from 'react';
+import React, {useEffect} from 'react';
 
 import {
   AppRegistry,
@@ -69,9 +69,17 @@ function QRReader({ navigation }) {
     navigation.goBack();
   }
 
-  navigation.setOptions({
-    headerStyle: { backgroundColor: colors.background }, 
-    headerTintColor: colors.text
+  useEffect(() => {
+    navigation.setOptions({
+      headerStyle: { backgroundColor: colors.background }, 
+      headerTintColor: colors.text, 
+      headerTitleStyle: {
+          fontFamily: 'Cochin',
+          fontWeight: 'normal',
+          fontSize: 20,
+      },
+    });
+    console.log("useEffect Called");
   });
 
   return (
@@ -79,6 +87,7 @@ function QRReader({ navigation }) {
         onRead={onVaccineRead}
         reactivate={true}
         reactivateTimeout={5000}
+        containerStyle={{backgroundColor: colors.background}}
         cameraStyle={{ height: screenHeight }}
         topViewStyle={{height: 0, flex: 0}}
         bottomViewStyle={{height: 0, flex: 0}}

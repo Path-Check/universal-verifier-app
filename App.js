@@ -13,14 +13,10 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { AppearanceProvider } from 'react-native-appearance';
 import { ThemeProvider } from './app/themes/ThemeProvider';
-import {useTheme} from './app/themes/ThemeProvider';
 
 const Stack = createStackNavigator();
 
-
 const App = () => {
-  const {colors, isDark} = useTheme();
-
   return (
     <AppearanceProvider>
       <ThemeProvider>

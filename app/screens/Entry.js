@@ -85,10 +85,13 @@ function Entry({ navigation }) {
   return (
     <View style={styles.container} backgroundColor={colors.background}>
       <SearchBar round lightTheme={!isDark}
-          placeholder="Type Here..."
+          containerStyle={{backgroundColor:colors.background, 
+                           borderBottomColor: colors.divisor,  
+                           borderTopColor: colors.background, paddingBottom: 4}}
+          placeholder="Search Here..."
           onChangeText={text => searchFilter(text)}
           value={search}
-          inputContainerStyle={styles.searchBarStyle}
+          inputContainerStyle={{marginLeft: 7, marginRight: 7, backgroundColor:colors.background}}
         />
 
       <FlatList 
@@ -106,10 +109,6 @@ function Entry({ navigation }) {
 };
 
 const styles = StyleSheet.create({
-  searchBarStyle: {
-    marginLeft: 7,
-    marginRight: 7
-  },
   container: {
     flex: 1
   },
