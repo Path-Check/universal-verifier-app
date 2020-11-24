@@ -32,13 +32,11 @@ function QRReader({ navigation }) {
     while (match = regex.exec(e.data)) {
       params[match[1]] = match[2];
     }
-    console.log(params);
 
     try {
       let pub_key_response = await fetch(params.vaccinator_pub_key);
       let pub_key = await pub_key_response.text();
-      console.log(pub_key);
-
+      
       const message = e.data.replace("&signed="+params.signed, "");              
       const signedCert = params.signed;
       const validSignature2 = await RNSimpleCrypto.RSA.verify(
@@ -65,7 +63,7 @@ function QRReader({ navigation }) {
 
       AsyncStorage.setItem('CARDS'+params.signed, JSON.stringify(vaccine));
     } catch (error) {
-      console.error(error);
+      console.error("Could not verify: "+ error);
     }
 
     navigation.goBack();
@@ -81,7 +79,6 @@ function QRReader({ navigation }) {
           fontSize: 20,
       },
     });
-    console.log("useEffect Called");
   });
 
   return (
