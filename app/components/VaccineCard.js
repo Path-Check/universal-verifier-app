@@ -8,6 +8,11 @@ import Moment from 'moment';
 
 export default class VaccineCard extends Component {
 
+  format = (list) => {
+		const noUndefinedList = list.filter(item => item);
+    return noUndefinedList.join(', ');
+  }
+
 	render() {
 		return (
 			<Card containerStyle={styles.card}>
@@ -25,7 +30,9 @@ export default class VaccineCard extends Component {
 				</View>
 				
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>{this.props.detail.site}, {this.props.detail.route}, {this.props.detail.dose}ml</Text>
+					<Text style={styles.notes}>
+					    {this.format([this.props.detail.site, this.props.detail.route, this.props.detail.dose])}
+					</Text>
 				</View>
 
 				<Divider style={{ backgroundColor: '#dfe6e9', marginVertical:15}} />

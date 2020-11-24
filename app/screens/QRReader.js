@@ -21,6 +21,10 @@ const screenHeight = Math.round(Dimensions.get('window').height);
 function QRReader({ navigation }) {
   const {colors, isDark} = useTheme();
 
+  const myDecode = (uriComponent) => {
+    return uriComponent ? decodeURIComponent(uriComponent).replace(/\+/g, ' ') : undefined;
+  }
+
   const onVaccineRead = async (e) => {
     const msg = e.data.split("?");
     const what = msg[0].split(":");
@@ -33,16 +37,17 @@ function QRReader({ navigation }) {
       match;
     while (match = regex.exec(e.data)) {
       params[match[1]] = match[2];
-      console.log(match[1], params[match[1]]);
     }
 
     try {
       let pub_key_response = await fetch(params.vaccinator_pub_key);
       let pub_key = await pub_key_response.text();
 
-      console.log(params.signature);
-      
-      const message = e.data.replace("&signature="+params.signature, "");    
+      const message = e.data.replace("&signature="+params.signature, ""); 
+
+      console.log(message);
+      console.log(decodeURIComponent(params.signature).replace(/\n/g, ''));
+
       const signedCert = base64.decode(decodeURIComponent(params.signature).replace(/\n/g, ''));
       const validSignature2 = await RNSimpleCrypto.RSA.verify(
         signedCert,
@@ -50,17 +55,17 @@ function QRReader({ navigation }) {
         pub_key,
         "SHA256"
       );
-
+      
       const vaccine = { type: what[1],
                 date: params.date, 
-                name: decodeURIComponent(params.name).replace(/\+/g, ' '), 
-                manufacturer: decodeURIComponent(params.manuf).replace(/\+/g, ' '), 
-                lot: decodeURIComponent(params.lot).replace(/\+/g, ' '),
-                route: decodeURIComponent(params.route).replace(/\+/g, ' '),
-                site: decodeURIComponent(params.site).replace(/\+/g, ' '),
-                dose: decodeURIComponent(params.dose).replace(/\+/g, ' '),
-                vaccinee: decodeURIComponent(params.vaccinee).replace(/\+/g, ' '), 
-                vaccinator: decodeURIComponent(params.vaccinator).replace(/\+/g, ' '),
+                name: myDecode(params.name), 
+                manufacturer: myDecode(params.manuf), 
+                lot: myDecode(params.lot),
+                route: myDecode(params.route),
+                site: myDecode(params.site),
+                dose: myDecode(params.dose),
+                vaccinee: myDecode(params.vaccinee), 
+                vaccinator: myDecode(params.vaccinator),
                 vaccinator_pub_key: params.vaccinator_pub_key,
                 signature: signedCert, 
                 scanDate: new Date().toJSON(),
