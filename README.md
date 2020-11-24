@@ -22,11 +22,17 @@ You will find the latest APK on our release files [here](https://github.com/vito
 - [x] Signature Validation (v0.0.2)
 - [x] Local Storage (v0.0.5)
 - [x] Card Layout UI (v0.0.6)
+- [x] Automated Release Management from GitHub Actions (v0.0.6)
 - [x] Search on header (v0.0.8)
 - [x] Sort by Scan Date (v0.0.9)
 - [x] Delete Cards (v0.0.9)
-- [ ] Card Layout Grouped by Vacinee ID
-- [ ] App Icon
+- [x] Dark and Light Modes (v0.0.13)
+- [x] Downloading public key from vaccinator URL (v0.0.14)
+- [x] Percent-encoding and Base64 for signatures (v0.0.14)
+- [ ] Reduce amount of data on QRCodes
+- [ ] New Layout Grouped by Day and then by Person
+- [ ] New UI from [here](https://www.figma.com/file/eFzXoLzyk489j864bEJiJL/PathCheck-Health-Passport?node-id=51%3A0)
+- [ ] New App Icon
 
 # Development Overview
 
