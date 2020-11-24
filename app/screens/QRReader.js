@@ -9,6 +9,8 @@ import {
   Dimensions
 } from 'react-native';
 
+import base64 from 'react-native-base64'
+
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import RNSimpleCrypto from "react-native-simple-crypto";
 import AsyncStorage from '@react-native-community/async-storage';
@@ -31,14 +33,17 @@ function QRReader({ navigation }) {
       match;
     while (match = regex.exec(e.data)) {
       params[match[1]] = match[2];
+      console.log(match[1], params[match[1]]);
     }
 
     try {
       let pub_key_response = await fetch(params.vaccinator_pub_key);
       let pub_key = await pub_key_response.text();
+
+      console.log(params.signature);
       
-      const message = e.data.replace("&signed="+params.signed, "");              
-      const signedCert = params.signed;
+      const message = e.data.replace("&signature="+params.signature, "");    
+      const signedCert = base64.decode(decodeURIComponent(params.signature).replace(/\n/g, ''));
       const validSignature2 = await RNSimpleCrypto.RSA.verify(
         signedCert,
         message,
@@ -47,23 +52,23 @@ function QRReader({ navigation }) {
       );
 
       const vaccine = { type: what[1],
-                name: params.name, 
                 date: params.date, 
-                manufacturer: params.manuf, 
-                lot: params.lot,
-                route: params.route,
-                site: params.site,
-                dose: params.dose,
-                vaccinee: params.vaccinee, 
-                vaccinator: params.vaccinator,
+                name: decodeURIComponent(params.name).replace(/\+/g, ' '), 
+                manufacturer: decodeURIComponent(params.manuf).replace(/\+/g, ' '), 
+                lot: decodeURIComponent(params.lot).replace(/\+/g, ' '),
+                route: decodeURIComponent(params.route).replace(/\+/g, ' '),
+                site: decodeURIComponent(params.site).replace(/\+/g, ' '),
+                dose: decodeURIComponent(params.dose).replace(/\+/g, ' '),
+                vaccinee: decodeURIComponent(params.vaccinee).replace(/\+/g, ' '), 
+                vaccinator: decodeURIComponent(params.vaccinator).replace(/\+/g, ' '),
                 vaccinator_pub_key: params.vaccinator_pub_key,
-                signature: params.signed, 
+                signature: signedCert, 
                 scanDate: new Date().toJSON(),
                 verified: validSignature2 ? "Valid" : "Not Valid" };
 
-      AsyncStorage.setItem('CARDS'+params.signed, JSON.stringify(vaccine));
+      AsyncStorage.setItem('CARDS'+signedCert, JSON.stringify(vaccine));
     } catch (error) {
-      console.error("Could not verify: "+ error);
+      console.error("Could not verify.", error);
     }
 
     navigation.goBack();
