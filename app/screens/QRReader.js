@@ -14,13 +14,6 @@ import RNSimpleCrypto from "react-native-simple-crypto";
 import AsyncStorage from '@react-native-community/async-storage';
 import {useTheme} from '../themes/ThemeProvider';
 
-const PUB_KEY = "-----BEGIN PUBLIC KEY-----\n"+
-"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDlOJu6TyygqxfWT7eLtGDwajtN\n"+
-"FOb9I5XRb6khyfD1Yt3YiCgQWMNW649887VGJiGr/L5i2osbl8C9+WJTeucF+S76\n"+
-"xFxdU6jE0NQ+Z+zEdhUTooNRaY5nZiu5PgDB0ED/ZKBUSLKL7eibMxZtMlUDHjm4\n"+
-"gwQco1KRMDSmXSMkDwIDAQAB\n"+
-"-----END PUBLIC KEY-----\n";
-
 const screenHeight = Math.round(Dimensions.get('window').height);
 
 function QRReader({ navigation }) {
@@ -41,16 +34,21 @@ function QRReader({ navigation }) {
     }
     console.log(params);
 
-    const message = e.data.replace("&signed="+params.signed, "");              
-    const signedCert = params.signed;
-    const validSignature2 = await RNSimpleCrypto.RSA.verify(
-      signedCert,
-      message,
-      PUB_KEY,
-      "SHA256"
-    );
+    try {
+      let pub_key_response = await fetch(params.vaccinator_pub_key);
+      let pub_key = await pub_key_response.text();
+      console.log(pub_key);
 
-    const vaccine = { type: what[1],
+      const message = e.data.replace("&signed="+params.signed, "");              
+      const signedCert = params.signed;
+      const validSignature2 = await RNSimpleCrypto.RSA.verify(
+        signedCert,
+        message,
+        pub_key,
+        "SHA256"
+      );
+
+      const vaccine = { type: what[1],
                 name: params.name, 
                 date: params.date, 
                 manufacturer: params.manuf, 
@@ -60,11 +58,15 @@ function QRReader({ navigation }) {
                 dose: params.dose,
                 vaccinee: params.vaccinee, 
                 vaccinator: params.vaccinator,
+                vaccinator_pub_key: params.vaccinator_pub_key,
                 signature: params.signed, 
                 scanDate: new Date().toJSON(),
                 verified: validSignature2 ? "Valid" : "Not Valid" };
 
-    AsyncStorage.setItem('CARDS'+params.signed, JSON.stringify(vaccine));
+      AsyncStorage.setItem('CARDS'+params.signed, JSON.stringify(vaccine));
+    } catch (error) {
+      console.error(error);
+    }
 
     navigation.goBack();
   }
