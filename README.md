@@ -82,3 +82,7 @@ GitHub Actions generates a new [Release](https://github.com/vitorpamplona/vaccin
 ```
 npm version <version number: x.x.x>
 ```
+
+## Contributing
+
+[Issues](https://github.com/Path-Check/healthpassport-provider-reader-app/issues) and [pull requests](https://github.com/Path-Check/healthpassport-provider-reader-app/pulls) are very welcome! :)
