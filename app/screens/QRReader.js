@@ -44,9 +44,7 @@ function QRReader({ navigation }) {
       return;
     }
 
-    console.log(msg[1]);
     const params = queryString.parse(msg[1], {decode:false});
-    console.log(params);
     
     try {
       let pub_key_response = await fetch(params.vaccinator_pub_key);
