@@ -34,6 +34,26 @@ You will find the latest APK on our release files [here](https://github.com/vito
 - [ ] New UI from [here](https://www.figma.com/file/eFzXoLzyk489j864bEJiJL/PathCheck-Health-Passport?node-id=51%3A0)
 - [ ] New App Icon
 
+## Immunization Certificate
+
+The certificate is the signed record that prove a patient name has taken a vaccine. It follows the format: 
+
+```
+healthpass:typeOfHash\signature@pubKeyURL?<record as queryString>
+```
+
+Example:
+
+```
+healthpass:SHA256\XhwgTyPE+Q6EaeEY+I10PbMI3i7yP6y73/tyYcjjtLciTW
+adqjVoQ9xBrQxzVBCsu53dmA6f/kH9QFLHiRpa+SGe3+fjMLQrT5r19rEYYewA0P
+WFMNRUg3uYsxvaYTaK7ZuMKypR1BDE1jFUkYlbcf15/yM2CBf1Msx5+tc5qv0=
+@vitorpamplona.com/vaccine-certificate-qrcode-generator/pub_key?
+date=2020-11-27T15:19:55.682Z&vaccinee=Vitor%20Fernando%20Pamplona
+&vaccinator=CVS%20Minute%20Clinics&manuf=Pfizer&name=COVID19&lot=1221
+&route=Intramuscular&site=Right%20arm&dose=1.0
+````
+
 # Development Overview
 
 This is a React Native app version 61.5
