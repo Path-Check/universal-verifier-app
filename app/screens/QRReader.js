@@ -36,32 +36,33 @@ function QRReader({ navigation }) {
   }
 
   const onVaccineRead = async (e) => {
-    const queryString = require('query-string');
-
-    const msg = e.data.split("?");
-    const what = msg[0].split(":");
-    if (what[0] != "healthpass") {
+    if (!e.data.startsWith("healthpass:")) {
+      showErrorMessage("Not a Health Passport");
       return;
     }
 
-    const params = queryString.parse(msg[1], {decode:false});
+    const queryString = require('query-string');
+
+    let [verification, message] = e.data.substring("healthpass:".length).split("?");
+    let [signatureFormat, pub_key_url] = verification.split("@");
+    let [hashType, signature] = signatureFormat.split("\\");
+    const params = queryString.parse(message, {decode:false});
     
     try {
-      let pub_key_response = await fetch(params.vaccinator_pub_key);
+      let pub_key_response = await fetch("http://"+pub_key_url);
       let pub_key = await pub_key_response.text();
-      
+
       try {
-        const message = e.data.replace("&signature="+params.signature, ""); 
-        const signedCert = decodeURIComponent(params.signature).replace(/\n/g, '');
+        const signedCert = decodeURIComponent(signature).replace(/\n/g, '');
         const validSignature2 = await RNSimpleCrypto.RSA.verify(
           signedCert,
           message,
           pub_key,
-          "SHA256"
+          hashType
         );
         
         if (validSignature2) {
-          const vaccine = { type: what[1],
+          const vaccine = { type: "vaccine",
                     date: params.date, 
                     name: myDecode(params.name), 
                     manufacturer: myDecode(params.manuf), 
