@@ -49,7 +49,7 @@ function QRReader({ navigation }) {
     const params = queryString.parse(message, {decode:false});
     
     try {
-      let pub_key_response = await fetch("http://"+pub_key_url);
+      let pub_key_response = await fetch("https://"+pub_key_url);
       let pub_key = await pub_key_response.text();
 
       try {
