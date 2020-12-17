@@ -8,7 +8,7 @@ Together with the server, this app allows anyone to track the health status of p
 
 ## Behavior
 
-1. Vaccine provider emits a Certificate of Vaccination ([here](https://github.com/vitorpamplona/vaccine-certificate-qrcode-generator)) that is Singned by the Provider (impossible to forge)
+1. Vaccine provider emits a Certificate of Vaccination ([here](https://github.com/vitorpamplona/vaccine-certificate-qrcode-generator)) that is Signed by the Provider (impossible to forge)
 2. The app reads the QR Code, validates the signature and imports multiple certificates for the user and other vacinees.
 3. All certificates are showed as cards on the main home page.  
 
