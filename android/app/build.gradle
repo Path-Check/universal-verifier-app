@@ -132,8 +132,8 @@ android {
         applicationId "org.pathcheck.healthpassport.reader"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 16
-        versionName "0.0.18"
+        versionCode 17
+        versionName "0.0.19"
         missingDimensionStrategy 'react-native-camera', 'general'
         multiDexEnabled true // <-- ADD THIS in the defaultConfig section
     }
