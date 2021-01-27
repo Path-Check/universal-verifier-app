@@ -36,7 +36,6 @@ function QRReader({ navigation }) {
   }
 
   const onVaccineRead = async (e) => {
-    console.log(e.data);
     if (!e.data.startsWith("healthpass:")) {
       showErrorMessage("Not a Health Passport");
       return;
@@ -62,17 +61,8 @@ function QRReader({ navigation }) {
           hashType
         );
 
-        console.log(message);
-        console.log(pub_key);
-        console.log(signedCert);
-        console.log(hashType);
-        
-        console.log(params.type);
-        console.log(validSignature2);
-
         if (validSignature2) {
           if (params.type === "coupon") {
-            console.log('coupon card');
             const coupon = { type: params.type,
                     id: myDecode(params.id), 
                     coupons: myDecode(params.coupons), 
@@ -90,7 +80,6 @@ function QRReader({ navigation }) {
           }
 
           if (params.type === "status") {
-            console.log('status card');
             const status = { type: params.type,
                     vaccinated: myDecode(params.vaccinated), 
                     vaccinee: myDecode(params.vaccinee), 
@@ -103,7 +92,6 @@ function QRReader({ navigation }) {
           }
 
           if (params.type === "passkey") {
-            console.log('passkey card');
             const passkey = { type: params.type,
                     name: myDecode(params.name), 
                     phone: myDecode(params.phone), 
@@ -118,7 +106,6 @@ function QRReader({ navigation }) {
           }
 
           if (typeof params.type === 'undefined' || params.type === "badge") {
-            console.log('vaccine card');
             const vaccine = { type: "vaccine",
                     date: params.date, 
                     name: myDecode(params.name), 
