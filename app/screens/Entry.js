@@ -10,6 +10,9 @@ import {
 import { useIsFocused } from "@react-navigation/native";
 
 import VaccineCard from './../components/VaccineCard';
+import CouponCard from './../components/CouponCard';
+import StatusCard from './../components/StatusCard';
+import PassKeyCard from './../components/PassKeyCard';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AsyncStorage from '@react-native-community/async-storage';
 import { SearchBar } from 'react-native-elements';
@@ -103,7 +106,16 @@ function Entry({ navigation }) {
       <FlatList 
         data={filteredVaccines} 
         keyExtractor={item => item.signature} 
-        renderItem={({item}) => <VaccineCard detail={item} removeItem={removeItem} />} />
+        renderItem={({item}) => {
+          if (item.type === "vaccine")  
+             return <VaccineCard detail={item} removeItem={removeItem} />
+          if (item.type === "coupon")  
+             return <CouponCard detail={item} removeItem={removeItem} />
+          if (item.type === "status")  
+             return <StatusCard detail={item} removeItem={removeItem} />
+          if (item.type === "passkey")  
+             return <PassKeyCard detail={item} removeItem={removeItem} />
+        }} />
 
       <FloatingAction
         actions={actions}

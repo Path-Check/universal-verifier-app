@@ -6,7 +6,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import Moment from 'moment';
 
-export default class VaccineCard extends Component {
+export default class CouponCard extends Component {
 
   format = (list) => {
 		const noUndefinedList = list.filter(item => item);
@@ -17,21 +17,20 @@ export default class VaccineCard extends Component {
 		return (
 			<Card containerStyle={styles.card}>
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.notes}>{Moment(this.props.detail.date).format('MMM DD, ha')}</Text>
+					<Text style={styles.notes}>Coupon</Text>
 					<FontAwesome5 style={styles.icon} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
 				</View>
-				
-        <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.time}>{this.props.detail.manufacturer} {this.props.detail.type}</Text>
+				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+					<Text style={styles.time}>{this.props.detail.id}</Text>	
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>{this.props.detail.vaccinee}</Text>
+					<Text style={styles.notes}>Phase: {this.props.detail.phase} in {this.props.detail.city}</Text>
 				</View>
 				
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
 					<Text style={styles.notes}>
-					    {this.format([this.props.detail.site, this.props.detail.route, this.props.detail.dose])}
+					    Accepting only: {this.format([this.props.detail.age, this.props.detail.job, this.props.detail.conditions])}
 					</Text>
 				</View>
 
@@ -39,7 +38,7 @@ export default class VaccineCard extends Component {
 				
 				<View style={{flexDirection:'row', alignItems: 'center'}}>
 					<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
-					<Text style={styles.notes}>Signed by {this.props.detail.vaccinator}</Text>
+					<Text style={styles.notes}>Signed by {this.props.detail.pub_key}</Text>
 				</View>
 			</Card>
 		);

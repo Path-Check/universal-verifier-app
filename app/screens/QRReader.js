@@ -36,6 +36,7 @@ function QRReader({ navigation }) {
   }
 
   const onVaccineRead = async (e) => {
+    console.log(e.data);
     if (!e.data.startsWith("healthpass:")) {
       showErrorMessage("Not a Health Passport");
       return;
@@ -60,9 +61,65 @@ function QRReader({ navigation }) {
           pub_key,
           hashType
         );
+
+        console.log(message);
+        console.log(pub_key);
+        console.log(signedCert);
+        console.log(hashType);
         
+        console.log(params.type);
+        console.log(validSignature2);
+
         if (validSignature2) {
-          const vaccine = { type: "vaccine",
+          if (params.type === "coupon") {
+            console.log('coupon card');
+            const coupon = { type: params.type,
+                    id: myDecode(params.id), 
+                    coupons: myDecode(params.coupons), 
+                    phase: myDecode(params.phase), 
+                    city: myDecode(params.city),
+                    age: myDecode(params.age),
+                    conditions: myDecode(params.conditions),
+                    job: myDecode(params.job),
+                    pub_key: pub_key_url,
+                    signature: signedCert, 
+                    scanDate: new Date().toJSON(),
+                    verified: validSignature2 ? "Valid" : "Not Valid" };
+
+            AsyncStorage.setItem('CARDS'+signedCert, JSON.stringify(coupon));
+          }
+
+          if (params.type === "status") {
+            console.log('status card');
+            const status = { type: params.type,
+                    vaccinated: myDecode(params.vaccinated), 
+                    vaccinee: myDecode(params.vaccinee), 
+                    pub_key: pub_key_url,
+                    signature: signedCert, 
+                    scanDate: new Date().toJSON(),
+                    verified: validSignature2 ? "Valid" : "Not Valid" };
+
+            AsyncStorage.setItem('CARDS'+signedCert, JSON.stringify(status));
+          }
+
+          if (params.type === "passkey") {
+            console.log('passkey card');
+            const passkey = { type: params.type,
+                    name: myDecode(params.name), 
+                    phone: myDecode(params.phone), 
+                    dob: myDecode(params.dob), 
+                    salt: myDecode(params.salt), 
+                    pub_key: pub_key_url,
+                    signature: signedCert, 
+                    scanDate: new Date().toJSON(),
+                    verified: validSignature2 ? "Valid" : "Not Valid" };
+
+            AsyncStorage.setItem('CARDS'+signedCert, JSON.stringify(passkey));
+          }
+
+          if (typeof params.type === 'undefined' || params.type === "badge") {
+            console.log('vaccine card');
+            const vaccine = { type: "vaccine",
                     date: params.date, 
                     name: myDecode(params.name), 
                     manufacturer: myDecode(params.manuf), 
@@ -72,12 +129,13 @@ function QRReader({ navigation }) {
                     dose: myDecode(params.dose),
                     vaccinee: myDecode(params.vaccinee), 
                     vaccinator: myDecode(params.vaccinator),
-                    vaccinator_pub_key: params.vaccinator_pub_key,
+                    pub_key: pub_key_url,
                     signature: signedCert, 
                     scanDate: new Date().toJSON(),
                     verified: validSignature2 ? "Valid" : "Not Valid" };
 
-          AsyncStorage.setItem('CARDS'+signedCert, JSON.stringify(vaccine));
+            AsyncStorage.setItem('CARDS'+signedCert, JSON.stringify(vaccine));
+          }
 
           navigation.goBack(); 
         } else {
