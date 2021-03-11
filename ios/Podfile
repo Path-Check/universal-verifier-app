@@ -6,14 +6,14 @@ platform :ios, '10.0'
 permissions_path = '../node_modules/react-native-permissions/ios'
 pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec"
 
-target 'VaccineCertificateTrackingApp' do
+target 'Checkin' do
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
-  target 'VaccineCertificateTrackingAppTests' do
+  target 'CheckinTests' do
     inherit! :complete
     # Pods for testing
   end
@@ -25,14 +25,5 @@ target 'VaccineCertificateTrackingApp' do
   use_flipper!
   post_install do |installer|
     flipper_post_install(installer)
-  end
-end
-
-target 'VaccineCertificateTrackingApp-tvOS' do
-  # Pods for VaccineCertificateTrackingApp-tvOS
-
-  target 'VaccineCertificateTrackingApp-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
   end
 end
