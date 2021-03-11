@@ -99,7 +99,6 @@ function Entry({ navigation }) {
   useEffect(() => {
     changeNavigationBarColor(colors.background, !isDark);
     load();
-    console.log("useEffect Called");
   }, [isFocused]);
 
   return (

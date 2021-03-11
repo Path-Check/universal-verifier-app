@@ -61,7 +61,6 @@ function QRReader({ navigation }) {
 
     // Linking new user to other cards
     if (card.type == "PASSKEY") {
-      console.log("Saving Passkey AS Vacinee");
       await saveVaccinee(card);
 
       let ks = await AsyncStorage.getAllKeys();
@@ -69,9 +68,7 @@ function QRReader({ navigation }) {
       let cardsStr = await AsyncStorage.multiGet(curated);
       cardsStr.forEach((item) => {
           let existingCard = JSON.parse(item[1]);
-          console.log("Verifing " + existingCard.vaccineeHash);
           if (existingCard.vaccineeHash && existingCard.vaccineeHash === card.hash) {
-            console.log("Updating Matching Hash " + existingCard.vaccineeHash);
             existingCard.vaccinee = card;
             saveCard(existingCard);
           }
@@ -81,7 +78,6 @@ function QRReader({ navigation }) {
   }
 
   const onVaccineRead = async (e) => {
-    console.log(e.data);
     let [schema, qrtype, version, signatureBase32NoPad, pubKeyLink, payloadStr] = await parseQR(e.data);  
 
     if (!schema.startsWith("CRED")) {
@@ -93,8 +89,7 @@ function QRReader({ navigation }) {
       let pubKeyPEM = await downloadPEM(pubKeyLink);
       try {
         let verified = await verify(signatureBase32NoPad, pubKeyPEM, payloadStr);
-        console.log("Verified?", verified);
-
+        
         let baseCard = {
           type: qrtype, 
           version: version, 
