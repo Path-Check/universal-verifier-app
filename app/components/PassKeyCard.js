@@ -17,7 +17,7 @@ export default class PassKeyCard extends Component {
 		return (
 			<Card containerStyle={styles.card}>
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.notes}>PassKey</Text>
+					<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - PassKey</Text>
 					<FontAwesome5 style={styles.icon} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
 				</View>
 				
@@ -37,7 +37,7 @@ export default class PassKeyCard extends Component {
 				
 				<View style={{flexDirection:'row', alignItems: 'center'}}>
 					<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
-					<Text style={styles.notes}>Signed by {this.props.detail.pub_key}</Text>
+					<Text style={styles.notes}>Signed by {this.props.detail.pub_key.toLowerCase()}</Text>
 				</View>
 			</Card>
 		);
@@ -58,7 +58,8 @@ const styles = StyleSheet.create({
 	},
 	time:{
 		fontSize:38,
-		color:'#fff'
+		color:'#fff', 
+		textTransform: 'capitalize'
 	},
 	notes: {
 		fontSize: 18,

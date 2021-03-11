@@ -21,8 +21,8 @@ import {useTheme} from '../themes/ThemeProvider';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
 function Entry({ navigation }) {
-  const [vaccines, setVaccines] = useState([]);
-  const [filteredVaccines, setFilteredVaccines] = useState([]);
+  const [cards, setCards] = useState([]);
+  const [filteredCards, setFilteredCards] = useState([]);
   const [search, setSearch] = useState('');
   const isFocused = useIsFocused();
   const {colors, isDark} = useTheme();
@@ -39,20 +39,19 @@ function Entry({ navigation }) {
     }
   ];
 
-  const filter = (vaccines, text) => {
+  const filter = (cards, text) => {
     if (text && text.length > 0) { 
       const lowerText = text.toLowerCase();
-      return vaccines.filter(function (item) {
-          return (item.vaccinee && item.vaccinee.toLowerCase().includes(lowerText))
-              || (item.vaccinator && item.vaccinator.toLowerCase().includes(lowerText));
+      return cards.filter(function (item) {
+          return JSON.stringify(item).toLowerCase().includes(lowerText);
         });
     } else {
-      return vaccines;
+      return cards;
     }
   }
 
   const searchFilter = (text) => {
-    setFilteredVaccines(filter(vaccines, text));
+    setFilteredCards(filter(cards, text));
     setSearch(text);
   }
 
@@ -60,24 +59,40 @@ function Entry({ navigation }) {
     try {
       let ks = await AsyncStorage.getAllKeys();
       let curated =  ks.filter((key) => key.startsWith('CARDS'));
-      let vaccinesStr = await AsyncStorage.multiGet(curated);
-      let vaccines = [];
-      vaccinesStr.forEach((item) =>
-          vaccines.push(JSON.parse(item[1]))
+      let cardsStr = await AsyncStorage.multiGet(curated);
+      let cards = [];
+      cardsStr.forEach((item) =>
+          cards.push(JSON.parse(item[1]))
       );
-      vaccines = vaccines.sort((a,b) => new Date(b.scanDate) - new Date(a.scanDate));
-      setVaccines(vaccines);
-      setFilteredVaccines(filter(vaccines, search));
+      cards = cards.sort((a,b) => new Date(b.scanDate) - new Date(a.scanDate));
+      setCards(cards);
+      setFilteredCards(filter(cards, search));
     } catch (err) {
       alert(err);
     }
   };
 
-  const removeItem = (signature) => {
-    AsyncStorage.removeItem('CARDS'+signature);
-    const removedVaccine = vaccines.filter(item => item.signature !== signature);
-    setVaccines(removedVaccine);
-    setFilteredVaccines(filter(removedVaccine, search));
+  const removeItem = async (signature) => {
+    const toRemove = cards.filter(item => item.signature === signature);
+    if (toRemove[0] && toRemove[0].hash) {
+      await AsyncStorage.removeItem('HASH'+toRemove[0].hash);
+
+      const removeHashReferences = cards.filter(item => item.vaccineeHash === toRemove[0].hash);
+      removeHashReferences.forEach(async (item) => {
+            let cardStr = await AsyncStorage.getItem('CARDS'+item.signature);
+            console.log(cardStr);
+            let card = JSON.parse(cardStr);
+            card.vaccinee = null;
+            item.vaccinee = null;
+            await AsyncStorage.setItem('CARDS'+card.signature, JSON.stringify(card)); 
+          }
+      );
+    }
+
+    await AsyncStorage.removeItem('CARDS'+signature);
+    const removedVaccine = cards.filter(item => item.signature !== signature);
+    setCards(removedVaccine);
+    setFilteredCards(filter(removedVaccine, search));
     console.log("RemoveItem" + signature);
   }
 
@@ -104,16 +119,16 @@ function Entry({ navigation }) {
         />
 
       <FlatList 
-        data={filteredVaccines} 
+        data={filteredCards} 
         keyExtractor={item => item.signature} 
         renderItem={({item}) => {
-          if (item.type === "vaccine")  
+          if (item.type === "BADGE")  
              return <VaccineCard detail={item} removeItem={removeItem} />
-          if (item.type === "coupon")  
+          if (item.type === "COUPON")  
              return <CouponCard detail={item} removeItem={removeItem} />
-          if (item.type === "status")  
+          if (item.type === "STATUS")  
              return <StatusCard detail={item} removeItem={removeItem} />
-          if (item.type === "passkey")  
+          if (item.type === "PASSKEY")  
              return <PassKeyCard detail={item} removeItem={removeItem} />
         }} />
 

@@ -17,19 +17,30 @@ export default class VaccineCard extends Component {
 		return (
 			<Card containerStyle={styles.card}>
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.notes}>{Moment(this.props.detail.date).format('MMM DD, ha')}</Text>
+					<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Badge</Text>
 					<FontAwesome5 style={styles.icon} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
 				</View>
-				
+
         <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.time}>{this.props.detail.manufacturer} {this.props.detail.type}</Text>
+					<Text style={styles.time}>{this.props.detail.manuf} {this.props.detail.product}</Text>
 				</View>
 
-				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>{this.props.detail.vaccinee}</Text>
+				{ this.props.detail.vaccinee && this.props.detail.vaccinee.name &&
+					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+						<Text style={styles.notesCaps}>{this.props.detail.vaccinee.name}, {Moment(this.props.detail.vaccinee.dob).format('MMM DD, YYYY')}</Text>
+					</View>
+				}
+
+				{ this.props.detail.name !== "" &&
+				<View style={styles.row}>
+					<Text style={styles.notesCaps}>{this.props.detail.name}, {Moment(this.props.detail.dob).format('MMM DD, YYYY')}</Text>
+				</View>
+				}
+				<View style={styles.row}>
+					<Text style={styles.notes}>Shot taken on {Moment(this.props.detail.date).format('MMM DD, YYYY')}</Text>
 				</View>
 				
-				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
+				<View style={styles.row}>
 					<Text style={styles.notes}>
 					    {this.format([this.props.detail.site, this.props.detail.route, this.props.detail.dose])}
 					</Text>
@@ -39,7 +50,7 @@ export default class VaccineCard extends Component {
 				
 				<View style={{flexDirection:'row', alignItems: 'center'}}>
 					<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
-					<Text style={styles.notes}>Signed by {this.props.detail.vaccinator}</Text>
+					<Text style={styles.notes}>Signed by {this.props.detail.pub_key.toLowerCase()}</Text>
 				</View>
 			</Card>
 		);
@@ -58,12 +69,21 @@ const styles = StyleSheet.create({
 		paddingRight: 8,
 		fontSize:18
 	},
+	row:{
+		flexDirection:'row', 
+		justifyContent:'space-between'
+	},
 	time:{
 		fontSize:38,
-		color:'#fff'
+		color:'#fff', textTransform: 'capitalize'
 	},
 	notes: {
 		fontSize: 18,
 		color:'#fff'
+	}, 
+	notesCaps: {
+		fontSize: 18,
+		color:'#fff', 
+		textTransform: 'capitalize'
 	}
 });

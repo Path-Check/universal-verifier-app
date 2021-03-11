@@ -17,20 +17,24 @@ export default class CouponCard extends Component {
 		return (
 			<Card containerStyle={styles.card}>
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.notes}>Coupon</Text>
+					<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Coupon</Text>
 					<FontAwesome5 style={styles.icon} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
 				</View>
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.time}>{this.props.detail.id}</Text>	
+					<Text style={styles.time}>ID: {this.props.detail.id}</Text>	
+				</View>
+				
+				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
+					<Text style={styles.notes}>Coupons: {this.props.detail.coupons}</Text>
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>Phase: {this.props.detail.phase} in {this.props.detail.city}</Text>
+					<Text style={styles.notes}>Phase {this.props.detail.phase} in {this.props.detail.city}</Text>
 				</View>
 				
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
 					<Text style={styles.notes}>
-					    Accepting only: {this.format([this.props.detail.age, this.props.detail.job, this.props.detail.conditions])}
+					    Accepting only: {this.props.detail.conditions}
 					</Text>
 				</View>
 
@@ -38,7 +42,7 @@ export default class CouponCard extends Component {
 				
 				<View style={{flexDirection:'row', alignItems: 'center'}}>
 					<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
-					<Text style={styles.notes}>Signed by {this.props.detail.pub_key}</Text>
+					<Text style={styles.notes}>Signed by {this.props.detail.pub_key.toLowerCase()}</Text>
 				</View>
 			</Card>
 		);
@@ -63,6 +67,6 @@ const styles = StyleSheet.create({
 	},
 	notes: {
 		fontSize: 18,
-		color:'#fff'
+		color:'#fff', 
 	}
 });
