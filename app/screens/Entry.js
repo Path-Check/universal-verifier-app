@@ -142,6 +142,7 @@ function Entry({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
+    paddingTop: (Platform.OS === 'ios') ? 18 : 0,
     flex: 1
   },
   icon:{

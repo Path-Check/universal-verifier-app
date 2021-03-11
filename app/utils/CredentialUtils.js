@@ -1,5 +1,9 @@
 import RNSimpleCrypto from "react-native-simple-crypto";
 
+import base32 from "hi-base32";
+import ANS1 from "react-native-asn1.js";
+import {ec as EC} from 'elliptic'
+
 const algos = {'1.2.840.10045.2.1':'Elliptic curve public key cryptography'};
 const curves = {'1.3.132.0.10': 'secp256k1'};
 
@@ -46,7 +50,7 @@ const decodePayload = async (payload) => {
 }
 
 const encodePayload = async (payload) => {
-  var base32 = require('hi-base32');
+  
 
   let hashPayload = await RNSimpleCrypto.SHA.sha256(payload);
   let hashPayloadBase32 = await rmPad(await base32.encode(hashPayload));
@@ -54,10 +58,6 @@ const encodePayload = async (payload) => {
 }
 
 const verify = async (signatureBase32NoPad, pubKeyPEM, payload) => {
-  var ANS1 = require('react-native-asn1.js');
-  var EC = require('elliptic').ec;
-  var base32 = require('hi-base32');
-
   const ECPublicKey = ANS1.define("PublicKey", function() {
       this.seq().obj(
           this.key("algorithm").seq().obj(

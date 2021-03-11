@@ -123,9 +123,9 @@ function QRReader({ navigation }) {
       headerStyle: { backgroundColor: colors.background }, 
       headerTintColor: colors.text, 
       headerTitleStyle: {
-          fontFamily: 'Cochin',
+          fontFamily: 'Verdana',
           fontWeight: 'normal',
-          fontSize: 20,
+          fontSize: 18,
       },
     });
   });
@@ -137,7 +137,7 @@ function QRReader({ navigation }) {
         reactivateTimeout={5000}
         containerStyle={{backgroundColor: colors.background}}
         cameraStyle={{ height: screenHeight }}
-        topViewStyle={{height: 0, flex: 0}}
+        topViewStyle={{height: 1, flex: 0}}
         bottomViewStyle={{height: 0, flex: 0}}
       />
   )
