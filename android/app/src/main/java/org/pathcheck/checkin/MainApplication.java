@@ -1,4 +1,4 @@
-package org.pathcheck.healthpassport.reader;
+package org.pathcheck.checkin;
 
 import android.app.Application;
 import android.content.Context;
