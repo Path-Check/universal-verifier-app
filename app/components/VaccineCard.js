@@ -13,12 +13,17 @@ export default class VaccineCard extends Component {
     return noUndefinedList.join(', ');
   }
 
+	formatDoB = (dob) => {
+		if (dob === undefined || dob === "") return "";
+		return Moment(dob).format('MMM DD, YYYY')
+	}
+
 	render() {
 		return (
 			<Card containerStyle={styles.card}>
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
 					<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Badge</Text>
-					<FontAwesome5 style={styles.icon} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
+					<FontAwesome5 style={styles.button} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
 				</View>
 
         <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
@@ -27,13 +32,13 @@ export default class VaccineCard extends Component {
 
 				{ this.props.detail.vaccinee && this.props.detail.vaccinee.name &&
 					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-						<Text style={styles.notesCaps}>{this.props.detail.vaccinee.name}, {Moment(this.props.detail.vaccinee.dob).format('MMM DD, YYYY')}</Text>
+						<Text style={styles.notesCaps}>{this.props.detail.vaccinee.name}, {this.formatDoB(this.props.detail.vaccinee.dob)}</Text>
 					</View>
 				}
 
-				{ this.props.detail.name !== "" &&
+				{ this.props.detail.name !== undefined && this.props.detail.name !== "" &&
 				<View style={styles.row}>
-					<Text style={styles.notesCaps}>{this.props.detail.name}, {Moment(this.props.detail.dob).format('MMM DD, YYYY')}</Text>
+					<Text style={styles.notesCaps}>{this.props.detail.name}, {this.formatDoB(this.props.detail.dob)}</Text>
 				</View>
 				}
 				<View style={styles.row}>
@@ -62,6 +67,13 @@ const styles = StyleSheet.create({
 		backgroundColor:'rgba(56, 172, 236, 1)',
 		borderWidth:0,
 		borderRadius:20
+	},
+	button:{
+		backgroundColor:"#00000000",
+		color:'#fff',
+		paddingRight: 8,
+		paddingLeft: 18,
+		fontSize:18
 	},
 	icon:{
 		backgroundColor:"#00000000",
