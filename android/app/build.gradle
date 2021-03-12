@@ -132,8 +132,8 @@ android {
         applicationId "org.pathcheck.checkin"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 17
-        versionName "0.0.19"
+        versionCode 18
+        versionName "0.0.20"
         missingDimensionStrategy 'react-native-camera', 'general'
         multiDexEnabled true // <-- ADD THIS in the defaultConfig section
     }
