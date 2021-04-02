@@ -14,7 +14,7 @@ You will find the latest APK on our release files [here](https://github.com/vito
 - [x] Signature Validation (v0.0.2)
 - [x] Local Storage (v0.0.5)
 - [x] Card Layout UI (v0.0.6)
-- [x] Automated Release Management from GitHub Actions (v0.0.6)
+- [x] Automated Release Management (v0.0.6)
 - [x] Search on header (v0.0.8)
 - [x] Sort by Scan Date (v0.0.9)
 - [x] Delete Cards (v0.0.9)
