@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Image, Button } from 'react-native';
 import { Text, Card, Divider } from 'react-native-elements';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import Moment from 'moment';

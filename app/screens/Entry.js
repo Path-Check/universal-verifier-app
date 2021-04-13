@@ -14,7 +14,7 @@ import CouponCard from './../components/CouponCard';
 import StatusCard from './../components/StatusCard';
 import PassKeyCard from './../components/PassKeyCard';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SearchBar } from 'react-native-elements';
 import { FloatingAction } from "react-native-floating-action";
 import {useTheme} from '../themes/ThemeProvider';
