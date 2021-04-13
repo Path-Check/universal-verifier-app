@@ -35,8 +35,10 @@ const downloadPEM = async (pubKeyLink) => {
   let pub_key_dns_pem = await pub_key_dns_response.json();
   if (pub_key_dns_pem.Answer) {
       const pubKeyTxtLookup = pub_key_dns_pem.Answer[0].data
-      const pem = pubKeyTxtLookup.substring(1, pubKeyTxtLookup.length - 1).replace(/\\n/g,"\n");
-      return pem;
+      let key = pubKeyTxtLookup.substring(1, pubKeyTxtLookup.length - 1).replace(/\\n/g,"\n");
+      if (!key.includes("-----BEGIN PUBLIC KEY-----")) 
+        key = "-----BEGIN PUBLIC KEY-----" + "\n" + key + "\n" + "-----END PUBLIC KEY-----\n"
+      return key;
   }
   let pub_key_file_response = await fetch("https://"+pubKeyLink);
   return await pub_key_file_response.text();

@@ -1,4 +1,4 @@
-import {decodePayload, encodePayload} from '../utils/CredentialUtils';
+import {decodePayload, encodePayload} from './CredentialUtils';
 import RNSimpleCrypto from "react-native-simple-crypto";
 
 const buildHashPayload = async (elemArray) => {
