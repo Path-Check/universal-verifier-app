@@ -1,8 +1,8 @@
-# Verifiable Credentials Universal Verifier
+# Univeral Verifier
 
 <img align="right" src="./docs/screenshots/HomePage.png" data-canonical-src="./docs/screenshots/HomePage.png" width="350px"/>
 
-Android and iOS app that scans for Verifiable Credentials and verifies the content of the payload. 
+Android and iOS app that scans for Universial Verifier 
 
 ## Download the latest release
 
