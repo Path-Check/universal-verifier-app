@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useColorScheme} from 'react-native-appearance';
+import {useColorScheme} from 'react-native';
 import {lightColors, darkColors} from './Colors';
 
 export const ThemeContext = React.createContext({

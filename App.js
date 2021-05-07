@@ -11,14 +11,12 @@ import Entry from './app/screens/Entry';
 import QRReader from './app/screens/QRReader';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { AppearanceProvider } from 'react-native-appearance';
 import { ThemeProvider } from './app/themes/ThemeProvider';
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <AppearanceProvider>
       <ThemeProvider>
         <NavigationContainer>
           <Stack.Navigator>
@@ -36,7 +34,6 @@ const App = () => {
           </Stack.Navigator>
         </NavigationContainer>
       </ThemeProvider>
-    </AppearanceProvider>
   );
 };
 
