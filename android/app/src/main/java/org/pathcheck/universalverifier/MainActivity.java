@@ -1,4 +1,4 @@
-package org.pathcheck.checkin;
+package org.pathcheck.universalverifier;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,6 +10,6 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "CheckIn";
+    return "UniversalVerifier";
   }
 }

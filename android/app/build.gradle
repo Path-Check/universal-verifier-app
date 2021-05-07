@@ -130,7 +130,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "org.pathcheck.checkin"
+        applicationId "org.pathcheck.universalverifier"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 19
