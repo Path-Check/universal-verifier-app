@@ -8,6 +8,11 @@ The app helps business and organizations save time and labor whe verifying the v
 
 This no widely accepted technicals standard for QR codes and variants are growing, including ones from IBM, CLEAR, Divoc, WHO, EU, VCI, PathCheck, Linux CCI and others.
 
+Actors
+(Individual) Verifer - single person doing verifying (e.g. guard at door, HR person)
+Verifying Organization - organization the Verifer belongs to (e.g. University of Cincinatti)
+Holder - person presenting the digital or paper covid passport/cred/pass
+
 ## Download the latest release
 
 You will find the latest APK on our release files [here](https://github.com/vitorpamplona/vaccine-certificate-tracking-app/releases)
