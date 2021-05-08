@@ -4,7 +4,7 @@
 
 This android and iOS app is a Universial Verifier.  It scans a QR code for a covid passport/credential/pass and returns a "Pass" or "Fail". '
 
-The business problem solves saving time and labor for organizations verifying the veracity of digial or paper covid passport/credentials/pass when 1) approving a student or employees has been vaccinated for the HR files,  2) verificaton of clean health for individuals physically entering a school, stadium, office building, etc.
+The app helps business and organizations save time and labor whe verifying the veracity of digial or paper covid passport/credentials/pass.  Typical use cases are when 1) confirming that a student or employees has been vaccinated for their HR files and 2) verificaton of a clean health for individuals physically entering a school, stadium, office building, etc.
 
 This no widely accepted technicals standard for QR codes and variants are growing, including ones from IBM, CLEAR, Divoc, WHO, EU, VCI, PathCheck, Linux CCI and others.
 
