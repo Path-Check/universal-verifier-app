@@ -3,109 +3,109 @@
 	{
       "size" : "20x20",
       "idiom": "iphone",
-	  "filename" : "health-check-20@2x.png",
+	  "filename" : "iOS3-20@2x.png",
       "scale": "2x"
     },
 	{
       "size" : "20x20",
       "idiom": "iphone",
-	  "filename" : "health-check-20@3x.png",
+	  "filename" : "iOS3-20@3x.png",
       "scale": "3x"
     },
 	{
       "size" : "20x20",
       "idiom": "ipad",
-	  "filename" : "health-check-20.png",
+	  "filename" : "iOS3-20.png",
       "scale": "1x"
     },
     {
       "size" : "20x20",
       "idiom": "ipad",
-	  "filename" : "health-check-20@2x.png",
+	  "filename" : "iOS3-20@2x.png",
       "scale": "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "health-check-29@2x.png",
+      "filename" : "iOS3-29@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "health-check-29@3x.png",
+      "filename" : "iOS3-29@3x.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "health-check-40@2x.png",
+      "filename" : "iOS3-40@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "health-check-40@3x.png",
+      "filename" : "iOS3-40@3x.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "health-check-60@2x.png",
+      "filename" : "iOS3-60@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "health-check-60@3x.png",
+      "filename" : "iOS3-60@3x.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "health-check-29.png",
+      "filename" : "iOS3-29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "health-check-29@2x.png",
+      "filename" : "iOS3-29@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "health-check-40.png",
+      "filename" : "iOS3-40.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "health-check-40@2x.png",
+      "filename" : "iOS3-40@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "health-check-76.png",
+      "filename" : "iOS3-76.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "health-check-76@2x.png",
+      "filename" : "iOS3-76@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "health-check-83.5@2x.png",
+      "filename" : "iOS3-83.5@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "health-check-1024.png",
+      "filename" : "iOS3-1024.png",
       "scale" : "1x"
     }
   ],
