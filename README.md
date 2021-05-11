@@ -1,4 +1,4 @@
-# Universal Verifier
+# QR Check.   PathCheck's Universal Verifier
 
 <img align="right" src="./docs/screenshots/HomePage.png" data-canonical-src="./docs/screenshots/HomePage.png" width="350px"/>
 
