@@ -33,20 +33,11 @@ You will find the latest APK on our release files [here](https://github.com/vito
 
 # Development Overview
 
-This is a React Native app version >61.5
+This is a React Native app version >61.5. 
 
-## Requirements
+## New to React Native? 
 
-- Git
-- NVM
-- Node (10.1 or newer)
-- Yarn
-- Watchman
-- OpenJDK (for Android building and installing)
-- Android Studio (SDK, AVD)
-- CocoaPods (Required for installing iOS dependencies)
-- XCode (for iOS Dev)
-- ios-deploy (installing your app on a physical device with the CLI)
+Folow the [ReactNative CLI QuickStart steps](https://reactnative.dev/docs/environment-setup) for both Android and iOS.
 
 ## Running
 
