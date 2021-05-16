@@ -11,8 +11,9 @@
     "postversion": "react-native-version"
   },
   "dependencies": {
+    "react": "17.0.1",
+    "react-native": "0.64.1",
     "@react-native-async-storage/async-storage": "^1.15.4",
-    "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.4",
     "buffer": "^6.0.3",
@@ -20,8 +21,6 @@
     "hi-base32": "^0.5.1",
     "moment": "^2.29.1",
     "query-string": "^7.0.0",
-    "react": "17.0.1",
-    "react-native": "0.64.1",
     "react-native-asn1.js": "^4.9.2",
     "react-native-base64": "^0.2.1",
     "react-native-camera": "^3.43.0",
@@ -31,12 +30,10 @@
     "react-native-navigation-bar-color": "^2.0.1",
     "react-native-permissions": "^3.0.1",
     "react-native-qrcode-scanner": "^1.5.3",
-    "react-native-reanimated": "^2.0.0",
-    "react-native-safe-area-context": "^3.2.0",
     "react-native-screens": "^2.18.1",
     "react-native-simple-crypto": "^0.2.15",
-    "react-native-svg": "^12.1.0",
-    "react-native-vector-icons": "^8.1.0"
+    "react-native-vector-icons": "^8.1.0",
+    "react-native-safe-area-context": "^3.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
