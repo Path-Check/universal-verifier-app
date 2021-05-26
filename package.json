@@ -1,7 +1,7 @@
 {
   "name": "UniversalVerifier",
   "version": "0.0.23",
-  "private": true,
+  "license": "GPL-3.0-only",
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
