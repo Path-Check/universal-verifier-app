@@ -77,7 +77,7 @@ function Entry({ navigation }) {
     if (toRemove[0] && toRemove[0].hash) {
       await AsyncStorage.removeItem('HASH'+toRemove[0].hash);
 
-      const removeHashReferences = cards.filter(item => item.vaccineeHash === toRemove[0].hash);
+      const removeHashReferences = cards.filter(item => item.passkey === toRemove[0].hash);
       removeHashReferences.forEach(async (item) => {
             let cardStr = await AsyncStorage.getItem('CARDS'+item.signature);
             console.log(cardStr);

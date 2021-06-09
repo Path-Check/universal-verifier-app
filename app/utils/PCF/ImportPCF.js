@@ -1,14 +1,13 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as CRED from '@pathcheck/cred-sdk';
 
-import {verify, downloadPEM, parseQR} from './CredentialUtils';
-import {parse} from './Payloads';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const getVaccinee = async (card) => {
   // Linking PassKeys to other cards. 
-  if (card.vaccineeHash) {
-    let vacineeStr = await AsyncStorage.getItem('HASH'+card.vaccineeHash);
-    if (vacineeStr) 
-      return JSON.parse(vacineeStr);
+  if (card.passkey) {
+    let vaccineeStr = await AsyncStorage.getItem('HASH'+card.passkey);
+    if (vaccineeStr) 
+      return JSON.parse(vaccineeStr);
   }
   return null;
 }
@@ -25,7 +24,7 @@ const saveVaccinee = async (card) => {
 
 const saveNewCard = async (card) => {
   // Linking PassKeys to other cards. 
-  if (card.vaccineeHash) {
+  if (card.passkey) {
     card.vaccinee = await getVaccinee(card);
   }
   
@@ -40,7 +39,7 @@ const saveNewCard = async (card) => {
     let cardsStr = await AsyncStorage.multiGet(curated);
     cardsStr.forEach((item) => {
         let existingCard = JSON.parse(item[1]);
-        if (existingCard.vaccineeHash && existingCard.vaccineeHash === card.hash) {
+        if (existingCard.passkey && existingCard.passkey === card.hash) {
           existingCard.vaccinee = card;
           saveCard(existingCard);
         }
@@ -54,12 +53,37 @@ const importPCF = async (uri) => {
     return {status: "Not a Health Passport", log: uri};
   }
 
-  let [schema, qrtype, version, signatureBase32NoPad, pubKeyLink, payloadStr] = await parseQR(uri);  
+  let payload = await CRED.unpackAndVerify(uri);
 
+  if (payload) { 
+    let [schema, qrtype, version, signatureBase32NoPad, pubKeyLink, payloadStr] = await CRED.unpack(uri);  
+    let baseCard = {
+        type: qrtype, 
+        version: version, 
+        pub_key: pubKeyLink,
+        signature: signatureBase32NoPad, 
+        scanDate: new Date().toJSON(),
+        verified: "Valid"
+      }; 
+
+      if (qrtype == "PASSKEY") {
+        baseCard.hash = await CRED.hashPayload(payload);
+      }
+
+      let mappedPayload = await CRED.mapHeaders(payload, qrtype, version);
+
+      await saveNewCard({...baseCard, ...mappedPayload});
+
+      return {status: "OK", payload: {...baseCard, ...mappedPayload}};
+  } else {
+    return {status: "Could not verify", log: error};
+  }
+
+/*
   try {
-    let pubKeyPEM = await downloadPEM(pubKeyLink);
+    let pubKeyPEM = await CRED.downloadPEM(pubKeyLink);
     try {
-      let verified = await verify(signatureBase32NoPad, pubKeyPEM, payloadStr);
+      let verified = await CRED.verify(signatureBase32NoPad, pubKeyPEM, payloadStr);
       
       let baseCard = {
         type: qrtype, 
@@ -71,7 +95,7 @@ const importPCF = async (uri) => {
       }
 
       if (verified) {
-        let payload = await parse(qrtype, payloadStr);
+        let payload = await CRED.mapHeaders(qrtype, payloadStr);
         
         await saveNewCard({...baseCard, ...payload});
         
@@ -87,6 +111,7 @@ const importPCF = async (uri) => {
     console.error(error);
     return {status: "Public Key Server Unavailable", log: error};
   }
+  */
 }
 
 export { importPCF }

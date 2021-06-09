@@ -21,11 +21,11 @@ export default class CouponCard extends Component {
 					<FontAwesome5 style={styles.icon} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
 				</View>
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.time}>ID: {this.props.detail.id}</Text>	
+					<Text style={styles.time}>ID: {this.props.detail.number}</Text>	
 				</View>
 				
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>Coupons: {this.props.detail.coupons}</Text>
+					<Text style={styles.notes}>Coupons: {this.props.detail.total}</Text>
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
@@ -34,7 +34,7 @@ export default class CouponCard extends Component {
 				
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
 					<Text style={styles.notes}>
-					    Accepting only: {this.props.detail.conditions}
+					    Accepting only: {this.props.detail.indicator}
 					</Text>
 				</View>
 

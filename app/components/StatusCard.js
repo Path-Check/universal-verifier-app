@@ -28,10 +28,10 @@ export default class StatusCard extends Component {
 				</View>
 				
         <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.time}>{this.formatDoses(this.props.detail.vaccinated)}</Text>
+					<Text style={styles.time}>{this.formatDoses(this.props.detail.status)}</Text>
 				</View>
 
-				{ this.props.detail.initials !== "" &&
+				{ this.props.detail.initials && this.props.detail.initials !== "" &&
 					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
 						<Text style={styles.notes}>Initials: {this.props.detail.initials}</Text>
 					</View>
