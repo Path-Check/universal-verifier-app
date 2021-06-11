@@ -19,6 +19,14 @@ export default class StatusCard extends Component {
 		return "Not Vaccinated";
   }
 
+	cert = () => {
+		return this.props.detail.cert ? this.props.detail.cert : this.props.detail;
+	}
+
+	certVacinee = () => {
+		return this.props.detail.vaccinee.cert ? this.props.detail.vaccinee.cert : this.props.detail.vaccinee;
+	}
+
 	render() {
 		return (
 			<Card containerStyle={styles.card}>
@@ -28,18 +36,18 @@ export default class StatusCard extends Component {
 				</View>
 				
         <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.time}>{this.formatDoses(this.props.detail.cert.status)}</Text>
+					<Text style={styles.time}>{this.formatDoses(this.cert().status)}</Text>
 				</View>
 
-				{ this.props.detail.cert.initials && this.props.detail.cert.initials !== "" &&
+				{ this.cert().initials && this.cert().initials !== "" &&
 					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-						<Text style={styles.notes}>Initials: {this.props.detail.cert.initials}</Text>
+						<Text style={styles.notes}>Initials: {this.cert().initials}</Text>
 					</View>
 				}
 
-				{ this.props.detail.vaccinee && this.props.detail.vaccinee.cert.name &&
+				{ this.props.detail.vaccinee && this.certVacinee().name &&
 					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-						<Text style={styles.notesCaps}>{this.props.detail.vaccinee.cert.name}, {Moment(this.props.detail.vaccinee.cert.dob).format('MMM DD, YYYY')}</Text>
+						<Text style={styles.notesCaps}>{this.certVacinee().name}, {Moment(this.certVacinee().dob).format('MMM DD, YYYY')}</Text>
 					</View>
 				}
 

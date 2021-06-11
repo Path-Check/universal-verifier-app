@@ -13,6 +13,10 @@ export default class CouponCard extends Component {
     return noUndefinedList.join(', ');
   }
 
+	cert = () => {
+		return this.props.detail.cert ? this.props.detail.cert : this.props.detail;
+	}
+
 	render() {
 		return (
 			<Card containerStyle={styles.card}>
@@ -21,20 +25,20 @@ export default class CouponCard extends Component {
 					<FontAwesome5 style={styles.icon} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
 				</View>
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.time}>ID: {this.props.detail.cert.number}</Text>	
+					<Text style={styles.time}>ID: {this.cert().number}</Text>	
 				</View>
 				
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>Coupons: {this.props.detail.cert.total}</Text>
+					<Text style={styles.notes}>Coupons: {this.cert().total}</Text>
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>Phase {this.props.detail.cert.phase} in {this.props.detail.cert.city}</Text>
+					<Text style={styles.notes}>Phase {this.cert().phase} in {this.cert().city}</Text>
 				</View>
 				
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
 					<Text style={styles.notes}>
-					    Accepting only: {this.props.detail.cert.indicator}
+					    Accepting only: {this.cert().indicator}
 					</Text>
 				</View>
 

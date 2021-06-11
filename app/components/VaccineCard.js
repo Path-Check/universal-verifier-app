@@ -18,6 +18,14 @@ export default class VaccineCard extends Component {
 		return Moment(dob).format('MMM DD, YYYY')
 	}
 
+	cert = () => {
+		return this.props.detail.cert ? this.props.detail.cert : this.props.detail;
+	}
+
+	certVacinee = () => {
+		return this.props.detail.vaccinee.cert ? this.props.detail.vaccinee.cert : this.props.detail.vaccinee;
+	}
+
 	render() {
 		return (
 			<Card containerStyle={styles.card}>
@@ -27,27 +35,27 @@ export default class VaccineCard extends Component {
 				</View>
 
         <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.time}>{this.props.detail.cert.manuf} {this.props.detail.cert.product}</Text>
+					<Text style={styles.time}>{this.cert().manuf} {this.cert().product}</Text>
 				</View>
 
-				{ this.props.detail.vaccinee && this.props.detail.vaccinee.cert.name &&
+				{ this.props.detail.vaccinee && this.certVacinee().name &&
 					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-						<Text style={styles.notesCaps}>{this.props.detail.vaccinee.cert.name}, {this.formatDoB(this.props.detail.vaccinee.cert.dob)}</Text>
+						<Text style={styles.notesCaps}>{this.certVacinee().name}, {this.formatDoB(this.certVacinee().dob)}</Text>
 					</View>
 				}
 
-				{ this.props.detail.cert.name !== undefined && this.props.detail.cert.name !== "" &&
+				{ this.cert().name !== undefined && this.cert().name !== "" &&
 				<View style={styles.row}>
-					<Text style={styles.notesCaps}>{this.props.detail.cert.name}, {this.formatDoB(this.props.detail.cert.dob)}</Text>
+					<Text style={styles.notesCaps}>{this.cert().name}, {this.formatDoB(this.cert().dob)}</Text>
 				</View>
 				}
 				<View style={styles.row}>
-					<Text style={styles.notes}>Shot taken on {Moment(this.props.detail.cert.date).format('MMM DD, YYYY')}</Text>
+					<Text style={styles.notes}>Shot taken on {Moment(this.cert().date).format('MMM DD, YYYY')}</Text>
 				</View>
 				
 				<View style={styles.row}>
 					<Text style={styles.notes}>
-					    {this.format([this.props.detail.cert.site, this.props.detail.cert.route, this.props.detail.cert.dose])}
+					    {this.format([this.cert().site, this.cert().route, this.cert().dose])}
 					</Text>
 				</View>
 

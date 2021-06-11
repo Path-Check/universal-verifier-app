@@ -40,27 +40,27 @@ function QRReader({ navigation }) {
   }
 
   const fromHexString = hexString =>
-    new Uint8Array(hexString.substring(5).match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+    new Uint8Array(hexString.substring(1).match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
 
   const onQRRead = async (e) => {
     console.log(e);
-    if (e.data.startsWith("CRED:")) {
+    if (e.data && e.data.startsWith("CRED:")) {
       await checkResult(await importPCF(e.data));
       return;
     }
 
-    if (e.data.startsWith("PK")) {
+    if ((e.data && e.data.startsWith("PK")) || (e.data == null && e.rawData)) {
       if (!e.rawData) {
         showErrorMessage("Phone/OS is unable to read Binary QRs");
         return;
       }
-      //console.log(fromHexString(e.rawData));
-      let string = e.data+String.fromCharCode.apply(null, fromHexString(e.rawData))
+
+      let string = "PK"+String.fromCharCode.apply(null, fromHexString(e.rawData))
       await checkResult(await importDivoc(string));
       return;
     }
 
-    if (e.data.startsWith("{")) {
+    if (e.data && e.data.startsWith("{")) {
       await checkResult(await importDivoc(e.data));
       return;
     }

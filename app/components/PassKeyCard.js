@@ -13,6 +13,10 @@ export default class PassKeyCard extends Component {
     return noUndefinedList.join(', ');
   }
 
+	cert = () => {
+		return this.props.detail.cert ? this.props.detail.cert : this.props.detail;
+	}
+
 	render() {
 		return (
 			<Card containerStyle={styles.card}>
@@ -22,15 +26,15 @@ export default class PassKeyCard extends Component {
 				</View>
 				
         <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.time}>{this.props.detail.cert.name}</Text>
+					<Text style={styles.time}>{this.cert().name}</Text>
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>{Moment(this.props.detail.cert.dob).format('MMM DD, YYYY')}</Text>
+					<Text style={styles.notes}>{Moment(this.cert().dob).format('MMM DD, YYYY')}</Text>
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>{this.props.detail.cert.phone}</Text>
+					<Text style={styles.notes}>{this.cert().phone}</Text>
 				</View>
 
 				<Divider style={{ backgroundColor: '#dfe6e9', marginVertical:15}} />
