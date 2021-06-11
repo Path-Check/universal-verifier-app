@@ -28,18 +28,18 @@ export default class StatusCard extends Component {
 				</View>
 				
         <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.time}>{this.formatDoses(this.props.detail.status)}</Text>
+					<Text style={styles.time}>{this.formatDoses(this.props.detail.cert.status)}</Text>
 				</View>
 
-				{ this.props.detail.initials && this.props.detail.initials !== "" &&
+				{ this.props.detail.cert.initials && this.props.detail.cert.initials !== "" &&
 					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-						<Text style={styles.notes}>Initials: {this.props.detail.initials}</Text>
+						<Text style={styles.notes}>Initials: {this.props.detail.cert.initials}</Text>
 					</View>
 				}
 
-				{ this.props.detail.vaccinee && this.props.detail.vaccinee.name &&
+				{ this.props.detail.vaccinee && this.props.detail.vaccinee.cert.name &&
 					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-						<Text style={styles.notesCaps}>{this.props.detail.vaccinee.name}, {Moment(this.props.detail.vaccinee.dob).format('MMM DD, YYYY')}</Text>
+						<Text style={styles.notesCaps}>{this.props.detail.vaccinee.cert.name}, {Moment(this.props.detail.vaccinee.cert.dob).format('MMM DD, YYYY')}</Text>
 					</View>
 				}
 

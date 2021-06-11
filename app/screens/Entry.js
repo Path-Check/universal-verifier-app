@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useIsFocused } from "@react-navigation/native";
 
+import CowinCard from './../components/CowinCard';
 import VaccineCard from './../components/VaccineCard';
 import CouponCard from './../components/CouponCard';
 import StatusCard from './../components/StatusCard';
@@ -65,6 +66,7 @@ function Entry({ navigation }) {
           cards.push(JSON.parse(item[1]))
       );
       cards = cards.sort((a,b) => new Date(b.scanDate) - new Date(a.scanDate));
+      console.log(cards);
       setCards(cards);
       setFilteredCards(filter(cards, search));
     } catch (err) {
@@ -121,6 +123,7 @@ function Entry({ navigation }) {
         data={filteredCards} 
         keyExtractor={item => item.signature} 
         renderItem={({item}) => {
+          console.log(item.signature);
           if (item.type === "BADGE")  
              return <VaccineCard detail={item} removeItem={removeItem} />
           if (item.type === "COUPON")  
@@ -129,6 +132,8 @@ function Entry({ navigation }) {
              return <StatusCard detail={item} removeItem={removeItem} />
           if (item.type === "PASSKEY")  
              return <PassKeyCard detail={item} removeItem={removeItem} />
+          if (item.type === "COWIN")  
+             return <CowinCard detail={item} removeItem={removeItem} />
         }} />
 
       <FloatingAction

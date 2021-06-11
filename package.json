@@ -11,7 +11,8 @@
     "postversion": "react-native-version"
   },
   "dependencies": {
-    "@pathcheck/cred-sdk": "0.0.6",
+    "@pathcheck/cred-sdk": "^0.0.6",
+    "@pathcheck/divoc-sdk": "^0.0.7",
     "@react-native-async-storage/async-storage": "^1.15.4",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.4",

@@ -22,15 +22,15 @@ export default class PassKeyCard extends Component {
 				</View>
 				
         <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.time}>{this.props.detail.name}</Text>
+					<Text style={styles.time}>{this.props.detail.cert.name}</Text>
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>{Moment(this.props.detail.dob).format('MMM DD, YYYY')}</Text>
+					<Text style={styles.notes}>{Moment(this.props.detail.cert.dob).format('MMM DD, YYYY')}</Text>
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>{this.props.detail.phone}</Text>
+					<Text style={styles.notes}>{this.props.detail.cert.phone}</Text>
 				</View>
 
 				<Divider style={{ backgroundColor: '#dfe6e9', marginVertical:15}} />

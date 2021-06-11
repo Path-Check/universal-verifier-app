@@ -14,6 +14,8 @@ import {useTheme} from '../themes/ThemeProvider';
 import {importPCF} from '../utils/PCF/ImportPCF';
 import {importDivoc} from '../utils/DIVOC/ImportDivoc';
 
+import { RNCamera } from 'react-native-camera';
+
 const screenHeight = Math.round(Dimensions.get('window').height);
 
 function QRReader({ navigation }) {
@@ -37,9 +39,24 @@ function QRReader({ navigation }) {
     }
   }
 
-  const onVaccineRead = async (e) => {
+  const fromHexString = hexString =>
+    new Uint8Array(hexString.substring(5).match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+
+  const onQRRead = async (e) => {
+    console.log(e);
     if (e.data.startsWith("CRED:")) {
       await checkResult(await importPCF(e.data));
+      return;
+    }
+
+    if (e.data.startsWith("PK")) {
+      if (!e.rawData) {
+        showErrorMessage("Phone/OS is unable to read Binary QRs");
+        return;
+      }
+      //console.log(fromHexString(e.rawData));
+      let string = e.data+String.fromCharCode.apply(null, fromHexString(e.rawData))
+      await checkResult(await importDivoc(string));
       return;
     }
 
@@ -66,13 +83,14 @@ function QRReader({ navigation }) {
 
   return (
     <QRCodeScanner
-        onRead={onVaccineRead}
+        onRead={onQRRead}
         reactivate={true}
         reactivateTimeout={5000}
         containerStyle={{backgroundColor: colors.background}}
         cameraStyle={{ height: screenHeight }}
         topViewStyle={{height: 1, flex: 0}}
         bottomViewStyle={{height: 0, flex: 0}}
+        barCodeTypes={[RNCamera.Constants.BarCodeType.qr]}
       />
   )
 }

@@ -4,8 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const getVaccinee = async (card) => {
   // Linking PassKeys to other cards. 
-  if (card.passkey) {
-    let vaccineeStr = await AsyncStorage.getItem('HASH'+card.passkey);
+  if (card.cert && card.cert.passkey) {
+    let vaccineeStr = await AsyncStorage.getItem('HASH'+card.cert.passkey);
     if (vaccineeStr) 
       return JSON.parse(vaccineeStr);
   }
@@ -24,7 +24,7 @@ const saveVaccinee = async (card) => {
 
 const saveNewCard = async (card) => {
   // Linking PassKeys to other cards. 
-  if (card.passkey) {
+  if (card.cert.passkey) {
     card.vaccinee = await getVaccinee(card);
   }
   
@@ -39,7 +39,7 @@ const saveNewCard = async (card) => {
     let cardsStr = await AsyncStorage.multiGet(curated);
     cardsStr.forEach((item) => {
         let existingCard = JSON.parse(item[1]);
-        if (existingCard.passkey && existingCard.passkey === card.hash) {
+        if (existingCard.cert && existingCard.cert.passkey && existingCard.cert.passkey === card.hash) {
           existingCard.vaccinee = card;
           saveCard(existingCard);
         }
@@ -58,23 +58,25 @@ const importPCF = async (uri) => {
   if (payload) { 
     let [schema, qrtype, version, signatureBase32NoPad, pubKeyLink, payloadStr] = await CRED.unpack(uri);  
     let baseCard = {
+        format: "CRED",
         type: qrtype, 
         version: version, 
         pub_key: pubKeyLink,
         signature: signatureBase32NoPad, 
         scanDate: new Date().toJSON(),
-        verified: "Valid"
+        verified: "Valid", 
+        rawQR: uri
       }; 
 
       if (qrtype == "PASSKEY") {
         baseCard.hash = await CRED.hashPayload(payload);
       }
+      
+      baseCard.cert = await CRED.mapHeaders(payload, qrtype, version);
 
-      let mappedPayload = await CRED.mapHeaders(payload, qrtype, version);
+      await saveNewCard(baseCard);
 
-      await saveNewCard({...baseCard, ...mappedPayload});
-
-      return {status: "OK", payload: {...baseCard, ...mappedPayload}};
+      return {status: "OK", payload: baseCard};
   } else {
     return {status: "Could not verify", log: error};
   }

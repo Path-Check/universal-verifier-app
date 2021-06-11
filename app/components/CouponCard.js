@@ -21,20 +21,20 @@ export default class CouponCard extends Component {
 					<FontAwesome5 style={styles.icon} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
 				</View>
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.time}>ID: {this.props.detail.number}</Text>	
+					<Text style={styles.time}>ID: {this.props.detail.cert.number}</Text>	
 				</View>
 				
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>Coupons: {this.props.detail.total}</Text>
+					<Text style={styles.notes}>Coupons: {this.props.detail.cert.total}</Text>
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>Phase {this.props.detail.phase} in {this.props.detail.city}</Text>
+					<Text style={styles.notes}>Phase {this.props.detail.cert.phase} in {this.props.detail.cert.city}</Text>
 				</View>
 				
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
 					<Text style={styles.notes}>
-					    Accepting only: {this.props.detail.indicator}
+					    Accepting only: {this.props.detail.cert.indicator}
 					</Text>
 				</View>
 
