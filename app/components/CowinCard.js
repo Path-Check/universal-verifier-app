@@ -27,7 +27,7 @@ export default class CowinCard extends Component {
 				</View>
 
         <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.time}>{this.props.detail.cert.credentialSubject.name}, {this.props.detail.cert.evidence[0].dose}/{this.props.detail.cert.evidence[0].totalDoses}</Text>
+					<Text style={styles.time}>{this.props.detail.cert.credentialSubject.name}</Text>
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
