@@ -126,15 +126,15 @@ function Entry({ navigation }) {
           ListEmptyComponent={<NoCards colors={colors} />}
           renderItem={({item}) => {
             if (item.type === "BADGE")  
-              return <VaccineCard detail={item} removeItem={removeItem} />
+              return <VaccineCard detail={item} colors={colors} removeItem={removeItem} />
             if (item.type === "COUPON")  
-              return <CouponCard detail={item} removeItem={removeItem} />
+              return <CouponCard detail={item} colors={colors} removeItem={removeItem} />
             if (item.type === "STATUS")  
-              return <StatusCard detail={item} removeItem={removeItem} />
+              return <StatusCard detail={item} colors={colors} removeItem={removeItem} />
             if (item.type === "PASSKEY")  
-              return <PassKeyCard detail={item} removeItem={removeItem} />
+              return <PassKeyCard detail={item} colors={colors} removeItem={removeItem} />
             if (item.type === "COWIN")  
-              return <CowinCard detail={item} removeItem={removeItem} />
+              return <CowinCard detail={item} colors={colors} removeItem={removeItem} />
           }} />
 
         <FloatingAction
