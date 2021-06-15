@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import { useIsFocused } from "@react-navigation/native";
 
+import NoCards from './../components/NoCards';
 import CowinCard from './../components/CowinCard';
 import VaccineCard from './../components/VaccineCard';
 import CouponCard from './../components/CouponCard';
@@ -104,41 +105,43 @@ function Entry({ navigation }) {
 
   return (
     <View style={styles.container} backgroundColor={colors.background}>
-      <StatusBar 
-        backgroundColor={colors.background}
-        barStyle={isDark ? "light-content" : "dark-content"}/>
+        <StatusBar 
+          backgroundColor={colors.background}
+          barStyle={isDark ? "light-content" : "dark-content"}/>
 
-      <SearchBar round lightTheme={!isDark}
-          containerStyle={{backgroundColor:colors.background, 
-                           borderBottomColor: colors.divisor,  
-                           borderTopColor: colors.background, paddingBottom: 4, paddingTop: 0}}
-          placeholder="Search Here..."
-          onChangeText={text => searchFilter(text)}
-          value={search}
-          inputContainerStyle={{marginLeft: 7, marginRight: 7, backgroundColor:colors.background}}
+        <SearchBar round lightTheme={!isDark}
+            containerStyle={{backgroundColor:colors.background, 
+                            borderBottomColor: colors.divisor,  
+                            borderTopColor: colors.background, paddingBottom: 4, paddingTop: 0}}
+            placeholder="Search Here..."
+            onChangeText={text => searchFilter(text)}
+            value={search}
+            inputContainerStyle={{marginLeft: 7, marginRight: 7, backgroundColor:colors.background}}
+          />
+
+        <FlatList 
+          data={filteredCards} 
+          keyExtractor={item => item.signature} 
+          contentContainerStyle={filteredCards.length === 0 && styles.centerEmptySet}
+          ListEmptyComponent={<NoCards colors={colors} />}
+          renderItem={({item}) => {
+            if (item.type === "BADGE")  
+              return <VaccineCard detail={item} removeItem={removeItem} />
+            if (item.type === "COUPON")  
+              return <CouponCard detail={item} removeItem={removeItem} />
+            if (item.type === "STATUS")  
+              return <StatusCard detail={item} removeItem={removeItem} />
+            if (item.type === "PASSKEY")  
+              return <PassKeyCard detail={item} removeItem={removeItem} />
+            if (item.type === "COWIN")  
+              return <CowinCard detail={item} removeItem={removeItem} />
+          }} />
+
+        <FloatingAction
+          actions={actions}
+          overrideWithAction={true}
+          onPressItem={onNewVaccine}
         />
-
-      <FlatList 
-        data={filteredCards} 
-        keyExtractor={item => item.signature} 
-        renderItem={({item}) => {
-          if (item.type === "BADGE")  
-             return <VaccineCard detail={item} removeItem={removeItem} />
-          if (item.type === "COUPON")  
-             return <CouponCard detail={item} removeItem={removeItem} />
-          if (item.type === "STATUS")  
-             return <StatusCard detail={item} removeItem={removeItem} />
-          if (item.type === "PASSKEY")  
-             return <PassKeyCard detail={item} removeItem={removeItem} />
-          if (item.type === "COWIN")  
-             return <CowinCard detail={item} removeItem={removeItem} />
-        }} />
-
-      <FloatingAction
-        actions={actions}
-        overrideWithAction={true}
-        onPressItem={onNewVaccine}
-      />
     </View>
   );
 };
@@ -152,7 +155,12 @@ const styles = StyleSheet.create({
 		color:'#fff',
 		paddingRight: 0,
 		fontSize:25
-	}
+	}, 
+  centerEmptySet: { 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    height: '100%'
+  }
 });
 
 export default Entry;
