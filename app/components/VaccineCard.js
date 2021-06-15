@@ -28,7 +28,7 @@ export default class VaccineCard extends Component {
 
 	render() {
 		return (
-			<Card containerStyle={styles.card}>
+			<Card containerStyle={[styles.card, {backgroundColor:this.props.colors.primary}]}>
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
 					<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Badge</Text>
 					<FontAwesome5 style={styles.button} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
