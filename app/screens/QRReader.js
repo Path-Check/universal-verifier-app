@@ -1,25 +1,17 @@
 import React, {useEffect} from 'react';
-
-import {
-  AppRegistry,
-  StyleSheet,
-  Text, View,
-  TouchableOpacity,
-  FlatList,
-  Dimensions
-} from 'react-native';
+import { Dimensions } from 'react-native';
+import { RNCamera } from 'react-native-camera';
 
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {useTheme} from '../themes/ThemeProvider';
+
 import {importPCF} from '../utils/PCF/ImportPCF';
 import {importDivoc} from '../utils/DIVOC/ImportDivoc';
-
-import { RNCamera } from 'react-native-camera';
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 
 function QRReader({ navigation }) {
-  const {colors, isDark} = useTheme();
+  const {colors} = useTheme();
 
   const showErrorMessage = (message) => {
     navigation.setOptions({ headerTitle: message, 
