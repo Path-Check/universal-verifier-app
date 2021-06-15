@@ -21,7 +21,7 @@ export default class CowinCard extends Component {
 	render() {
 		return (
 			<TouchableOpacity onPress={() => this.showQR(this.props.detail)}>
-				<Card containerStyle={[styles.card, {backgroundColor:this.props.colors.primary}]}>
+				<View style={[styles.card, {backgroundColor:this.props.colors.primary}]}>
 					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
 						<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Vaccine Record</Text>
 						<FontAwesome5 style={styles.button} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
@@ -70,7 +70,7 @@ export default class CowinCard extends Component {
 						<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
 						<Text style={styles.notes}>Signed by {this.props.detail.pub_key.toLowerCase()} on {Moment(this.props.detail.cert.issuanceDate).format('MMM DD, YYYY')}</Text>
 					</View>
-				</Card>
+				</View>
 			</TouchableOpacity>
 		);
 	}
@@ -79,7 +79,8 @@ export default class CowinCard extends Component {
 const styles = StyleSheet.create({
 	card:{
 		borderWidth:0,
-		borderRadius:12.4
+		borderRadius:12.4,
+		padding: 15
 	},
 	divisor: {
 		borderBottomColor: '#fff', 

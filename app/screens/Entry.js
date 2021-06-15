@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text, View,
+  Text, View, SafeAreaView,
   TouchableOpacity,
   FlatList, StatusBar
 } from 'react-native';
@@ -121,23 +121,27 @@ function Entry({ navigation }) {
             inputContainerStyle={{marginLeft: 7, marginRight: 7, backgroundColor:colors.background}}
           />
 
-        <FlatList 
-          data={filteredCards} 
-          keyExtractor={item => item.signature} 
-          contentContainerStyle={filteredCards.length === 0 && styles.centerEmptySet}
-          ListEmptyComponent={<NoCards colors={colors} />}
-          renderItem={({item}) => {
-            if (item.type === "BADGE")  
-              return <VaccineCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} />
-            if (item.type === "COUPON")  
-              return <CouponCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} />
-            if (item.type === "STATUS")  
-              return <StatusCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} />
-            if (item.type === "PASSKEY")  
-              return <PassKeyCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} />
-            if (item.type === "COWIN")  
-              return <CowinCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} />
-          }} />
+        <SafeAreaView style={styles.flatList}>
+
+          <FlatList 
+            data={filteredCards} 
+            keyExtractor={item => item.signature} 
+            contentContainerStyle={filteredCards.length == 0 && styles.centerEmptySet}
+            ListEmptyComponent={<NoCards colors={colors} />}
+            renderItem={({item}) => {
+              if (item.type === "BADGE")  
+                return <View style={styles.listItem}><VaccineCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} /></View>
+              if (item.type === "COUPON")  
+                return <View style={styles.listItem}><CouponCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} /></View>
+              if (item.type === "STATUS")  
+                return <View style={styles.listItem}><StatusCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} /></View>
+              if (item.type === "PASSKEY")  
+                return <View style={styles.listItem}><PassKeyCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} /></View>
+              if (item.type === "COWIN")  
+                return <View style={styles.listItem}><CowinCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} /></View>
+            }} />
+
+        </SafeAreaView>
 
         <FloatingAction
           actions={actions}
@@ -153,11 +157,20 @@ const styles = StyleSheet.create({
     paddingTop: (Platform.OS === 'ios') ? 40 : 0,
     flex: 1
   },
+  flatList: {
+    paddingLeft: 15,
+    paddingRight: 15,
+    paddingTop: 15,
+    flex: 1
+  },
   icon:{
 		color:'#fff',
 		paddingRight: 0,
 		fontSize:25
-	}, 
+	},
+  listItem: {
+    paddingBottom: 15,
+  },
   centerEmptySet: { 
     justifyContent: 'center', 
     alignItems: 'center', 

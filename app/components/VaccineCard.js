@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Image, Button, TouchableOpacity } from 'react-native';
-import { Text, Card, Divider } from 'react-native-elements';
+import { Text, Divider } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
@@ -51,7 +51,7 @@ export default class VaccineCard extends Component {
 	render() {
 		return (
 			<TouchableOpacity onPress={() => this.showQR(this.props.detail)}>
-				<Card containerStyle={[styles.card, {backgroundColor:this.props.colors.primary}]}>
+				<View style={[styles.card, {backgroundColor:this.props.colors.primary}]}>
 					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
 						<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Badge</Text>
 						<FontAwesome5 style={styles.button} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
@@ -88,7 +88,7 @@ export default class VaccineCard extends Component {
 						<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
 						<Text style={styles.notes}>Signed by {this.props.detail.pub_key.toLowerCase()}</Text>
 					</View>
-				</Card>
+				</View>
 			</TouchableOpacity>
 		);
 	}
@@ -98,7 +98,8 @@ const styles = StyleSheet.create({
 	card:{
 		backgroundColor:'rgba(56, 172, 236, 1)',
 		borderWidth:0,
-		borderRadius:12.4
+		borderRadius:12.4, 
+		padding: 15
 	},
 	button:{
 		backgroundColor:"#00000000",

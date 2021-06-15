@@ -25,7 +25,7 @@ export default class CouponCard extends Component {
 	render() {
 		return (
 			<TouchableOpacity onPress={() => this.showQR(this.props.detail)}>
-				<Card containerStyle={[styles.card, {backgroundColor:this.props.colors.primary}]}>
+				<View style={[styles.card, {backgroundColor:this.props.colors.primary}]}>
 					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
 						<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Coupon</Text>
 						<FontAwesome5 style={styles.icon} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
@@ -54,7 +54,7 @@ export default class CouponCard extends Component {
 						<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
 						<Text style={styles.notes}>Signed by {this.props.detail.pub_key.toLowerCase()}</Text>
 					</View>
-				</Card>
+				</View>
 			</TouchableOpacity>
 		);
 	}
@@ -63,7 +63,8 @@ export default class CouponCard extends Component {
 const styles = StyleSheet.create({
 	card:{
 		borderWidth:0,
-		borderRadius:12.4
+		borderRadius:12.4,
+		padding: 15
 	},
 	icon:{
 		backgroundColor:"#00000000",
