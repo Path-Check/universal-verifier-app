@@ -30,11 +30,11 @@ export default class PassKeyCard extends Component {
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>{Moment(this.cert().dob).format('MMM DD, YYYY')}</Text>
+					<Text style={styles.notes}>DoB: {Moment(this.cert().dob).format('MMM DD, YYYY')}</Text>
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>{this.cert().phone}</Text>
+					<Text style={styles.notes}>Phone: {this.cert().phone}</Text>
 				</View>
 
 				<Divider style={{ backgroundColor: '#dfe6e9', marginVertical:15}} />
