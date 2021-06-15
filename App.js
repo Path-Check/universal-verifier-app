@@ -10,6 +10,7 @@ import React from 'react';
 import Entry from './app/screens/Entry';
 import QRReader from './app/screens/QRReader';
 import QRShow from './app/screens/QRShow';
+import QRResult from './app/screens/QRResult';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ThemeProvider } from './app/themes/ThemeProvider';
@@ -37,6 +38,12 @@ const App = () => {
               name="QRShow"
               component={QRShow}
               options={{ title: 'Share QR' }}
+            />
+
+            <Stack.Screen
+              name="QRResult"
+              component={QRResult}
+              options={{ title: 'Verification Complete' }}
             />
           </Stack.Navigator>
         </NavigationContainer>

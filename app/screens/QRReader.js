@@ -25,7 +25,7 @@ function QRReader({ navigation }) {
 
   const checkResult = async (result) => {
     if (result.status === "OK") {
-      navigation.goBack(); 
+      navigation.navigate({name: 'QRResult', params: { result } } );
     } else {
       showErrorMessage(result.status);
     }
