@@ -27,7 +27,7 @@ export default class CowinCard extends Component {
 				</View>
 
         <View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.time}>{this.props.detail.cert.credentialSubject.name}</Text>
+					<Text style={styles.title}>{this.props.detail.cert.credentialSubject.name}</Text>
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
@@ -38,7 +38,7 @@ export default class CowinCard extends Component {
 						<Text style={styles.notes}>{this.props.detail.cert.credentialSubject.id.substring(4)}</Text>
 				</View>
 				
-				<Divider style={{ backgroundColor: '#dfe6e9', marginVertical:15}} />
+				<Divider style={[styles.divisor, {borderBottomColor:this.props.colors.cardText}]} />
 
 				<FlatList 
 					data={this.props.detail.cert.evidence} 
@@ -62,10 +62,8 @@ export default class CowinCard extends Component {
 							</View>
 							</View>)
 					}} />
-
-				
-
-				<Divider style={{ backgroundColor: '#dfe6e9', marginVertical:15}} />
+					
+				<Divider style={[styles.divisor, {borderBottomColor:this.props.colors.cardText}]} />
 				
 				<View style={{flexDirection:'row', alignItems: 'center'}}>
 					<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
@@ -78,19 +76,19 @@ export default class CowinCard extends Component {
 
 const styles = StyleSheet.create({
 	card:{
-		backgroundColor:'rgba(56, 172, 236, 1)',
 		borderWidth:0,
 		borderRadius:12.4
 	},
+	divisor: {
+		borderBottomColor: '#fff', 
+		marginVertical:15
+	},
 	button:{
-		backgroundColor:"#00000000",
 		color:'#fff',
-		paddingRight: 8,
-		paddingLeft: 18,
+		padding: 8,
 		fontSize:18
 	},
 	icon:{
-		backgroundColor:"#00000000",
 		color:'#fff',
 		paddingRight: 8,
 		fontSize:18
@@ -99,7 +97,7 @@ const styles = StyleSheet.create({
 		flexDirection:'row', 
 		justifyContent:'space-between'
 	},
-	time:{
+	title:{
 		fontSize:38,
 		color:'#fff', textTransform: 'capitalize'
 	},
