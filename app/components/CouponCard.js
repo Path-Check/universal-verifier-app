@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Image, Button } from 'react-native';
+import { StyleSheet, View, Image, Button, TouchableOpacity } from 'react-native';
 import { Text, Card, Divider } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -8,9 +8,14 @@ import Moment from 'moment';
 
 export default class CouponCard extends Component {
 
-  format = (list) => {
-		const noUndefinedList = list.filter(item => item);
-    return noUndefinedList.join(', ');
+	showQR = (card) => {
+    this.props.navigation.navigate({name: 'QRShow', params: {
+        qr: card.rawQR, 
+        title: "Coupon: " + this.cert().number, 
+        detail: "Phase " + this.cert().phase + " in " + this.cert().city,
+        signedBy: "Signed by " + card.pub_key.toLowerCase() + " on " + Moment(card.cert.issuanceDate).format('MMM DD, YYYY')
+      }
+    });
   }
 
 	cert = () => {
@@ -19,43 +24,44 @@ export default class CouponCard extends Component {
 
 	render() {
 		return (
-			<Card containerStyle={[styles.card, {backgroundColor:this.props.colors.primary}]}>
-				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Coupon</Text>
-					<FontAwesome5 style={styles.icon} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
-				</View>
-				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.time}>ID: {this.cert().number}</Text>	
-				</View>
-				
-				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>Coupons: {this.cert().total}</Text>
-				</View>
+			<TouchableOpacity onPress={() => this.showQR(this.props.detail)}>
+				<Card containerStyle={[styles.card, {backgroundColor:this.props.colors.primary}]}>
+					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+						<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Coupon</Text>
+						<FontAwesome5 style={styles.icon} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
+					</View>
+					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+						<Text style={styles.time}>ID: {this.cert().number}</Text>	
+					</View>
+					
+					<View style={{flexDirection:'row', justifyContent:'space-between'}}>
+						<Text style={styles.notes}>Coupons: {this.cert().total}</Text>
+					</View>
 
-				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>Phase {this.cert().phase} in {this.cert().city}</Text>
-				</View>
-				
-				<View style={{flexDirection:'row', justifyContent:'space-between'}}>
-					<Text style={styles.notes}>
-					    Accepting only: {this.cert().indicator}
-					</Text>
-				</View>
+					<View style={{flexDirection:'row', justifyContent:'space-between'}}>
+						<Text style={styles.notes}>Phase {this.cert().phase} in {this.cert().city}</Text>
+					</View>
+					
+					<View style={{flexDirection:'row', justifyContent:'space-between'}}>
+						<Text style={styles.notes}>
+								Accepting only: {this.cert().indicator}
+						</Text>
+					</View>
 
-				<Divider style={{ backgroundColor: '#dfe6e9', marginVertical:15}} />
-				
-				<View style={{flexDirection:'row', alignItems: 'center'}}>
-					<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
-					<Text style={styles.notes}>Signed by {this.props.detail.pub_key.toLowerCase()}</Text>
-				</View>
-			</Card>
+					<Divider style={{ backgroundColor: '#dfe6e9', marginVertical:15}} />
+					
+					<View style={{flexDirection:'row', alignItems: 'center'}}>
+						<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
+						<Text style={styles.notes}>Signed by {this.props.detail.pub_key.toLowerCase()}</Text>
+					</View>
+				</Card>
+			</TouchableOpacity>
 		);
 	}
 }
 
 const styles = StyleSheet.create({
 	card:{
-		backgroundColor:'rgba(56, 172, 236, 1)',
 		borderWidth:0,
 		borderRadius:12.4
 	},

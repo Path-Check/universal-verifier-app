@@ -22,6 +22,8 @@ import { FloatingAction } from "react-native-floating-action";
 import {useTheme} from '../themes/ThemeProvider';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
+import Moment from 'moment';
+
 function Entry({ navigation }) {
   const [cards, setCards] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
@@ -126,15 +128,15 @@ function Entry({ navigation }) {
           ListEmptyComponent={<NoCards colors={colors} />}
           renderItem={({item}) => {
             if (item.type === "BADGE")  
-              return <VaccineCard detail={item} colors={colors} removeItem={removeItem} />
+              return <VaccineCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} />
             if (item.type === "COUPON")  
-              return <CouponCard detail={item} colors={colors} removeItem={removeItem} />
+              return <CouponCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} />
             if (item.type === "STATUS")  
-              return <StatusCard detail={item} colors={colors} removeItem={removeItem} />
+              return <StatusCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} />
             if (item.type === "PASSKEY")  
-              return <PassKeyCard detail={item} colors={colors} removeItem={removeItem} />
+              return <PassKeyCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} />
             if (item.type === "COWIN")  
-              return <CowinCard detail={item} colors={colors} removeItem={removeItem} />
+              return <CowinCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} />
           }} />
 
         <FloatingAction

@@ -9,6 +9,7 @@
 import React from 'react';
 import Entry from './app/screens/Entry';
 import QRReader from './app/screens/QRReader';
+import QRShow from './app/screens/QRShow';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ThemeProvider } from './app/themes/ThemeProvider';
@@ -30,6 +31,12 @@ const App = () => {
               name="QRReader"
               component={QRReader}
               options={{ title: 'Point Camera to the QR Code' }}
+            />
+
+            <Stack.Screen
+              name="QRShow"
+              component={QRShow}
+              options={{ title: 'Share QR' }}
             />
           </Stack.Navigator>
         </NavigationContainer>
