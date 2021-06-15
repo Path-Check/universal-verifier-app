@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
 	card:{
 		backgroundColor:'rgba(56, 172, 236, 1)',
 		borderWidth:0,
-		borderRadius:20
+		borderRadius:12.4
 	},
 	icon:{
 		backgroundColor:"#00000000",
