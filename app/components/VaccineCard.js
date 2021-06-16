@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import { StyleSheet, View, Image, Button, TouchableOpacity } from 'react-native';
+import { View, Image, Button, TouchableOpacity } from 'react-native';
 import { Text, Divider } from 'react-native-elements';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+
+import { CardStyles as styles } from '../themes/CardStyles' 
 
 import Moment from 'moment';
 
@@ -58,7 +60,7 @@ export default class VaccineCard extends Component {
 					</View>
 
 					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-						<Text style={styles.time}>{this.cert().manuf} {this.cert().product}</Text>
+						<Text style={styles.title}>{this.cert().manuf} {this.cert().product}</Text>
 					</View>
 
 					{ this.props.detail.vaccinee && this.certVacinee().name &&
@@ -93,42 +95,3 @@ export default class VaccineCard extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	card:{
-		backgroundColor:'rgba(56, 172, 236, 1)',
-		borderWidth:0,
-		borderRadius:12.4, 
-		padding: 15
-	},
-	button:{
-		backgroundColor:"#00000000",
-		color:'#fff',
-		paddingRight: 8,
-		paddingLeft: 18,
-		fontSize:18
-	},
-	icon:{
-		backgroundColor:"#00000000",
-		color:'#fff',
-		paddingRight: 8,
-		fontSize:18
-	},
-	row:{
-		flexDirection:'row', 
-		justifyContent:'space-between'
-	},
-	time:{
-		fontSize:38,
-		color:'#fff', textTransform: 'capitalize'
-	},
-	notes: {
-		fontSize: 18,
-		color:'#fff'
-	}, 
-	notesCaps: {
-		fontSize: 18,
-		color:'#fff', 
-		textTransform: 'capitalize'
-	}
-});

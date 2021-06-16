@@ -7,7 +7,7 @@ export default class NoCards extends Component {
 		return (
 			<SafeAreaView style={styles.container} backgroundColor={this.props.colors.background}>
         <View style={styles.card} borderColor={this.props.colors.divisor} >
-						<Divider style={styles.line} borderColor={this.props.colors.divisor} />
+						<Divider style={[styles.cardTopDivisor]} borderColor={this.props.colors.divisor} />
 						<View style={styles.bottomContainer}>
 							<View style={styles.column1}>
 								<View style={styles.leftSquare} borderColor={this.props.colors.divisor} />
@@ -61,10 +61,15 @@ const styles = StyleSheet.create({
 		width: '50%',
 		aspectRatio: 1.5
 	}, 
+	cardTopDivisor: {
+		borderBottomWidth: 0,
+		borderWidth: CARD_BORDER_WIDTH,
+		marginTop: '14%',  
+	},
 	line:{
 		borderBottomWidth: 0,
-		marginTop: '14%', 
 		borderWidth: CARD_BORDER_WIDTH, 
+		marginVertical: 5,
 	},  
 	lineShort:{
 		width: '60%'

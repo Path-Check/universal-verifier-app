@@ -82,7 +82,7 @@ function QRReader({ navigation }) {
         cameraStyle={{ height: screenHeight }}
         topViewStyle={{height: 1, flex: 0}}
         bottomViewStyle={{height: 0, flex: 0}}
-        barCodeTypes={[RNCamera.Constants.BarCodeType.qr]}
+        cameraProps={{barCodeTypes:[RNCamera.Constants.BarCodeType.qr]}}
       />
   )
 }

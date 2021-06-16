@@ -6,6 +6,8 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 import Moment from 'moment';
 
+import { CardStyles as styles } from '../themes/CardStyles' 
+
 export default class StatusCard extends Component {
 
 	showQR = (card) => {
@@ -59,7 +61,7 @@ export default class StatusCard extends Component {
 					</View>
 					
 					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-						<Text style={styles.time}>{this.formatDoses(this.cert().status)}</Text>
+						<Text style={styles.title}>{this.formatDoses(this.cert().status)}</Text>
 					</View>
 
 					{ this.cert().initials && this.cert().initials !== "" &&
@@ -85,31 +87,3 @@ export default class StatusCard extends Component {
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	card:{
-		backgroundColor:'rgba(56, 172, 236, 1)',
-		borderWidth:0,
-		borderRadius:12.4, 
-		padding: 15
-	},
-	icon:{
-		backgroundColor:"#00000000",
-		color:'#fff',
-		paddingRight: 8,
-		fontSize:18
-	},
-	time:{
-		fontSize:38,
-		color:'#fff'
-	},
-	notes: {
-		fontSize: 18,
-		color:'#fff'
-	},
-	notesCaps: {
-		fontSize: 18,
-		color:'#fff', 
-		textTransform: 'capitalize'
-	}
-});
