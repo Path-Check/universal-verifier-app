@@ -4,6 +4,7 @@ import { Text, Divider } from 'react-native-elements';
 import QRCode from 'react-native-qrcode-svg';
 
 import {useTheme} from '../themes/ThemeProvider';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import Moment from 'moment';
 
 import CowinCard from './../components/CowinCard';
@@ -37,6 +38,9 @@ function QRResult({ navigation, route }) {
 
   return (
     <SafeAreaView style={styles.container} backgroundColor={colors.background}>
+      <View style={styles.verifiedPill} backgroundColor={colors.primary}>
+        <Text style={styles.verifiedText}><FontAwesome5 style={styles.verified} name={'check-circle'} solid/> Verified</Text>
+      </View>
       <View style={styles.card}> 
         { qr.type === "BADGE" && <VaccineCard detail={qr} colors={colors} /> }
         { qr.type === "COUPON" && <CouponCard detail={qr} colors={colors} /> }
@@ -47,6 +51,7 @@ function QRResult({ navigation, route }) {
       <TouchableOpacity
         style={[styles.button, {backgroundColor: colors.primary}]}
         onPress={onPress}
+        hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}
       >
         <Text style={[styles.buttonText, { color: '#fff'}]}>Close</Text>
       </TouchableOpacity>
@@ -63,6 +68,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'center'
   }, 
   card:{
+    borderRadius:12.4,
 		width: '90%',
     shadowColor: "#000",
     shadowOffset: {
@@ -73,6 +79,30 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.58,
     shadowRadius: 16.00,  
 	}, 
+  verified: {
+    fontSize: 30,
+    color: '#fff',
+  },
+  verifiedText: {
+    fontSize: 30,
+    color: '#fff',
+    justifyContent: 'center',
+    paddingRight: 25,
+  },
+  verifiedPill: {
+    borderRadius: 100,
+    marginBottom: 30,
+    paddingLeft: 15,
+    paddingVertical: 8,
+    elevation: 2, 
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 12,
+    },
+    shadowOpacity: 0.58,
+    shadowRadius: 16.00, 
+  },
   button: {
     alignItems: "center",
     padding: 10,
