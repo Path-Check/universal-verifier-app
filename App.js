@@ -35,7 +35,7 @@ const AppStack = () => {
       <Stack.Screen
         name="QRReader"
         component={QRReader}
-        options={{ title: 'Point Camera to the QR Code' }}
+        options={{ title: 'Point to the QR Code' }}
       />
 
       <Stack.Screen
@@ -126,8 +126,6 @@ const AuthProvider = ({children}) => {
   };
 
   return (
-    //This component will be used to encapsulate the whole App,
-    //so all components will have access to the Context
     <AuthContext.Provider value={{authData, loading, signIn, signOut}}>
       {children}
     </AuthContext.Provider>
