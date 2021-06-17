@@ -15,12 +15,7 @@ function QRShow({ navigation, route }) {
   useEffect(() => {
     navigation.setOptions({
       headerStyle: { backgroundColor: colors.background }, 
-      headerTintColor: colors.text, 
-      headerTitleStyle: {
-          fontFamily: 'Verdana',
-          fontWeight: 'normal',
-          fontSize: 18,
-      },
+      headerTintColor: colors.text
     });
   });
 

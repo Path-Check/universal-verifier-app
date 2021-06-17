@@ -64,12 +64,7 @@ function QRReader({ navigation }) {
   useEffect(() => {
     navigation.setOptions({
       headerStyle: { backgroundColor: colors.background }, 
-      headerTintColor: colors.text, 
-      headerTitleStyle: {
-          fontFamily: 'Verdana',
-          fontWeight: 'normal',
-          fontSize: 18,
-      },
+      headerTintColor: colors.text
     });
   });
 
