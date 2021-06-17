@@ -95,24 +95,17 @@ const Router = () => {
 const AuthProvider = ({children}) => {
   const [authData, setAuthData] = useState(undefined);
   const [loading, setLoading] = useState(undefined);
-  const [isBiometricSupported, setIsBiometricSupported] = useState(undefined);
-  const [isBiometricEnabled, setIsBiometricEnabled] = useState(undefined);
-
+  
   const loadBiometricSupport = async () => {
       if (loading === undefined) {
         setLoading(true);
 
-        const compatible = await LocalAuthentication.hasHardwareAsync();
-        setIsBiometricSupported(compatible);
-
-        const enrolled = await LocalAuthentication.isEnrolledAsync();
-        setIsBiometricEnabled(enrolled);
-        
-        if (!compatible || !enrolled) {
-          console.log("Default Signed in", authData, loading, isBiometricSupported, isBiometricEnabled);
+        if (!await LocalAuthentication.hasHardwareAsync() || !await LocalAuthentication.isEnrolledAsync()) {
+          console.log("Default Signed in", authData, loading);
           signIn();
         }
-        console.log(authData, loading, isBiometricSupported, isBiometricEnabled);
+
+        console.log("Loading End", authData, loading);
         setLoading(false);
       }
   };
@@ -127,8 +120,8 @@ const AuthProvider = ({children}) => {
   };
 
   const signOut = async () => {
-    console.log(authData, loading, isBiometricSupported, isBiometricEnabled);
-    if (isBiometricSupported && isBiometricEnabled)
+    console.log("Sign out", authData, loading);
+    if (await LocalAuthentication.hasHardwareAsync() && await LocalAuthentication.isEnrolledAsync())
       setAuthData(undefined);
   };
 
