@@ -20,60 +20,67 @@ export default class CowinCard extends Component {
     });
   }
 
-	render() {
+	renderCard = () => {
 		return (
-			<TouchableOpacity onPress={() => this.showQR(this.props.detail)}>
-				<View style={[styles.card, {backgroundColor:this.props.colors.primary}]}>
-					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-						<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Vaccine Record</Text>
-						<FontAwesome5 style={styles.button} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
-					</View>
-
-					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-						<Text style={styles.title}>{this.props.detail.cert.credentialSubject.name}</Text>
-					</View>
-
-					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-						<Text style={styles.notes}>{this.props.detail.cert.credentialSubject.age} year-old {this.props.detail.cert.credentialSubject.gender}</Text>
-					</View>
-
-					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-							<Text style={styles.notes}>{this.props.detail.cert.credentialSubject.id.substring(4)}</Text>
-					</View>
-					
-					<Divider style={[styles.divisor, {borderBottomColor:this.props.colors.cardText}]} />
-
-					<FlatList 
-						data={this.props.detail.cert.evidence} 
-						keyExtractor={item => item.certificateId} 
-						renderItem={({item}) => {
-								return (	<View>
-								<View style={styles.row}>
-									<Text style={styles.notes}>Shots taken: {item.dose} of {item.totalDoses}</Text>
-								</View>
-								
-								<View style={styles.row}>
-									<Text style={styles.notes}>
-											Vaccine: {item.vaccine} #{item.batch}
-									</Text>
-								</View>
-									
-								<View style={styles.row}>
-									<Text style={styles.notes}>
-											{item.manufacturer}
-									</Text>
-								</View>
-								</View>)
-						}} />
-						
-					<Divider style={[styles.divisor, {borderBottomColor:this.props.colors.cardText}]} />
-					
-					<View style={{flexDirection:'row', alignItems: 'center'}}>
-						<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
-						<Text style={styles.notes}>Signed by {this.props.detail.pub_key.toLowerCase()} on {Moment(this.props.detail.cert.issuanceDate).format('MMM DD, YYYY')}</Text>
-					</View>
+			<View style={[styles.card, {backgroundColor:this.props.colors.primary}]}>
+				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+					<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Vaccine Record</Text>
+					<FontAwesome5 style={styles.button} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
 				</View>
-			</TouchableOpacity>
+
+				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+					<Text style={styles.title}>{this.props.detail.cert.credentialSubject.name}</Text>
+				</View>
+
+				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+					<Text style={styles.notes}>{this.props.detail.cert.credentialSubject.age} year-old {this.props.detail.cert.credentialSubject.gender}</Text>
+				</View>
+
+				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+						<Text style={styles.notes}>{this.props.detail.cert.credentialSubject.id.substring(4)}</Text>
+				</View>
+				
+				<Divider style={[styles.divisor, {borderBottomColor:this.props.colors.cardText}]} />
+
+				<FlatList 
+					data={this.props.detail.cert.evidence} 
+					keyExtractor={item => item.certificateId} 
+					renderItem={({item}) => {
+							return (	<View>
+							<View style={styles.row}>
+								<Text style={styles.notes}>Shots taken: {item.dose} of {item.totalDoses}</Text>
+							</View>
+							
+							<View style={styles.row}>
+								<Text style={styles.notes}>
+										Vaccine: {item.vaccine} #{item.batch}
+								</Text>
+							</View>
+								
+							<View style={styles.row}>
+								<Text style={styles.notes}>
+										{item.manufacturer}
+								</Text>
+							</View>
+							</View>)
+					}} />
+					
+				<Divider style={[styles.divisor, {borderBottomColor:this.props.colors.cardText}]} />
+				
+				<View style={{flexDirection:'row', alignItems: 'center'}}>
+					<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
+					<Text style={styles.notes}>Signed by {this.props.detail.pub_key.toLowerCase()} on {Moment(this.props.detail.cert.issuanceDate).format('MMM DD, YYYY')}</Text>
+				</View>
+			</View>
 		);
+	}
+
+
+	render() {
+		return this.props.pressable ? 
+		( <TouchableOpacity onPress={() => this.showQR(this.props.detail)}>
+				{this.renderCard()}
+			</TouchableOpacity>
+		) : this.renderCard();
 	}
 }

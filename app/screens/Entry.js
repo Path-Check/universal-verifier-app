@@ -4,7 +4,7 @@ import {
   AppRegistry,
   StyleSheet,
   Text, View, SafeAreaView,
-  TouchableOpacity,
+  TouchableOpacity, Alert, 
   FlatList, StatusBar
 } from 'react-native';
 import { useIsFocused } from "@react-navigation/native";
@@ -122,25 +122,25 @@ function Entry({ navigation }) {
           />
 
         <SafeAreaView style={styles.flatList}>
-
-          <FlatList 
-            data={filteredCards} 
-            keyExtractor={item => item.signature} 
-            contentContainerStyle={filteredCards.length == 0 && styles.centerEmptySet}
-            ListEmptyComponent={<NoCards colors={colors} />}
-            renderItem={({item}) => {
-              if (item.type === "BADGE")  
-                return <View style={styles.listItem}><VaccineCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} /></View>
-              if (item.type === "COUPON")  
-                return <View style={styles.listItem}><CouponCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} /></View>
-              if (item.type === "STATUS")  
-                return <View style={styles.listItem}><StatusCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} /></View>
-              if (item.type === "PASSKEY")  
-                return <View style={styles.listItem}><PassKeyCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} /></View>
-              if (item.type === "COWIN")  
-                return <View style={styles.listItem}><CowinCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} /></View>
-            }} />
-
+          <View style={styles.border}>
+            <FlatList 
+              data={filteredCards} 
+              keyExtractor={item => item.signature} 
+              contentContainerStyle={filteredCards.length == 0 && styles.centerEmptySet}
+              ListEmptyComponent={<NoCards colors={colors} />}
+              renderItem={({item}) => {
+                if (item.type === "BADGE")  
+                  return <View style={styles.listItem}><VaccineCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
+                if (item.type === "COUPON")  
+                  return <View style={styles.listItem}><CouponCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
+                if (item.type === "STATUS")  
+                  return <View style={styles.listItem}><StatusCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
+                if (item.type === "PASSKEY")  
+                  return <View style={styles.listItem}><PassKeyCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
+                if (item.type === "COWIN")  
+                  return <View style={styles.listItem}><CowinCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
+              }} />
+          </View>
         </SafeAreaView>
 
         <FloatingAction
@@ -157,10 +157,12 @@ const styles = StyleSheet.create({
     paddingTop: (Platform.OS === 'ios') ? 20 : 0,
     flex: 1
   },
-  flatList: {
+  border: {
     paddingLeft: 15,
     paddingRight: 15,
     paddingTop: 15,
+  },
+  flatList: {
     flex: 1
   },
   icon:{

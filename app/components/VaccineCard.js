@@ -50,48 +50,55 @@ export default class VaccineCard extends Component {
 		}
 	}
 
-	render() {
+	renderCard = () => {
 		return (
-			<TouchableOpacity onPress={() => this.showQR(this.props.detail)}>
-				<View style={[styles.card, {backgroundColor:this.props.colors.primary}]}>
-					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-						<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Badge</Text>
-						<FontAwesome5 style={styles.button} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
-					</View>
-
-					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-						<Text style={styles.title}>{this.cert().manuf} {this.cert().product}</Text>
-					</View>
-
-					{ this.props.detail.vaccinee && this.certVacinee().name &&
-						<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-							<Text style={styles.notesCaps}>{this.certVacinee().name}, {this.formatDoB(this.certVacinee().dob)}</Text>
-						</View>
-					}
-
-					{ this.cert().name !== undefined && this.cert().name !== "" &&
-					<View style={styles.row}>
-						<Text style={styles.notesCaps}>{this.cert().name}, {this.formatDoB(this.cert().dob)}</Text>
-					</View>
-					}
-					<View style={styles.row}>
-						<Text style={styles.notes}>Shot taken on {Moment(this.cert().date).format('MMM DD, YYYY')}</Text>
-					</View>
-					
-					<View style={styles.row}>
-						<Text style={styles.notes}>
-								{this.format([this.cert().site, this.cert().route, this.cert().dose])}
-						</Text>
-					</View>
-
-					<Divider style={{ backgroundColor: '#dfe6e9', marginVertical:15}} />
-					
-					<View style={{flexDirection:'row', alignItems: 'center'}}>
-						<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
-						<Text style={styles.notes}>Signed by {this.props.detail.pub_key.toLowerCase()}</Text>
-					</View>
+			<View style={[styles.card, {backgroundColor:this.props.colors.primary}]}>
+				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+					<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Badge</Text>
+					<FontAwesome5 style={styles.button} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
 				</View>
-			</TouchableOpacity>
+
+				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+					<Text style={styles.title}>{this.cert().manuf} {this.cert().product}</Text>
+				</View>
+
+				{ this.props.detail.vaccinee && this.certVacinee().name &&
+					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+						<Text style={styles.notesCaps}>{this.certVacinee().name}, {this.formatDoB(this.certVacinee().dob)}</Text>
+					</View>
+				}
+
+				{ this.cert().name !== undefined && this.cert().name !== "" &&
+				<View style={styles.row}>
+					<Text style={styles.notesCaps}>{this.cert().name}, {this.formatDoB(this.cert().dob)}</Text>
+				</View>
+				}
+				<View style={styles.row}>
+					<Text style={styles.notes}>Shot taken on {Moment(this.cert().date).format('MMM DD, YYYY')}</Text>
+				</View>
+				
+				<View style={styles.row}>
+					<Text style={styles.notes}>
+							{this.format([this.cert().site, this.cert().route, this.cert().dose])}
+					</Text>
+				</View>
+
+				<Divider style={{ backgroundColor: '#dfe6e9', marginVertical:15}} />
+				
+				<View style={{flexDirection:'row', alignItems: 'center'}}>
+					<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
+					<Text style={styles.notes}>Signed by {this.props.detail.pub_key.toLowerCase()}</Text>
+				</View>
+			</View>
 		);
+	}
+
+
+	render() {
+		return this.props.pressable ? 
+		( <TouchableOpacity onPress={() => this.showQR(this.props.detail)}>
+				{this.renderCard()}
+			</TouchableOpacity>
+		) : this.renderCard();
 	}
 }
