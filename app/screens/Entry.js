@@ -154,7 +154,7 @@ function Entry({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: (Platform.OS === 'ios') ? 40 : 0,
+    paddingTop: (Platform.OS === 'ios') ? 20 : 0,
     flex: 1
   },
   flatList: {
