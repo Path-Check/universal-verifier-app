@@ -49,7 +49,7 @@ function Locked({ navigation, route }) {
     if (isTryingToSignIn) {
       await LocalAuthentication.cancelAuthenticate();
     }
-
+    
     console.log("Logging in");
     setIsTryingToSignIn(true);
     const authenticateResult = await LocalAuthentication.authenticateAsync({
@@ -79,7 +79,6 @@ function Locked({ navigation, route }) {
 
   useEffect(() => {
     changeNavigationBarColor(colors.background, !isDark);
-    unlock();
   }, [isFocused]);
 
   return (
