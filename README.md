@@ -2,16 +2,11 @@
 
 <img align="right" src="./docs/screenshots/HomePage.png" data-canonical-src="./docs/screenshots/HomePage.png" width="350px"/>
 
-This android and iOS app is a Universial Verifier.  It scans a QR code for a covid passport/credential/pass and returns a "Pass" or "Fail". '
+Universial Verifiable Credentials Verifier app for android and iOS using PathCheck's SDKs. It scans a QR code for a covid passport/credential/pass, returns a "Pass" or "Fail" and stores it locally in the phone. 
 
-The app helps business and organizations save time and labor whe verifying the veracity of digial or paper covid passport/credentials/pass.  Typical use cases are when 1) confirming that a student or employees has been vaccinated for their HR files and 2) verificaton of a clean health for individuals physically entering a school, stadium, office building, etc.
+The app helps business and organizations save time and labor whe verifying the veracity of digial or paper covid passport/credentials/pass. Typical use cases include: (i) confirming that a student or employees has been vaccinated for their HR files and (ii) verificaton of a clean health for individuals physically entering a school, stadium, office building, etc.
 
-There is no widely accepted technicals standard for QR codes and variations are growing, including ones from IBM, CLEAR, Divoc, WHO, EU, VCI, PathCheck, Linux CCI and others.
-
-Actors
-(Individual) Verifer - single person doing verifying (e.g. guard at door, HR person)
-Verifying Organization - organization the Verifer belongs to (e.g. University of Cincinatti)
-Holder - person presenting the digital or paper covid passport/cred/pass
+There is no widely accepted technicals standard for Verifiable QR codes and variations are growing. The goal of this app is to verify them all, including the ones from IBM, CLEAR, Divoc, WHO, EU, VCI, PathCheck, Linux CCI and others.
 
 ## Download the latest release
 
@@ -20,16 +15,17 @@ You will find the latest APK on our release files [here](https://github.com/vito
 ## Features / TO-DO List
 
 - [x] QR Certificate Scanner (v0.0.1)
-- [x] Signature Validation (v0.0.2)
+- [x] PathCheck Format Signature Verification (v0.0.2)
 - [x] Local Storage (v0.0.5)
 - [x] Card Layout UI (v0.0.6)
-- [x] Automated Release Management (v0.0.6)
 - [x] Search on header (v0.0.8)
 - [x] Sort by Scan Date (v0.0.9)
 - [x] Delete Cards (v0.0.9)
 - [x] Dark and Light Modes (v0.0.13)
 - [x] Downloading public key from vaccinator URL (v0.0.14)
-- [x] Percent-encoding and Base64 for signatures (v0.0.14)
+- [ ] Scanning and Verifying DIVOC's Credentials  (v0.0.23)
+- [ ] Privacy enhancements using Biometrics to unlock the app (v0.0.29)
+- [ ] Scanning and Verifying Smart Health Card Credentials (v0.0.29)
 
 # Development Overview
 
