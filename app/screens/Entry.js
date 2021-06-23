@@ -158,8 +158,6 @@ const styles = StyleSheet.create({
     flex: 1
   },
   border: {
-    paddingLeft: 15,
-    paddingRight: 15,
     paddingTop: 15,
   },
   flatList: {
@@ -172,6 +170,8 @@ const styles = StyleSheet.create({
 	},
   listItem: {
     paddingBottom: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
   },
   centerEmptySet: { 
     justifyContent: 'center', 
