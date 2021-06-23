@@ -10,12 +10,23 @@ import { CardStyles as styles } from '../themes/CardStyles'
 
 export default class CowinCard extends Component {
 
+
+	issuerName = (card) => {
+		if (card.pub_key.toLowerCase() === "did:india") 
+			return "Country of India"
+		return card.pub_key.toLowerCase();
+	}
+
+	issuedAt = (card) => {
+		return Moment(card.cert.issuanceDate).format('MMM DD, YYYY');
+	}
+
 	showQR = (card) => {
     this.props.navigation.navigate({name: 'QRShow', params: {
         qr: card.rawQR, 
         title: card.cert.credentialSubject.name, 
         detail: card.cert.credentialSubject.id.substring(4),
-        signedBy: "Signed by " + card.pub_key.toLowerCase() + " on " + Moment(card.cert.issuanceDate).format('MMM DD, YYYY')
+        signedBy: this.issuerName(card) + " on " + this.issuedAt(card)
       }
     });
   }
@@ -24,7 +35,7 @@ export default class CowinCard extends Component {
 		return (
 			<View style={[styles.card, {backgroundColor:this.props.colors.primary}]}>
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Vaccine Record</Text>
+					<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - COVID Vaccine</Text>
 					<FontAwesome5 style={styles.button} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
 				</View>
 
@@ -33,7 +44,7 @@ export default class CowinCard extends Component {
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.notes}>{this.props.detail.cert.credentialSubject.age} year-old {this.props.detail.cert.credentialSubject.gender}</Text>
+					<Text style={styles.notes}>{this.props.detail.cert.credentialSubject.age} yrs-old {this.props.detail.cert.credentialSubject.gender}</Text>
 				</View>
 
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
@@ -69,12 +80,11 @@ export default class CowinCard extends Component {
 				
 				<View style={{flexDirection:'row', alignItems: 'center'}}>
 					<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
-					<Text style={styles.notes}>Signed by {this.props.detail.pub_key.toLowerCase()} on {Moment(this.props.detail.cert.issuanceDate).format('MMM DD, YYYY')}</Text>
+					<Text style={styles.notes}>{this.issuerName(this.props.detail)} on {this.issuedAt(this.props.detail)}</Text>
 				</View>
 			</View>
-		);
+		)
 	}
-
 
 	render() {
 		return this.props.pressable ? 
