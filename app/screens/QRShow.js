@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { StyleSheet, View, SafeAreaView, Dimensions } from 'react-native';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import { Text, Divider } from 'react-native-elements';
 import QRCode from 'react-native-qrcode-svg';
 
@@ -25,7 +25,7 @@ function QRShow({ navigation, route }) {
   }; 
 
   return (
-    <SafeAreaView style={styles.container} backgroundColor={colors.background}>
+    <View style={styles.container} backgroundColor={colors.background}>
       <View style={styles.card} backgroundColor={colors.showQRBackground}> 
         <View style={styles.topView} onLayout={onPageLayout}> 
           <Text style={[styles.title,{color:colors.showQRText}]}>{route.params.title}</Text>
@@ -42,7 +42,7 @@ function QRShow({ navigation, route }) {
       </View>
 
       <Text style={[styles.notes,{color:colors.showQRText}]}>{route.params.signedBy}</Text>
-    </SafeAreaView>
+    </View>
   )
 }
 

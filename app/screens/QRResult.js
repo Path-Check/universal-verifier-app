@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import { StyleSheet, View, SafeAreaView, Dimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Dimensions, TouchableOpacity } from 'react-native';
 import { Text, Divider } from 'react-native-elements';
 import QRCode from 'react-native-qrcode-svg';
 
@@ -32,7 +32,7 @@ function QRResult({ navigation, route }) {
   const qr = route.params.result.payload;
 
   return (
-    <SafeAreaView style={styles.container} backgroundColor={colors.background}>
+    <View style={styles.container} backgroundColor={colors.background}>
       <View style={styles.verifiedPill} backgroundColor={colors.primary}>
         <Text style={styles.verifiedText}><FontAwesome5 style={styles.verified} name={'check-circle'} solid/> Verified</Text>
       </View>
@@ -50,7 +50,7 @@ function QRResult({ navigation, route }) {
       >
         <Text style={[styles.buttonText, { color: '#fff'}]}>Close</Text>
       </TouchableOpacity>
-    </SafeAreaView>
+    </View>
   )
 }
 
