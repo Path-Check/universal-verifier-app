@@ -5,8 +5,8 @@ import { RNCamera } from 'react-native-camera';
 import QRCodeScanner from 'react-native-qrcode-scanner';
 import {useTheme} from '../themes/ThemeProvider';
 
-import {importPCF} from '../utils/PCF/ImportPCF';
-import {importDivoc} from '../utils/DIVOC/ImportDivoc';
+import {importPCF} from '../utils/ImportPCF';
+import {importDivoc} from '../utils/ImportDivoc';
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 
