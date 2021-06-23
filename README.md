@@ -12,20 +12,17 @@ There is no widely accepted technicals standard for Verifiable QR codes and vari
 
 You will find the latest APK on our release files [here](https://github.com/vitorpamplona/vaccine-certificate-tracking-app/releases)
 
-## Features / TO-DO List
+## Currently Supported Formats: 
 
-- [x] QR Certificate Scanner (v0.0.1)
-- [x] PathCheck Format Signature Verification (v0.0.2)
-- [x] Local Storage (v0.0.5)
-- [x] Card Layout UI (v0.0.6)
-- [x] Search on header (v0.0.8)
-- [x] Sort by Scan Date (v0.0.9)
-- [x] Delete Cards (v0.0.9)
-- [x] Dark and Light Modes (v0.0.13)
-- [x] Downloading public key from vaccinator URL (v0.0.14)
-- [ ] Scanning and Verifying DIVOC's Credentials  (v0.0.23)
-- [ ] Privacy enhancements using Biometrics to unlock the app (v0.0.29)
-- [ ] Scanning and Verifying Smart Health Card Credentials (v0.0.29)
+- [x] [CRED](https://github.com/Path-Check/cred-sdk.js): PathCheck's [PaperCreds](https://github.com/Path-Check/paper-cred)
+- [x] [DIVOC](https://github.com/Path-Check/divoc-sdk.js): [COWIN's](https://www.cowin.gov.in/) Credentials in India
+- [x] [SHC](https://github.com/Path-Check/shc-sdk.js): [SmartHealth Cards](https://smarthealth.cards/)
+- [ ] [HC1](https://github.com/Path-Check/dcc-sdk.js): EU's [Digital Covid Certificates](https://ec.europa.eu/info/live-work-travel-eu/coronavirus-response/safe-covid-19-vaccines-europeans/eu-digital-covid-certificate_en) by the eHealth Network
+- [ ] [JXT](https://github.com/Path-Check/bbs-jxt-sdk.js): A BBS+ W3C Verifiable Credentials minimized with [JSON-XT](https://jsonxt.io/)
+- [ ] [CBLD](https://github.com/Path-Check/bbs-cbld-sdk.js): A CBOR-LD version of W3C Verifiable Credentials. 
+- [ ] [VDS](https://github.com/Path-Check/vds-sdk.js): ICAO's [Visible Digital Seals](https://www.icao.int/Security/FAL/TRIP/Documents/TR%20-%20Visible%20Digital%20Seals%20for%20Non-Electronic%20Documents%20V1.31.pdf)
+- [ ] Excelsior: [NYC's](https://covid19vaccine.health.ny.gov/excelsior-pass) COVID pass
+- [ ] Good Health Pass
 
 # Development Overview
 
