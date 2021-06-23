@@ -15,6 +15,8 @@ import VaccineCard from './../components/VaccineCard';
 import CouponCard from './../components/CouponCard';
 import StatusCard from './../components/StatusCard';
 import PassKeyCard from './../components/PassKeyCard';
+import SHCCard from './../components/SHCCard';
+
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SearchBar } from 'react-native-elements';
@@ -139,6 +141,8 @@ function Entry({ navigation }) {
                   return <View style={styles.listItem}><PassKeyCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
                 if (item.type === "COWIN")  
                   return <View style={styles.listItem}><CowinCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
+                if (item.type === "FHIRBundle")  
+                  return <View style={styles.listItem}><SHCCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
               }} />
           </View>
         </SafeAreaView>

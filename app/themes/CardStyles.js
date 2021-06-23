@@ -24,6 +24,9 @@ const CardStyles = StyleSheet.create({
 		flexDirection:'row', 
 		justifyContent:'space-between'
 	},
+	groupLine: {
+		paddingBottom: 15
+	},
 	title: {
 		fontSize:38,
 		color:'#fff', textTransform: 'capitalize'

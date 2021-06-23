@@ -7,6 +7,7 @@ import {useTheme} from '../themes/ThemeProvider';
 
 import {importPCF} from '../utils/ImportPCF';
 import {importDivoc} from '../utils/ImportDivoc';
+import {importSHC} from '../utils/ImportSHC';
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 
@@ -41,6 +42,11 @@ function QRReader({ navigation }) {
       return;
     }
 
+    if (e.data && e.data.startsWith("shc:")) {
+      await checkResult(await importSHC(e.data));
+      return;
+    }
+
     if ((e.data && e.data.startsWith("PK")) || (e.data == null && e.rawData)) {
       if (!e.rawData) {
         showErrorMessage("Phone/OS is unable to read Binary QRs");
@@ -57,7 +63,7 @@ function QRReader({ navigation }) {
       return;
     }
 
-    showErrorMessage("Not a Health Passport" + e.data);
+    showErrorMessage("Not a supported QR" + e.data);
     return;
   }
 

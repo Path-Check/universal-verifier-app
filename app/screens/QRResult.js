@@ -12,6 +12,7 @@ import VaccineCard from './../components/VaccineCard';
 import CouponCard from './../components/CouponCard';
 import StatusCard from './../components/StatusCard';
 import PassKeyCard from './../components/PassKeyCard';
+import SHCCard from './../components/SHCCard';
 
 const screenWidth = Math.round(Dimensions.get('window').width)-50;
 
@@ -42,6 +43,7 @@ function QRResult({ navigation, route }) {
         { qr.type === "STATUS" && <StatusCard detail={qr} colors={colors} /> }
         { qr.type === "PASSKEY" && <PassKeyCard detail={qr} colors={colors} /> }
         { qr.type === "COWIN" && <CowinCard detail={qr} colors={colors} /> }
+        { qr.type === "FHIRBundle" && <SHCCard detail={qr} colors={colors} /> }
       </View>
       <TouchableOpacity
         style={[styles.button, {backgroundColor: colors.primary}]}
@@ -85,6 +87,7 @@ const styles = StyleSheet.create({
     paddingRight: 25,
   },
   verifiedPill: {
+    marginTop: -70,
     borderRadius: 100,
     marginBottom: 30,
     paddingLeft: 15,
