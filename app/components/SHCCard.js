@@ -215,14 +215,14 @@ const VACCINE_CODES = {
 	203	:'meningococcal polysaccharide (groups A, C, Y, W-135) TT conjugate',
 	205	:'Influenza vaccine, quadrivalent, adjuvanted',
 	206	:'Smallpox monkeypox vaccine (National Stockpile)',
-	207	:'COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose',
-	208	:'COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose',
+	207	:'Moderna, COVID-19, mRNA, LNP-S, PF, 100 mcg/0.5 mL dose',
+	208	:'Pfizer, COVID-19, mRNA, LNP-S, PF, 30 mcg/0.3 mL dose',
 	213	:'SARS-COV-2 (COVID-19) vaccine, UNSPECIFIED',
-	210	:'COVID-19 vaccine, vector-nr, rS-ChAdOx1, PF, 0.5 mL ',
-	212	:'COVID-19 vaccine, vector-nr, rS-Ad26, PF, 0.5 mL',
+	210	:'AstraZeneca, COVID-19 vaccine, vector-nr, rS-ChAdOx1, PF, 0.5 mL ',
+	212	:'J&J/Janssen, COVID-19 vaccine, vector-nr, rS-Ad26, PF, 0.5 mL',
 	204	:'Ebola Zaire vaccine, live, recombinant, 1mL dose',
 	214	:'Ebola, unspecified',
-	211	:'COVID-19 vaccine, Subunit, rS-nanoparticle+Matrix-M1 Adjuvant, PF, 0.5 mL'
+	211	:'Novavax, COVID-19 vaccine, Subunit, rS-nanoparticle+Matrix-M1 Adjuvant, PF, 0.5 mL'
 }
 
 
