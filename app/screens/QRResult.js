@@ -35,7 +35,7 @@ function QRResult({ navigation, route }) {
   return (
     <View style={styles.container} backgroundColor={colors.background}>
       <View style={styles.verifiedPill} backgroundColor={colors.primary}>
-        <Text style={styles.verifiedText}><FontAwesome5 style={styles.verified} name={'check-circle'} solid/> Verified</Text>
+        <Text style={styles.verifiedText}><FontAwesome5 style={styles.verified} name={'check-circle'} solid/> Signature Verified</Text>
       </View>
       <View style={styles.card}> 
         { qr.type === "BADGE" && <VaccineCard detail={qr} colors={colors} /> }
