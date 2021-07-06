@@ -10,8 +10,8 @@ There is no widely accepted technicals standard for Verifiable QR codes and vari
 
 ## Download the latest release
 
-- [iOS](https://apps.apple.com/us/app/pathcheck-qr-check/id1567077398)
-- [Android](https://play.google.com/store/apps/details?id=org.pathcheck.universalverifier)
+- [Apple Store](https://apps.apple.com/us/app/pathcheck-qr-check/id1567077398)
+- [Play Store](https://play.google.com/store/apps/details?id=org.pathcheck.universalverifier)
 - [APK](https://github.com/vitorpamplona/vaccine-certificate-tracking-app/releases)
 
 ## Currently Supported Formats: 
