@@ -1,6 +1,6 @@
 # QR Check: PathCheck's Universal Verifier
 
-<img align="right" src="./docs/screenshots/HomePage.png" data-canonical-src="./docs/screenshots/HomePage.png" width="350px"/>
+<img align="right" src="./docs/shc_walkthrough/3.%20Scan%20Results.png" data-canonical-src="./docs/shc_walkthrough/3.%20Scan%20Results.png" width="350px"/>
 
 Universal Verifiable Credentials Verifier app for android and iOS using PathCheck's SDKs. The app scans a QR code for a passport/credential/pass, cryptographically verifies it and displays the results on the phone. 
 
