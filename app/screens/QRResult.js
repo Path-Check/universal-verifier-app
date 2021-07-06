@@ -13,6 +13,8 @@ import CouponCard from './../components/CouponCard';
 import StatusCard from './../components/StatusCard';
 import PassKeyCard from './../components/PassKeyCard';
 import SHCCard from './../components/SHCCard';
+import { removeCard } from './../utils/StorageManager';
+
 
 const screenWidth = Math.round(Dimensions.get('window').width)-50;
 
@@ -26,6 +28,11 @@ function QRResult({ navigation, route }) {
     });
   });
 
+  const removeItem = async (signature) => {
+    await removeCard(signature);
+    navigation.navigate({name: 'Home'});
+  };
+
   const onPress = () => {
     navigation.navigate({name: 'Home'});
   }; 
@@ -38,12 +45,12 @@ function QRResult({ navigation, route }) {
         <Text style={styles.verifiedText}><FontAwesome5 style={styles.verified} name={'check-circle'} solid/> Signature Verified</Text>
       </View>
       <View style={styles.card}> 
-        { qr.type === "BADGE" && <VaccineCard detail={qr} colors={colors} /> }
-        { qr.type === "COUPON" && <CouponCard detail={qr} colors={colors} /> }
-        { qr.type === "STATUS" && <StatusCard detail={qr} colors={colors} /> }
-        { qr.type === "PASSKEY" && <PassKeyCard detail={qr} colors={colors} /> }
-        { qr.type === "COWIN" && <CowinCard detail={qr} colors={colors} /> }
-        { qr.type === "FHIRBundle" && <SHCCard detail={qr} colors={colors} /> }
+        { qr.type === "BADGE" && <VaccineCard detail={qr} colors={colors} removeItem={removeItem} /> }
+        { qr.type === "COUPON" && <CouponCard detail={qr} colors={colors} removeItem={removeItem} /> }
+        { qr.type === "STATUS" && <StatusCard detail={qr} colors={colors} removeItem={removeItem} /> }
+        { qr.type === "PASSKEY" && <PassKeyCard detail={qr} colors={colors} removeItem={removeItem} /> }
+        { qr.type === "COWIN" && <CowinCard detail={qr} colors={colors} removeItem={removeItem} /> }
+        { qr.type === "FHIRBundle" && <SHCCard detail={qr} colors={colors} removeItem={removeItem} /> }
       </View>
       <TouchableOpacity
         style={[styles.button, {backgroundColor: colors.primary}]}
