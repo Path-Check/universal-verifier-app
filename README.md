@@ -2,7 +2,7 @@
 
 <img align="right" src="./docs/screenshots/HomePage.png" data-canonical-src="./docs/screenshots/HomePage.png" width="350px"/>
 
-Universial Verifiable Credentials Verifier app for android and iOS using PathCheck's SDKs. It scans a QR code for a covid passport/credential/pass, returns a "Pass" or "Fail" and stores it locally in the phone. 
+Universal Verifiable Credentials Verifier app for android and iOS using PathCheck's SDKs. The app scans a QR code for a passport/credential/pass, cryptographically verifies it and displays the results on the phone. 
 
 The app helps business and organizations save time and labor whe verifying the veracity of digial or paper covid passport/credentials/pass. Typical use cases include: (i) confirming that a student or employees has been vaccinated for their HR files and (ii) verificaton of a clean health for individuals physically entering a school, stadium, office building, etc.
 
@@ -10,7 +10,9 @@ There is no widely accepted technicals standard for Verifiable QR codes and vari
 
 ## Download the latest release
 
-You will find the latest APK on our release files [here](https://github.com/vitorpamplona/vaccine-certificate-tracking-app/releases)
+- [iOS](https://apps.apple.com/us/app/pathcheck-qr-check/id1567077398)
+- [Android](https://play.google.com/store/apps/details?id=org.pathcheck.universalverifier)
+- [APK](https://github.com/vitorpamplona/vaccine-certificate-tracking-app/releases)
 
 ## Currently Supported Formats: 
 
