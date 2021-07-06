@@ -1,12 +1,6 @@
 import * as SHC from '@pathcheck/shc-sdk';
 import { sha256 } from 'react-native-sha256';
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const saveCard = async (card) => {
-  // Saving
-  await AsyncStorage.setItem('CARDS'+card.signature, JSON.stringify(card));
-}
+import { saveCard } from './../utils/StorageManager';
 
 const importSHC = async (certificateData) => {
   let payload = await SHC.unpackAndVerify(certificateData);
