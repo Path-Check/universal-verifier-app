@@ -1,27 +1,8 @@
 import * as CRED from '@pathcheck/cred-sdk';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { saveCard, getVaccinee, saveVaccinee } from './../utils/StorageManager';
 
-const getVaccinee = async (card) => {
-  // Linking PassKeys to other cards. 
-  if (card.cert && card.cert.passkey) {
-    let vaccineeStr = await AsyncStorage.getItem('HASH'+card.cert.passkey);
-    if (vaccineeStr) 
-      return JSON.parse(vaccineeStr);
-  }
-  return null;
-}
-
-const saveCard = async (card) => {
-  // Saving
-  await AsyncStorage.setItem('CARDS'+card.signature, JSON.stringify(card));
-}
-
-const saveVaccinee = async (card) => {
-  // Saving
-  await AsyncStorage.setItem('HASH'+card.hash, JSON.stringify(card));
-}
-
+// TODO: Should be in StorageManager?
 const saveNewCard = async (card) => {
   // Linking PassKeys to other cards. 
   if (card.cert.passkey) {
@@ -33,15 +14,11 @@ const saveNewCard = async (card) => {
   // Linking new user to other cards
   if (card.type == "PASSKEY") {
     await saveVaccinee(card);
-
-    let ks = await AsyncStorage.getAllKeys();
-    let curated =  ks.filter((key) => key.startsWith('CARDS'));
-    let cardsStr = await AsyncStorage.multiGet(curated);
-    cardsStr.forEach((item) => {
-        let existingCard = JSON.parse(item[1]);
-        if (existingCard.cert && existingCard.cert.passkey && existingCard.cert.passkey === card.hash) {
-          existingCard.vaccinee = card;
-          saveCard(existingCard);
+    let cards = await listCards();
+    cards.forEach((item) => {
+        if (item.cert && item.cert.passkey && item.cert.passkey === card.hash) {
+          item.vaccinee = card;
+          saveCard(item);
         }
       }
     );

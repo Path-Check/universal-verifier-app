@@ -1,11 +1,6 @@
 import * as DIVOC from '@pathcheck/divoc-sdk';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-const saveCard = async (card) => {
-  // Saving
-  await AsyncStorage.setItem('CARDS'+card.signature, JSON.stringify(card));
-}
+import { saveCard } from './../utils/StorageManager';
 
 const importDivoc = async (certificateData) => {
   let payload = await DIVOC.unpackAndVerify(certificateData);

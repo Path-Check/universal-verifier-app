@@ -16,12 +16,12 @@ import CouponCard from './../components/CouponCard';
 import StatusCard from './../components/StatusCard';
 import PassKeyCard from './../components/PassKeyCard';
 import SHCCard from './../components/SHCCard';
+import { listCards, removeCard } from './../utils/StorageManager';
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SearchBar } from 'react-native-elements';
 import { FloatingAction } from "react-native-floating-action";
-import {useTheme} from '../themes/ThemeProvider';
+import { useTheme } from '../themes/ThemeProvider';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 
 import Moment from 'moment';
@@ -62,44 +62,15 @@ function Entry({ navigation }) {
   }
 
   const load = async () => {
-    try {
-      let ks = await AsyncStorage.getAllKeys();
-      let curated =  ks.filter((key) => key.startsWith('CARDS'));
-      let cardsStr = await AsyncStorage.multiGet(curated);
-      let cards = [];
-      cardsStr.forEach((item) =>
-          cards.push(JSON.parse(item[1]))
-      );
-      cards = cards.sort((a,b) => new Date(b.scanDate) - new Date(a.scanDate));
-      setCards(cards);
-      setFilteredCards(filter(cards, search));
-    } catch (err) {
-      alert(err);
-    }
+    let cards = await listCards();
+    setCards(cards);
+    setFilteredCards(filter(cards, search));
   };
 
   const removeItem = async (signature) => {
-    const toRemove = cards.filter(item => item.signature === signature);
-    if (toRemove[0] && toRemove[0].hash) {
-      await AsyncStorage.removeItem('HASH'+toRemove[0].hash);
-
-      const removeHashReferences = cards.filter(item => item.passkey === toRemove[0].hash);
-      removeHashReferences.forEach(async (item) => {
-            let cardStr = await AsyncStorage.getItem('CARDS'+item.signature);
-            console.log(cardStr);
-            let card = JSON.parse(cardStr);
-            card.vaccinee = null;
-            item.vaccinee = null;
-            await AsyncStorage.setItem('CARDS'+card.signature, JSON.stringify(card)); 
-          }
-      );
-    }
-
-    await AsyncStorage.removeItem('CARDS'+signature);
-    const removedVaccine = cards.filter(item => item.signature !== signature);
-    setCards(removedVaccine);
-    setFilteredCards(filter(removedVaccine, search));
-    console.log("RemoveItem" + signature);
+    const remaining = await removeCard(signature);
+    setCards(remaining);
+    setFilteredCards(filter(remaining, search));
   }
 
   useEffect(() => {
