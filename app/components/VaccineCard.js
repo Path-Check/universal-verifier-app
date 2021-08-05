@@ -72,13 +72,14 @@ export default class VaccineCard extends Component {
 					<Text style={styles.notesCaps}>{this.cert().name}, {this.formatDoB(this.cert().dob)}</Text>
 				</View>
 				}
+				
 				<View style={styles.row}>
 					<Text style={styles.notes}>Shot taken on {Moment(this.cert().date).format('MMM DD, YYYY')}</Text>
 				</View>
 				
 				<View style={styles.row}>
 					<Text style={styles.notes}>
-							{this.format([this.cert().site, this.cert().route, this.cert().dose])}
+							{this.format(["#"+this.cert().lot, this.cert().site, this.cert().route, this.cert().dose/1000 + "ml"])}
 					</Text>
 				</View>
 
