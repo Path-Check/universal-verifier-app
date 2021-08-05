@@ -132,7 +132,9 @@ export default class SHCCard extends Component {
 
 	patientDob = () => {
 		let pat = this.patientRecords();
-		return new Date(pat[0].resource.birthDate);
+		// DOB in the local timezone. 
+		let localTimezone = new Date().toISOString().split("T");
+		return new Date(pat[0].resource.birthDate + "T" + localTimezone[1]);
 	}
 
 	issuerName = (card) => {
