@@ -25,14 +25,22 @@ const CardStyles = StyleSheet.create({
 		justifyContent:'space-between'
 	},
 	groupLine: {
-		paddingBottom: 15
+		paddingBottom: 0
 	},
 	title: {
 		fontSize:38,
 		color:'#fff', textTransform: 'capitalize'
 	},
+	subtitle: {
+		fontSize:28,
+		color:'#fff',
+	},
 	notes: {
 		fontSize: 18,
+		color:'#fff'
+	}, 
+	notesSmall: {
+		fontSize: 14,
 		color:'#fff'
 	}, 
 	notesCaps: {

@@ -11,15 +11,21 @@
     "postversion": "react-native-version"
   },
   "dependencies": {
+    "@cto.af/textdecoder": "*",
     "@pathcheck/cred-sdk": "^0.0.6",
+    "@pathcheck/dcc-sdk": "^0.0.20",
     "@pathcheck/divoc-sdk": "^0.1.0",
     "@pathcheck/shc-sdk": "^0.0.3",
     "@react-native-async-storage/async-storage": "^1.15.4",
     "@react-navigation/native": "^5.9.4",
     "@react-navigation/stack": "^5.14.4",
+    "big-integer": "^1.6.49",
     "buffer": "^6.0.3",
+    "events": "^3.3.0",
     "expo-local-authentication": "^11.0.2",
     "moment": "^2.29.1",
+    "node-inspect-extracted": "^1.0.4",
+    "process": "^0.11.10",
     "query-string": "^7.0.0",
     "react": "17.0.2",
     "react-native": "0.65.1",
@@ -38,8 +44,12 @@
     "react-native-sha256": "^1.4.7",
     "react-native-simple-crypto": "^0.2.15",
     "react-native-svg": "^12.1.1",
-    "react-native-unimodules": "^0.13.3",
-    "react-native-vector-icons": "^8.1.0"
+    "react-native-unimodules": "^0.14.8",
+    "react-native-vector-icons": "^8.1.0",
+    "safe-buffer": "^5.1.2",
+    "stream-browserify": "^3.0.0",
+    "text-encoding": "^0.7.0",
+    "util": "^0.12.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

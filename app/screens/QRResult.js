@@ -13,6 +13,8 @@ import CouponCard from './../components/CouponCard';
 import StatusCard from './../components/StatusCard';
 import PassKeyCard from './../components/PassKeyCard';
 import SHCCard from './../components/SHCCard';
+import DCCVaccinationCard from './../components/DCCVaccinationCard';
+
 import { removeCard } from './../utils/StorageManager';
 
 
@@ -51,6 +53,7 @@ function QRResult({ navigation, route }) {
         { qr.type === "PASSKEY" && <PassKeyCard detail={qr} colors={colors} removeItem={removeItem} /> }
         { qr.type === "COWIN" && <CowinCard detail={qr} colors={colors} removeItem={removeItem} /> }
         { qr.type === "FHIRBundle" && <SHCCard detail={qr} colors={colors} removeItem={removeItem} /> }
+        { qr.type === "DCC" && <DCCVaccinationCard detail={qr} colors={colors} removeItem={removeItem} /> }
       </View>
       <TouchableOpacity
         style={[styles.button, {backgroundColor: colors.primary}]}

@@ -1,0 +1,55 @@
+import * as DCC from '@pathcheck/dcc-sdk';
+
+import { saveCard } from './../utils/StorageManager';
+
+const CWT_ISSUER = 1;
+const CWT_SUBJECT = 2;
+const CWT_AUDIENCE = 3;
+const CWT_EXPIRATION = 4;
+const CWT_NOT_BEFORE = 5;
+const CWT_ISSUED_AT = 6;
+
+const importDCC = async (certificateData) => {
+  let cwt = await DCC.unpackAndVerify(certificateData);
+  
+  if (cwt) {
+    let debugInfo = await DCC.debug(certificateData);
+    let payload = await DCC.parseCWT(cwt);
+    
+    let keyId = debugInfo.value[0].get ? debugInfo.value[0].get(4) : undefined;
+    if (keyId === undefined) {
+      keyId = debugInfo.value[1].get ? debugInfo.value[1].get(4) : undefined;
+    }
+    let signature = debugInfo.value[3];
+
+    let baseCard = {
+        format: "DCC",
+        type: "DCC", 
+        pub_key: keyId,
+        signature: signature, 
+        scanDate: new Date().toJSON(),
+        verified: "Valid", 
+        rawQR: certificateData
+      }; 
+
+    let cvtCWT = {
+      iss: cwt.get(CWT_ISSUER),
+      sub: cwt.get(CWT_SUBJECT),
+      aud: cwt.get(CWT_AUDIENCE),
+      exp: cwt.get(CWT_EXPIRATION),
+      nbf: cwt.get(CWT_NOT_BEFORE),
+      iat: cwt.get(CWT_ISSUED_AT),
+      data: payload
+    }  
+
+    baseCard.cert = cvtCWT;
+
+    await saveCard(baseCard);
+
+    return {status: "OK", payload: baseCard};
+  } else {
+    return {status: "Could not verify"};
+  }
+}
+
+export { importDCC }

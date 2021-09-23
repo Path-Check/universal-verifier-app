@@ -8,6 +8,7 @@ import {useTheme} from '../themes/ThemeProvider';
 import {importPCF} from '../utils/ImportPCF';
 import {importDivoc} from '../utils/ImportDivoc';
 import {importSHC} from '../utils/ImportSHC';
+import {importDCC} from '../utils/ImportDCC';
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 
@@ -44,6 +45,11 @@ function QRReader({ navigation }) {
 
     if (e.data && e.data.startsWith("shc:")) {
       await checkResult(await importSHC(e.data));
+      return;
+    }
+
+    if (e.data && e.data.startsWith("HC1:")) {
+      await checkResult(await importDCC(e.data));
       return;
     }
 

@@ -16,6 +16,8 @@ import CouponCard from './../components/CouponCard';
 import StatusCard from './../components/StatusCard';
 import PassKeyCard from './../components/PassKeyCard';
 import SHCCard from './../components/SHCCard';
+import DCCVaccinationCard from './../components/DCCVaccinationCard';
+
 import { listCards, removeCard } from './../utils/StorageManager';
 
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -23,6 +25,8 @@ import { SearchBar } from 'react-native-elements';
 import { FloatingAction } from "react-native-floating-action";
 import { useTheme } from '../themes/ThemeProvider';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
+
+import {importDCC} from '../utils/ImportDCC';
 
 import Moment from 'moment';
 
@@ -102,18 +106,20 @@ function Entry({ navigation }) {
               contentContainerStyle={filteredCards.length == 0 && styles.centerEmptySet}
               ListEmptyComponent={<NoCards colors={colors} />}
               renderItem={({item}) => {
-                if (item.type === "BADGE")  
+                if (item.format === "CRED" && item.type === "BADGE")  
                   return <View style={styles.listItem}><VaccineCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
-                if (item.type === "COUPON")  
+                if (item.format === "CRED" && item.type === "COUPON")  
                   return <View style={styles.listItem}><CouponCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
-                if (item.type === "STATUS")  
+                if (item.format === "CRED" && item.type === "STATUS")  
                   return <View style={styles.listItem}><StatusCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
-                if (item.type === "PASSKEY")  
+                if (item.format === "CRED" && item.type === "PASSKEY")  
                   return <View style={styles.listItem}><PassKeyCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
-                if (item.type === "COWIN")  
+                if (item.format === "DIVOC" && item.type === "COWIN")  
                   return <View style={styles.listItem}><CowinCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
-                if (item.type === "FHIRBundle")  
+                if (item.format === "SHC" && item.type === "FHIRBundle")  
                   return <View style={styles.listItem}><SHCCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
+                if (item.format === "DCC" && item.type === "DCC")  
+                  return <View style={styles.listItem}><DCCVaccinationCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
               }} />
           </View>
         </SafeAreaView>
