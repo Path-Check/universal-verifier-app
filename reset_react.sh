@@ -4,7 +4,7 @@ rm yarn.lock
 rm -rf ios/Pods
 rm ios/Podfile.lock
 
-yarn install
+npm install
 cd ios
 pod install
 cd ..
