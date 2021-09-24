@@ -1,6 +1,6 @@
 import * as CRED from '@pathcheck/cred-sdk';
 
-import { saveCard, getVaccinee, saveVaccinee } from './../utils/StorageManager';
+import { saveCard, getVaccinee, saveVaccinee, listCards } from './../utils/StorageManager';
 
 // TODO: Should be in StorageManager?
 const saveNewCard = async (card) => {
