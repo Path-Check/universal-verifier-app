@@ -28,7 +28,7 @@ export default class CouponCard extends Component {
 			<View style={[styles.card, {backgroundColor:this.props.colors.primary}]}>
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
 					<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Coupon</Text>
-					<FontAwesome5 style={styles.icon} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
+					<FontAwesome5 style={styles.button} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
 				</View>
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
 					<Text style={styles.title}>Coupon #{this.cert().number}</Text>	
