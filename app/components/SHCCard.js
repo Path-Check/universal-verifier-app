@@ -103,14 +103,14 @@ const VACCINE_CODES = {
 	201	: "FLUZONE Quadrivalent Southern Hemisphere",
 	202	: "FLUZONE Quadrivalent Southern Hemisphere",
 	203	: "MenQuadfi",
-	204	: "ERVEBO (Ebola Zaire Vaccine, Live)",
+	204	: "ERVEBO (Ebola Zaire, Live)",
 	205	: "FLUAD Quadrivalent",
 	206	: "JYNNEOS",
-	207	: "Moderna COVID-19 Vaccine",
-	208	: "Pfizer-BioNTech COVID-19 Vaccine",
-	210	: "AstraZeneca COVID-19 Vaccine",
-	211	: "Novavax COVID-19 Vaccine",
-	212	: "Janssen (J&J) COVID-19 Vaccine",
+	207	: "Moderna COVID-19",
+	208	: "Pfizer-BioNTech COVID-19",
+	210	: "AstraZeneca COVID-19",
+	211	: "Novavax COVID-19",
+	212	: "Janssen (J&J) COVID-19",
 	801	: "AS03 adjuvant"
 }
 
@@ -187,14 +187,20 @@ export default class SHCCard extends Component {
 								
 								<View style={styles.row}>
 									<Text style={styles.notes}>
-											Vaccine: {VACCINE_CODES[item.resource.vaccineCode.coding[0].code]}, Lot #{item.resource.lotNumber}
+											Vaccine: {VACCINE_CODES[item.resource.vaccineCode.coding[0].code]}
 									</Text>
 								</View>
+
+								<View style={styles.row}>
+									<Text style={styles.notes}>
+											Lot: #{item.resource.lotNumber}
+									</Text>
+								</View>
+
+								<Divider style={[styles.divisor, {borderBottomColor:this.props.colors.cardText}]} />
 							</View>
 						)
 					}} />
-					
-				<Divider style={[styles.divisor, {borderBottomColor:this.props.colors.cardText}]} />
 				
 				<View style={{flexDirection:'row', alignItems: 'center'}}>
 					<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
