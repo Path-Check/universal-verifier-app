@@ -183,7 +183,7 @@ export default class DCCCard extends Component {
 		return (
 			<View style={[styles.card, {backgroundColor:this.props.colors.primary}]}>
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Vaccination Record</Text>
+					<Text style={styles.notes}>{Moment(this.props.detail.scanDate).format('MMM DD, hh:mma')} - Vaccination</Text>
 					<FontAwesome5 style={styles.button} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
 				</View>
 				
