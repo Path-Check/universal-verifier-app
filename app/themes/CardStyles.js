@@ -28,7 +28,7 @@ const CardStyles = StyleSheet.create({
 		paddingBottom: 0
 	},
 	title: {
-		fontSize:38,
+		fontSize:34,
 		color:'#fff', textTransform: 'capitalize'
 	},
 	subtitle: {
@@ -38,6 +38,11 @@ const CardStyles = StyleSheet.create({
 	notes: {
 		fontSize: 18,
 		color:'#fff'
+	}, 
+	notesCenter: {
+		fontSize: 18,
+		color:'#fff',
+		textAlign: 'center'
 	}, 
 	notesSmall: {
 		fontSize: 14,

@@ -9,16 +9,16 @@ import Moment from 'moment';
 
 const VACCINE_MANUF = {
     "ORG-100001699": "AstraZeneca AB",
-    "ORG-100030215":"Biontech Manufacturing GmbH",
-    "ORG-100001417": "Janssen-Cilag International",
-    "ORG-100031184": "Moderna Biotech Spain S.L.",
+    "ORG-100030215": "BioNTech Manuf. GmbH",
+    "ORG-100001417": "Janssen-Cilag Int.",
+    "ORG-100031184": "Moderna Spain S.L.",
     "ORG-100006270": "Curevac AG",
     "ORG-100013793": "CanSino Biologics",
-    "ORG-100020693": "China Sinopharm International Corp. - Beijing location",
-    "ORG-100010771": "Sinopharm Weiqida Europe Pharmaceutical s.r.o. - Prague location",
-    "ORG-100024420": "Sinopharm Zhijun (Shenzhen) Pharmaceutical Co. Ltd. - Shenzhen location",
+    "ORG-100020693": "China Sinopharm Int Corp.",
+    "ORG-100010771": "Sinopharm Weiqida Pharm. s.r.o.",
+    "ORG-100024420": "Sinopharm Zhijun Pharm. Co. Ltd.",
     "ORG-100032020": "Novavax CZ AS",
-    "Gamaleya-Research-Institute": "Gamaleya Research Institute",
+    "Gamaleya-Research-Institute": "Gamaleya Research Inst.",
     "Vector-Institute": "Vector Institute",
     "Sinovac-Biotech": "Sinovac Biotech",
     "Bharat-Biotech": "Bharat Biotech"
@@ -26,17 +26,17 @@ const VACCINE_MANUF = {
 
 const VACCINE_PROD = {
 	"EU/1/20/1528": "Comirnaty",
-	"EU/1/20/1507": "COVID-19 Vaccine Moderna",
-	"EU/1/20/1525": "COVID-19 Vaccine Janssen",
+	"EU/1/20/1507": "Moderna",
+	"EU/1/20/1525": "Janssen",
 	"EU/1/21/1529": "Vaxzevria",
 	"CVnCoV": "CVnCoV",
 	"Sputnik-V": "Sputnik-V",
 	"Convidecia": "Convidecia",
 	"EpiVacCorona":  "EpiVacCorona", 
 	"BBIBP-CorV": "BBIBP-CorV", 
-	"Inactivated-SARS-CoV-2-Vero-Cell": "Inactivated SARS-CoV-2 (Vero Cell)", 
+	"Inactivated-SARS-CoV-2-Vero-Cell": "Inactiv. SARS-CoV-2", 
 	"CoronaVac":  "CoronaVac", 
-	"Covaxin": "Covaxin (also known as BBV152 A, B, C)"
+	"Covaxin": "Covaxin (BBV152 A, B, C)"
 };
 
 const VACCINE_PROPH = {
@@ -46,8 +46,8 @@ const VACCINE_PROPH = {
 }
 
 const TEST_TYPE = {
-	"LP6464-4": "Nucleic acid amplification with probe detection", 
-	"LP217198-3": "Rapid immunoassay",
+	"LP6464-4": "Nucleic Acid Amplification w/ Probe", 
+	"LP217198-3": "Rapid Immunoassay",
 }
 
 const TEST_RESULT = {
@@ -62,7 +62,7 @@ const TEST_MANUF = {
     "1304": "AMEDA Labordiagnostik GmbH, AMP Rapid Test SARS-CoV-2 Ag",
     "1822": "Anbio (Xiamen) Biotechnology Co., Ltd, Rapid COVID-19 Antigen Test(Colloidal Gold)",
     "1815": "Anhui Deep Blue Medical Technology Co., Ltd, COVID-19 (SARS-CoV-2) Antigen Test Kit (Colloidal Gold) - Nasal Swab",
-    "1736": "Anhui Deep Blue Medical Technology Co., Ltd, COVID-19 (SARS-CoV-2) Antigen Test Kit(Colloidal Gold)",
+    "1736": "Anhui Deep Blue Medical Technology Co., Ltd, COVID-19 (SARS-CoV-2) Antigen Test Kit (Colloidal Gold)",
     "768": "ArcDia International Ltd, mariPOC SARS-CoV-2",
     "1654": "Asan Pharmaceutical CO., LTD, Asan Easy Test COVID-19 Ag",
     "2010": "Atlas Link Technology Co., Ltd., NOVA Test® SARS-CoV-2 Antigen Rapid Test Kit (Colloidal Gold Immunochromatography)",
@@ -206,7 +206,7 @@ export default class DCCCard extends Component {
 							<View style={styles.groupLine}>
 
 								<View style={{alignItems: 'center'}}>
-									<Text style={styles.subtitle}>{DISEASE[item.tg]} Vaccination {item.dn}/{item.sd}</Text>
+									<Text style={styles.subtitle}>{DISEASE[item.tg]} Vaccine {item.dn}/{item.sd}</Text>
 								</View>
 								
 								<View style={{alignItems: 'center'}}>
@@ -215,13 +215,13 @@ export default class DCCCard extends Component {
 
 								<View style={{alignItems: 'center'}}>
 									<Text style={styles.notes}>
-											{VACCINE_MANUF[item.ma]}'s {VACCINE_PROD[item.mp]}
+											{VACCINE_PROPH[item.vp]}
 									</Text>
 								</View>
 
 								<View style={{alignItems: 'center'}}>
 									<Text style={styles.notes}>
-											{VACCINE_PROPH[item.vp]}
+											{VACCINE_MANUF[item.ma]}'s {VACCINE_PROD[item.mp]}
 									</Text>
 								</View>
 								
@@ -232,6 +232,7 @@ export default class DCCCard extends Component {
 								<View style={{alignItems: 'center'}}>
 									<Text style={styles.notesSmall}>({item.ci})</Text>
 								</View>
+								<Divider style={[styles.divisor, {borderBottomColor:this.props.colors.cardText}]} />
 							</View>
 						)
 					}} />		
@@ -253,18 +254,18 @@ export default class DCCCard extends Component {
 
 								<View style={{alignItems: 'center'}}>
 									<Text style={styles.notes}>
-											{item.nm}
-									</Text>
-								</View>
-								
-								<View style={{alignItems: 'center'}}>
-									<Text style={styles.notes}>
 											{TEST_TYPE[item.tt]}
 									</Text>
 								</View>
 
 								<View style={{alignItems: 'center'}}>
 									<Text style={styles.notes}>
+											{item.nm}
+									</Text>
+								</View>
+
+								<View style={{alignItems: 'center'}}>
+									<Text style={styles.notesCenter}>
 											{TEST_MANUF[item.ma]}
 									</Text>
 								</View>
@@ -280,6 +281,8 @@ export default class DCCCard extends Component {
 								<View style={{alignItems: 'center'}}>
 									<Text style={styles.notesSmall}>({item.ci})</Text>
 								</View>
+
+								<Divider style={[styles.divisor, {borderBottomColor:this.props.colors.cardText}]} />
 							</View>
 						)
 					}} />		
@@ -301,10 +304,7 @@ export default class DCCCard extends Component {
 								</View>
 
 								<View style={{alignItems: 'center'}}>
-									<Text style={styles.notes}>Protected From {Moment(item.df).format('MMM DD, YYYY')}</Text>
-								</View>
-								<View style={{alignItems: 'center'}}>
-									<Text style={styles.notes}>Protected To {Moment(item.du).format('MMM DD, YYYY')}</Text>
+									<Text style={styles.notes}>Protected from {Moment(item.df).format('MMM DD')} to {Moment(item.du).format('MMM DD, YYYY')}</Text>
 								</View>
 
 								<View style={{alignItems: 'center'}}>
@@ -314,11 +314,11 @@ export default class DCCCard extends Component {
 								<View style={{alignItems: 'center'}}>
 									<Text style={styles.notesSmall}>({item.ci})</Text>
 								</View>
+
+								<Divider style={[styles.divisor, {borderBottomColor:this.props.colors.cardText}]} />
 							</View>
 						)
 					}} />					
-
-				<Divider style={[styles.divisor, {borderBottomColor:this.props.colors.cardText}]} />
 				
 				<View style={{flexDirection:'row', alignItems: 'center'}}>
 					<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
