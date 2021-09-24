@@ -16,7 +16,7 @@ import CouponCard from './../components/CouponCard';
 import StatusCard from './../components/StatusCard';
 import PassKeyCard from './../components/PassKeyCard';
 import SHCCard from './../components/SHCCard';
-import DCCVaccinationCard from './../components/DCCVaccinationCard';
+import DCCCard from './../components/DCCCard';
 
 import { listCards, removeCard } from './../utils/StorageManager';
 
@@ -25,8 +25,6 @@ import { SearchBar } from 'react-native-elements';
 import { FloatingAction } from "react-native-floating-action";
 import { useTheme } from '../themes/ThemeProvider';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
-
-import {importDCC} from '../utils/ImportDCC';
 
 import Moment from 'moment';
 
@@ -119,7 +117,7 @@ function Entry({ navigation }) {
                 if (item.format === "SHC" && item.type === "FHIRBundle")  
                   return <View style={styles.listItem}><SHCCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
                 if (item.format === "DCC" && item.type === "DCC")  
-                  return <View style={styles.listItem}><DCCVaccinationCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
+                  return <View style={styles.listItem}><DCCCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
               }} />
           </View>
         </SafeAreaView>

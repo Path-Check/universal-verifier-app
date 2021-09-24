@@ -55,7 +55,7 @@ const TEST_RESULT = {
   "260373001": "Positive",
 }    
 
-const TEST_MANUF { 
+const TEST_MANUF = { 
 	  "1833": "AAZ-LMB, COVID-VIRO",
     "1232": "Abbott Rapid Diagnostics, Panbio COVID-19 Ag Rapid Test",
     "1468": "ACON Laboratories, Inc, Flowflex SARS-CoV-2 Antigen rapid test",
@@ -132,14 +132,14 @@ const TEST_MANUF {
 
 const DISEASE = {"840539006":"COVID-19"}
    
-export default class DCCVaccinationCard extends Component {
+export default class DCCCard extends Component {
 
 	showQR = (card) => {
     this.props.navigation.navigate({name: 'QRShow', params: {
         qr: card.rawQR, 
         title: this.formatPerson(), 
-        detail: this.formatDoB,
-        signedBy: this.formatSignedBy();
+        detail: this.formatDoB(),
+        signedBy: this.formatSignedBy()
       }
     });
   }
@@ -285,7 +285,7 @@ export default class DCCVaccinationCard extends Component {
 					}} />		
 
 					<FlatList 
-					data={tthis.cert().data.r} 
+					data={this.cert().data.r} 
 					keyExtractor={item => item.ci} 
 					renderItem={({item}) => {
 						console.log(item);
