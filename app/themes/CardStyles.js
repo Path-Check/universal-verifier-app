@@ -45,7 +45,7 @@ const CardStyles = StyleSheet.create({
 		textAlign: 'center'
 	}, 
 	notesSmall: {
-		fontSize: 14,
+		fontSize: 13,
 		color:'#fff'
 	}, 
 	notesCaps: {
