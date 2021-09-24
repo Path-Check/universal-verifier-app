@@ -129,8 +129,8 @@ android {
         applicationId "org.pathcheck.universalverifier"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 28
-        versionName "0.0.30"
+        versionCode 29
+        versionName "0.0.31"
         missingDimensionStrategy 'react-native-camera', 'general'
         multiDexEnabled true // <-- ADD THIS in the defaultConfig section
     }
