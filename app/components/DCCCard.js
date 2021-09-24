@@ -201,7 +201,6 @@ export default class DCCCard extends Component {
 					data={this.cert().data.v} 
 					keyExtractor={item => item.ci} 
 					renderItem={({item}) => {
-						console.log(item);
 						return (	
 							<View style={styles.groupLine}>
 
