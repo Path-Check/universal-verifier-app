@@ -57,24 +57,38 @@ export default class VaccineCard extends Component {
 					<FontAwesome5 style={styles.button} name={'trash'} onPress={() => this.props.removeItem(this.props.detail.signature)} solid/>
 				</View>
 
-				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-					<Text style={styles.title}>{this.cert().manuf} {this.cert().product}</Text>
-				</View>
-
 				{ this.props.detail.vaccinee && this.certVacinee().name &&
 					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
-						<Text style={styles.notesCaps}>{this.certVacinee().name}, {this.formatDoB(this.certVacinee().dob)}</Text>
+						<Text style={styles.title}>{this.certVacinee().name}</Text>
+					</View>
+				}
+
+				{ this.props.detail.vaccinee && this.certVacinee().dob &&
+					<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+						<Text style={styles.notes}>DoB: {this.formatDoB(this.certVacinee().dob)}</Text>
 					</View>
 				}
 
 				{ this.cert().name !== undefined && this.cert().name !== "" &&
-				<View style={styles.row}>
-					<Text style={styles.notesCaps}>{this.cert().name}, {this.formatDoB(this.cert().dob)}</Text>
-				</View>
+					<View style={styles.row}>
+						<Text style={styles.title}>{this.cert().name}</Text>
+					</View>
 				}
-				
+
+				{ this.cert().dob !== undefined && this.cert().dob !== "" &&
+					<View style={styles.row}>
+						<Text style={styles.notes}>DoB: {this.formatDoB(this.cert().dob)}</Text>
+					</View>
+				}
+
+				<Divider style={[styles.divisor, {borderBottomColor:this.props.colors.cardText}]} />
+
 				<View style={styles.row}>
-					<Text style={styles.notes}>Shot taken on {Moment(this.cert().date).format('MMM DD, YYYY')}</Text>
+					<Text style={styles.notes}>Vaccination on {Moment(this.cert().date).format('MMM DD, YYYY')}</Text>
+				</View>
+
+				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
+					<Text style={styles.notesCaps}>{this.cert().manuf} {this.cert().product}</Text>
 				</View>
 				
 				<View style={styles.row}>
