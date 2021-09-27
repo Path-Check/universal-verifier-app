@@ -114,6 +114,10 @@ const VACCINE_CODES = {
 	801	: "AS03 adjuvant"
 }
 
+const TRUST_REGISTRY = {
+	"https://myvaccinerecord.cdph.ca.gov/creds": "State of California", 
+	"https://api.cvshealth.com/smarthealth/v1/card": "CVS Health", 
+}
 
 export default class SHCCard extends Component {
 
@@ -138,8 +142,9 @@ export default class SHCCard extends Component {
 	}
 
 	issuerName = (card) => {
-		if (card.pub_key.toLowerCase() === "https://myvaccinerecord.cdph.ca.gov/creds") 
-			return "State of California"
+		if (TRUST_REGISTRY[card.pub_key.toLowerCase()]) {
+			return TRUST_REGISTRY[card.pub_key.toLowerCase()]
+		}
 		return card.pub_key.toLowerCase();
 	}
 
