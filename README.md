@@ -65,11 +65,6 @@ There is no widely accepted technicals standard for Verifiable QR codes and vari
 - [x] Country of Switzerland
 - [x] Country of Turkey
 - [x] Country of Ukraine
-- [x] CVS Health, USA
-- [x] Rite Aid, USA
-
-<details>
-  <summary>Show me more</summary>
 - [x] Adventist Health
 - [x] Advocate Aurora Health
 - [x] Alaska Tribal Health System
@@ -239,9 +234,6 @@ There is no widely accepted technicals standard for Verifiable QR codes and vari
 - [x] St. John's Health
 - [x] St. Joseph's Health
 - [x] St. Luke’s Health System (Idaho)
-- [x] State of California
-- [x] State of Louisiana
-- [x] State of New York
 - [x] Stony Brook Business Ventures, LLC
 - [x] Stony Brook Medicine
 - [x] Sturdy Memorial Hospital and Sturdy Memorial Associates
@@ -293,8 +285,6 @@ There is no widely accepted technicals standard for Verifiable QR codes and vari
 - [x] Yale New Haven Health System and Yale University
 - [x] Yavapai Regional Medical Center
 - [x] eHealth Saskatchewan
-</details>
-
 
 ## Currently Supported Formats: 
 
