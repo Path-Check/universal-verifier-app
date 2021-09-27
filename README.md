@@ -17,7 +17,7 @@ There is no widely accepted technicals standard for Verifiable QR codes and vari
 ## Currently Supported Formats: 
 
 - [x] [CRED](https://github.com/Path-Check/cred-sdk.js): PathCheck's [PaperCreds](https://github.com/Path-Check/paper-cred)
-- [x] [DIVOC](https://github.com/Path-Check/divoc-sdk.js): [COWIN's](https://www.cowin.gov.in/) Credentials in India/Srilanka
+- [x] [DIVOC](https://github.com/Path-Check/divoc-sdk.js): [COWIN's](https://www.cowin.gov.in/) Credentials in India/Sri Lanka
 - [x] [SHC](https://github.com/Path-Check/shc-sdk.js): [SmartHealth Cards](https://smarthealth.cards/)'s credentials in the US and Canada
 - [x] [HC1](https://github.com/Path-Check/dcc-sdk.js): EU's [Digital Covid Certificates](https://ec.europa.eu/info/live-work-travel-eu/coronavirus-response/safe-covid-19-vaccines-europeans/eu-digital-covid-certificate_en) by the eHealth Network
 - [x] Excelsior: [NY's](https://covid19vaccine.health.ny.gov/excelsior-pass) COVID pass
@@ -72,7 +72,7 @@ There is no widely accepted technicals standard for Verifiable QR codes and vari
 - [x] Country of Slovakia
 - [x] Country of Slovenia
 - [x] Country of Spain
-- [x] Country of Srilanka
+- [x] Country of Sri Lanka
 - [x] Country of Sweden
 - [x] Country of Switzerland
 - [x] Country of Turkey
