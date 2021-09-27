@@ -117,6 +117,9 @@ const VACCINE_CODES = {
 const TRUST_REGISTRY = {
 	"https://myvaccinerecord.cdph.ca.gov/creds": "State of California", 
 	"https://api.cvshealth.com/smarthealth/v1/card": "CVS Health", 
+	"https://covid19.quebec.ca/PreuveVaccinaleApi/issuer": "Province of Quebec",
+	"https://smarthealthcard.phsa.ca/v1/issuer":  "Province of British Columbia",
+	"https://ekeys.ny.gov/epass/doh/dvc/2021": "State of New York"
 }
 
 export default class SHCCard extends Component {
