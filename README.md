@@ -14,6 +14,18 @@ There is no widely accepted technicals standard for Verifiable QR codes and vari
 - [Play Store](https://play.google.com/store/apps/details?id=org.pathcheck.universalverifier)
 - [APK](https://github.com/vitorpamplona/vaccine-certificate-tracking-app/releases)
 
+## Currently Supported Formats: 
+
+- [x] [CRED](https://github.com/Path-Check/cred-sdk.js): PathCheck's [PaperCreds](https://github.com/Path-Check/paper-cred)
+- [x] [DIVOC](https://github.com/Path-Check/divoc-sdk.js): [COWIN's](https://www.cowin.gov.in/) Credentials in India/Srilanka
+- [x] [SHC](https://github.com/Path-Check/shc-sdk.js): [SmartHealth Cards](https://smarthealth.cards/)'s credentials in the US and Canada
+- [x] [HC1](https://github.com/Path-Check/dcc-sdk.js): EU's [Digital Covid Certificates](https://ec.europa.eu/info/live-work-travel-eu/coronavirus-response/safe-covid-19-vaccines-europeans/eu-digital-covid-certificate_en) by the eHealth Network
+- [x] Excelsior: [NY's](https://covid19vaccine.health.ny.gov/excelsior-pass) COVID pass
+- [ ] [JXT](https://github.com/Path-Check/bbs-jxt-sdk.js): A BBS+ W3C Verifiable Credentials minimized with [JSON-XT](https://jsonxt.io/)
+- [ ] [CBLD](https://github.com/Path-Check/bbs-cbld-sdk.js): A CBOR-LD version of W3C Verifiable Credentials. 
+- [ ] [VDS](https://github.com/Path-Check/vds-sdk.js): ICAO's [Visible Digital Seals](https://www.icao.int/Security/FAL/TRIP/Documents/TR%20-%20Visible%20Digital%20Seals%20for%20Non-Electronic%20Documents%20V1.31.pdf)
+- [ ] Good Health Pass
+
 ## Currently Supported Issuers: 
 - [x] State of California, USA
 - [x] State of Louisiana, USA
@@ -285,18 +297,6 @@ There is no widely accepted technicals standard for Verifiable QR codes and vari
 - [x] Yale New Haven Health System and Yale University
 - [x] Yavapai Regional Medical Center
 - [x] eHealth Saskatchewan
-
-## Currently Supported Formats: 
-
-- [x] [CRED](https://github.com/Path-Check/cred-sdk.js): PathCheck's [PaperCreds](https://github.com/Path-Check/paper-cred)
-- [x] [DIVOC](https://github.com/Path-Check/divoc-sdk.js): [COWIN's](https://www.cowin.gov.in/) Credentials in India/Srilanka
-- [x] [SHC](https://github.com/Path-Check/shc-sdk.js): [SmartHealth Cards](https://smarthealth.cards/)'s credentials in the US and Canada
-- [x] [HC1](https://github.com/Path-Check/dcc-sdk.js): EU's [Digital Covid Certificates](https://ec.europa.eu/info/live-work-travel-eu/coronavirus-response/safe-covid-19-vaccines-europeans/eu-digital-covid-certificate_en) by the eHealth Network
-- [x] Excelsior: [NY's](https://covid19vaccine.health.ny.gov/excelsior-pass) COVID pass
-- [ ] [JXT](https://github.com/Path-Check/bbs-jxt-sdk.js): A BBS+ W3C Verifiable Credentials minimized with [JSON-XT](https://jsonxt.io/)
-- [ ] [CBLD](https://github.com/Path-Check/bbs-cbld-sdk.js): A CBOR-LD version of W3C Verifiable Credentials. 
-- [ ] [VDS](https://github.com/Path-Check/vds-sdk.js): ICAO's [Visible Digital Seals](https://www.icao.int/Security/FAL/TRIP/Documents/TR%20-%20Visible%20Digital%20Seals%20for%20Non-Electronic%20Documents%20V1.31.pdf)
-- [ ] Good Health Pass
 
 # Development Overview
 
