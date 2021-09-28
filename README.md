@@ -127,6 +127,7 @@ There is no widely accepted technicals standard for Verifiable QR codes and vari
 - [x] Covenant Health
 - [x] CoxHealth
 - [x] Crittenton Hospital Medical Center
+- [x] CVS Health
 - [x] Denver Health
 - [x] Detroit Medical Center
 - [x] Dignity Health
