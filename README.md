@@ -27,6 +27,7 @@ There is no widely accepted technicals standard for Verifiable QR codes and vari
 - [ ] Good Health Pass
 
 ## Currently Supported Issuers: 
+- [x] State of Massachusetts, USA
 - [x] State of California, USA
 - [x] State of Louisiana, USA
 - [x] State of New York, USA
