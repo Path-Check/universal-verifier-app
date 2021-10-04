@@ -7,12 +7,16 @@ import Moment from 'moment';
 
 import { CardStyles as styles } from '../themes/CardStyles' 
 
+const TRUST_REGISTRY = {
+	"did:india": "Country of India"
+	"did:srilanka:moh":  "Country of Sri Lanka"
+}
+
 export default class CowinCard extends Component {
-
-
 	issuerName = (card) => {
-		if (card.pub_key.toLowerCase() === "did:india") 
-			return "Country of India"
+		if (TRUST_REGISTRY[card.pub_key.toLowerCase()]) {
+			return TRUST_REGISTRY[card.pub_key.toLowerCase()]
+		}
 		return card.pub_key.toLowerCase();
 	}
 
