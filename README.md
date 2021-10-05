@@ -21,9 +21,9 @@ There is no widely accepted technicals standard for Verifiable QR codes and vari
 - [x] [SHC](https://github.com/Path-Check/shc-sdk.js): [SmartHealth Cards](https://smarthealth.cards/)'s credentials in the US and Canada
 - [x] [HC1](https://github.com/Path-Check/dcc-sdk.js): EU's [Digital Covid Certificates](https://ec.europa.eu/info/live-work-travel-eu/coronavirus-response/safe-covid-19-vaccines-europeans/eu-digital-covid-certificate_en) by the eHealth Network
 - [x] Excelsior: [NY's](https://covid19vaccine.health.ny.gov/excelsior-pass) COVID pass
+- [x] [VDS](https://github.com/Path-Check/vds-sdk.js): ICAO's [Visible Digital Seals](https://www.icao.int/Security/FAL/TRIP/Documents/TR%20-%20Visible%20Digital%20Seals%20for%20Non-Electronic%20Documents%20V1.31.pdf)
 - [ ] [JXT](https://github.com/Path-Check/bbs-jxt-sdk.js): A BBS+ W3C Verifiable Credentials minimized with [JSON-XT](https://jsonxt.io/)
 - [ ] [CBLD](https://github.com/Path-Check/bbs-cbld-sdk.js): A CBOR-LD version of W3C Verifiable Credentials. 
-- [ ] [VDS](https://github.com/Path-Check/vds-sdk.js): ICAO's [Visible Digital Seals](https://www.icao.int/Security/FAL/TRIP/Documents/TR%20-%20Visible%20Digital%20Seals%20for%20Non-Electronic%20Documents%20V1.31.pdf)
 - [ ] Good Health Pass
 
 ## Currently Supported Issuers: 
@@ -31,11 +31,13 @@ There is no widely accepted technicals standard for Verifiable QR codes and vari
 - [x] State of California, USA
 - [x] State of Louisiana, USA
 - [x] State of New York, USA
+- [x] State of Virginia, USA
 - [x] Province of Quebec, Canada
 - [x] Province of British Columbia, Canada
 - [x] Country of Albania
 - [x] Country of Andorra
 - [x] Country of Austria
+- [x] Country of Australia
 - [x] Country of Barbados
 - [x] Country of Belgium
 - [x] Country of Bulgaria
