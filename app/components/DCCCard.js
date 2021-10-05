@@ -198,7 +198,7 @@ export default class DCCCard extends Component {
 				<Divider style={[styles.divisor, {borderBottomColor:this.props.colors.cardText}]} />
 
 				<FlatList 
-				  listKey={this.cert().signature+"v"}
+				  listKey={this.props.detail.signature+"v"}
 					data={this.cert().data.v} 
 					keyExtractor={item => item.ci} 
 					renderItem={({item}) => {
@@ -238,11 +238,10 @@ export default class DCCCard extends Component {
 					}} />		
 
 				<FlatList 
-				listKey={this.cert().signature+"t"}
+				listKey={this.props.detail.signature+"t"}
 					data={this.cert().data.t} 
 					keyExtractor={item => item.ci} 
 					renderItem={({item}) => {
-						console.log(item);
 						return (	
 							<View style={styles.groupLine}>
 								<View style={{alignItems: 'center'}}>
@@ -289,11 +288,10 @@ export default class DCCCard extends Component {
 					}} />		
 
 					<FlatList 
-					listKey={this.cert().signature+"r"}
+					listKey={this.props.detail.signature+"r"}
 					data={this.cert().data.r} 
 					keyExtractor={item => item.ci} 
 					renderItem={({item}) => {
-						console.log(item);
 						return (	
 							<View style={styles.groupLine}>
 
