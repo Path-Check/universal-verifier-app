@@ -7,6 +7,11 @@ import { CardStyles as styles } from '../themes/CardStyles'
 
 import Moment from 'moment';
 
+const TRUST_REGISTRY = {
+	"k1.pathcheck.org": "State of Massachusetts", 
+	"keys.gov.bm": "Country of Barbados"
+}
+
 export default class VaccineCard extends Component {
 
 	showQR = (card) => {
@@ -47,6 +52,13 @@ export default class VaccineCard extends Component {
 			let simpleHash = hash.substring(0,5) +"..."+ hash.substring(hash.length-5,hash.length);
 			return "User: " + simpleHash;
 		}
+	}
+
+	issuerName = (card) => {
+		if (TRUST_REGISTRY[card.pub_key.toLowerCase()]) {
+			return TRUST_REGISTRY[card.pub_key.toLowerCase()]
+		}
+		return card.pub_key.toLowerCase();
 	}
 
 	renderCard = () => {
@@ -101,7 +113,7 @@ export default class VaccineCard extends Component {
 				
 				<View style={{flexDirection:'row', alignItems: 'center'}}>
 					<FontAwesome5 style={styles.icon} name={'check-circle'} solid/>
-					<Text style={styles.notes}>Signed by {this.props.detail.pub_key.toLowerCase()}</Text>
+					<Text style={styles.notes}>Signed by {this.issuerName(this.props.detail)}</Text>
 				</View>
 			</View>
 		);
