@@ -78,6 +78,8 @@ There is no widely accepted technicals standard for Verifiable QR codes and vari
 - [x] Country of Switzerland
 - [x] Country of Turkey
 - [x] Country of Ukraine
+- [x] Country of United Kingdom
+- [x] Country of Uruguay
 - [x] Adventist Health
 - [x] Advocate Aurora Health
 - [x] Alaska Tribal Health System
