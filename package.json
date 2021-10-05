@@ -1,6 +1,6 @@
 {
   "name": "universal-verifier",
-  "version": "0.0.34",
+  "version": "0.0.35",
   "license": "GPL-3.0-only",
   "scripts": {
     "android": "react-native run-android",
