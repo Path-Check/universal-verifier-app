@@ -8,8 +8,9 @@ import Moment from 'moment';
 import { CardStyles as styles } from '../themes/CardStyles' 
 
 const TRUST_REGISTRY = {
-	"did:india": "Country of India",
-	"did:srilanka:moh":  "Country of Sri Lanka"
+	"did:india": "Republic of India",
+	"did:srilanka:moh":  "Republic of Sri Lanka",
+	"did:philippines": "Republic of the Philippines"
 }
 
 export default class CowinCard extends Component {
