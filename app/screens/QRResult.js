@@ -15,6 +15,8 @@ import PassKeyCard from './../components/PassKeyCard';
 import SHCCard from './../components/SHCCard';
 import DCCCard from './../components/DCCCard';
 import DCCUYCard from './../components/DCCUYCard';
+import VDSVAXCard from './../components/VDSVaxCard';
+import VDSTESTCard from './../components/VDSTestCard';
 
 import { removeCard } from './../utils/StorageManager';
 
@@ -56,6 +58,8 @@ function QRResult({ navigation, route }) {
         { qr.type === "FHIRBundle" && <SHCCard detail={qr} colors={colors} removeItem={removeItem} /> }
         { qr.type === "DCC" && <DCCCard detail={qr} colors={colors} removeItem={removeItem} /> }
         { qr.type === "UY" && <DCCUYCard detail={qr} colors={colors} removeItem={removeItem} /> }
+        { qr.type === "icao.vacc" && <VDSVAXCard detail={qr} colors={colors} removeItem={removeItem} /> }
+        { qr.type === "icao.test" && <VDSTESTCard detail={qr} colors={colors} removeItem={removeItem} /> }
       </View>
       <TouchableOpacity
         style={[styles.button, {backgroundColor: colors.primary}]}

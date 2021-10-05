@@ -18,6 +18,8 @@ import PassKeyCard from './../components/PassKeyCard';
 import SHCCard from './../components/SHCCard';
 import DCCCard from './../components/DCCCard';
 import DCCUYCard from './../components/DCCUYCard';
+import VDSVaxCard from  './../components/VDSVaxCard';
+import VDSTestCard from  './../components/VDSTestCard';
 
 import { listCards, removeCard } from './../utils/StorageManager';
 
@@ -121,6 +123,10 @@ function Entry({ navigation }) {
                   return <View style={styles.listItem}><DCCCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
                 if (item.format === "DCC" && item.type === "UY")  
                   return <View style={styles.listItem}><DCCUYCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
+                if (item.format === "VDS" && item.type === "icao.vacc")  
+                  return <View style={styles.listItem}><VDSVaxCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
+                if (item.format === "VDS" && item.type === "icao.test")  
+                  return <View style={styles.listItem}><VDSTestCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
               
               
               }} />

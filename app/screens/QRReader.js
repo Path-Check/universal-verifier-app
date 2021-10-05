@@ -9,6 +9,7 @@ import {importPCF} from '../utils/ImportPCF';
 import {importDivoc} from '../utils/ImportDivoc';
 import {importSHC} from '../utils/ImportSHC';
 import {importDCC} from '../utils/ImportDCC';
+import {importVDS} from '../utils/ImportVDS';
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 
@@ -65,7 +66,11 @@ function QRReader({ navigation }) {
     }
 
     if (e.data && e.data.startsWith("{")) {
-      await checkResult(await importDivoc(e.data));
+      if (e.data.includes("icao")) {
+        await checkResult(await importVDS(e.data));
+      } else {
+        await checkResult(await importDivoc(e.data));
+      }
       return;
     }
 
