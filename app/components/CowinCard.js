@@ -8,7 +8,7 @@ import Moment from 'moment';
 import { CardStyles as styles } from '../themes/CardStyles' 
 
 const TRUST_REGISTRY = {
-	"did:india": "Country of India"
+	"did:india": "Country of India",
 	"did:srilanka:moh":  "Country of Sri Lanka"
 }
 
