@@ -24,9 +24,11 @@ const importDCC = async (certificateData) => {
     }
     let signature = debugInfo.value[3];
 
+    let cardType = payload.nam ? "DCC" : "UY"
+
     let baseCard = {
         format: "DCC",
-        type: "DCC", 
+        type: cardType, 
         pub_key: keyId,
         signature: signature, 
         scanDate: new Date().toJSON(),

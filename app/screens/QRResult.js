@@ -14,6 +14,7 @@ import StatusCard from './../components/StatusCard';
 import PassKeyCard from './../components/PassKeyCard';
 import SHCCard from './../components/SHCCard';
 import DCCCard from './../components/DCCCard';
+import DCCUYCard from './../components/DCCUYCard';
 
 import { removeCard } from './../utils/StorageManager';
 
@@ -54,6 +55,7 @@ function QRResult({ navigation, route }) {
         { qr.type === "COWIN" && <CowinCard detail={qr} colors={colors} removeItem={removeItem} /> }
         { qr.type === "FHIRBundle" && <SHCCard detail={qr} colors={colors} removeItem={removeItem} /> }
         { qr.type === "DCC" && <DCCCard detail={qr} colors={colors} removeItem={removeItem} /> }
+        { qr.type === "UY" && <DCCUYCard detail={qr} colors={colors} removeItem={removeItem} /> }
       </View>
       <TouchableOpacity
         style={[styles.button, {backgroundColor: colors.primary}]}

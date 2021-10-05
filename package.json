@@ -14,7 +14,7 @@
   "dependencies": {
     "@cto.af/textdecoder": "*",
     "@pathcheck/cred-sdk": "^0.0.6",
-    "@pathcheck/dcc-sdk": "^0.0.20",
+    "@pathcheck/dcc-sdk": "^0.0.21",
     "@pathcheck/divoc-sdk": "^0.1.1",
     "@pathcheck/shc-sdk": "^0.0.3",
     "@react-native-async-storage/async-storage": "^1.15.4",

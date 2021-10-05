@@ -17,6 +17,7 @@ import StatusCard from './../components/StatusCard';
 import PassKeyCard from './../components/PassKeyCard';
 import SHCCard from './../components/SHCCard';
 import DCCCard from './../components/DCCCard';
+import DCCUYCard from './../components/DCCUYCard';
 
 import { listCards, removeCard } from './../utils/StorageManager';
 
@@ -118,6 +119,10 @@ function Entry({ navigation }) {
                   return <View style={styles.listItem}><SHCCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
                 if (item.format === "DCC" && item.type === "DCC")  
                   return <View style={styles.listItem}><DCCCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
+                if (item.format === "DCC" && item.type === "UY")  
+                  return <View style={styles.listItem}><DCCUYCard detail={item} colors={colors} navigation={navigation} removeItem={removeItem} pressable/></View>
+              
+              
               }} />
           </View>
         </SafeAreaView>
