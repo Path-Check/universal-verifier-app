@@ -11,6 +11,10 @@ import {importSHC} from '../utils/ImportSHC';
 import {importDCC} from '../utils/ImportDCC';
 import {importVDS} from '../utils/ImportVDS';
 
+import {decode} from './QRDecoder/index.js'
+import JSZip from 'jszip';
+
+
 const screenHeight = Math.round(Dimensions.get('window').height);
 
 function QRReader({ navigation }) {
@@ -34,8 +38,33 @@ function QRReader({ navigation }) {
     }
   }
 
-  const fromHexString = hexString =>
-    new Uint8Array(hexString.substring(1).match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+  const fromHexQR = async hexString => {
+    const byteArray = new Uint8Array(hexString.match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+
+    // Manually decode the array
+    const str0 = decode(byteArray, 28).text;
+    
+    const byteArray2 = new Uint8Array(hexString.substring(1).match(/.{1,2}/g).map(byte => parseInt(byte, 16)));
+
+    // invalid QRs have existed for the deployment in India. These two lines help solve it. 
+    const str1 = new TextDecoder().decode(       byteArray2);
+    const str2 = String.fromCharCode.apply(null, byteArray2);
+
+    try {
+      await new JSZip().loadAsync(str0);
+      return str0; 
+    } catch {
+      try {
+        await new JSZip().loadAsync(str1);
+        return str1; 
+      } catch {
+        return str2;
+      }
+    }
+  }
+
+  const toHexString = binaryString =>
+    Array.from(new TextEncoder().encode(binaryString)).map(c => c.toString(16).padStart(2, '0')).join('');
 
   const onQRRead = async (e) => {
     console.log(e);
@@ -60,8 +89,8 @@ function QRReader({ navigation }) {
         return;
       }
 
-      let string = "PK"+String.fromCharCode.apply(null, fromHexString(e.rawData))
-      await checkResult(await importDivoc(string));
+      // Removing the first byte because it's the QR mode 
+      await checkResult(await importDivoc(await fromHexQR(e.rawData)));
       return;
     }
 
