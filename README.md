@@ -68,6 +68,7 @@ There is no widely accepted technicals standard for Verifiable QR codes and vari
 - [x] Country of North Macedonia
 - [x] Country of Norway
 - [x] Country of Panama
+- [x] Country of the Philippines
 - [x] Country of Poland
 - [x] Country of Portugal
 - [x] Country of Romania
