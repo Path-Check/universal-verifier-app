@@ -7,6 +7,9 @@ import { CardStyles as styles } from '../themes/CardStyles'
 
 import Moment from 'moment';
 
+const TRUST_REGISTRY = {
+	"am6zz6drf1i": "Gov of Uruguay"
+}
    
 export default class DCCYUCard extends Component {
 
@@ -34,18 +37,24 @@ export default class DCCYUCard extends Component {
 	}
 
 	formatPerson = () => {
-		if (this.cert().data.Name)
-			return this.cert().data.Name;
-		else
-			return "Unkown";
-	}
+    if (this.cert().data.Name) {
+      let names = this.cert().data.Name.trim().split(' ');
+      for (i = 1; i < names.length - 1; i++) {
+        names[i] = names[i][0];
+      }
+      return names.join(' ');
+    } else return undefined;
+  };
 
 	formatSignedBy = () => {
-		let line = "Signed by ";
-		if (this.cert().iss) 
+		let line = "";
+		
+		if (TRUST_REGISTRY[this.props.detail.pub_key.toLowerCase()]) {
+			line += TRUST_REGISTRY[this.props.detail.pub_key.toLowerCase()];
+		} else if (this.cert().iss) {
 			line += this.cert().iss;
-		else 
-			line += this.props.detail.pub_key.toLowerCase();
+		} else 
+			line += "Signed by " + this.props.detail.pub_key.toLowerCase();
 
 		if (this.cert().iat) {
 			line += " on " + Moment(this.cert().iat * 1000).format('MMM DD, YYYY')
@@ -55,6 +64,7 @@ export default class DCCYUCard extends Component {
 	}
 
 	renderCard = () => {
+		console.log(this.props.detail.pub_key.toLowerCase());
 		return (
 			<View style={[styles.card, {backgroundColor:this.props.colors.primary}]}>
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>
