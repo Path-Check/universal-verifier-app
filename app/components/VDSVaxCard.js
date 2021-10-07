@@ -24,8 +24,10 @@ const VACCINE_TYPES = {
 	"XM0GQ8": "RNA based"
 }
 
+const TRUST_REGISTRY = {
+	"AUS": "Gov of Australia"
+}
 
-   
 export default class VDSVaxCard extends Component {
 
 	showQR = (card) => {
@@ -75,12 +77,22 @@ export default class VDSVaxCard extends Component {
 	formatSignedBy = () => {
 		let line = "Signed by ";
 		if (this.cert().data.hdr.is) 
-			line += this.cert().data.hdr.is;
+		 	if (TRUST_REGISTRY[this.cert().data.hdr.is])
+			 	line += TRUST_REGISTRY[this.cert().data.hdr.is]
+			else
+				line += this.cert().data.hdr.is;
 		else 
 			line += this.props.detail.pub_key.toLowerCase();
 
 		return line;
 	}
+
+	issuerName = card => {
+    if (TRUST_REGISTRY[card.pub_key.toLowerCase()]) {
+      return TRUST_REGISTRY[card.pub_key.toLowerCase()];
+    }
+    return card.pub_key.toLowerCase();
+  };
 
 	renderCard = () => {
 		return (
@@ -121,7 +133,7 @@ export default class VDSVaxCard extends Component {
 												<View style={styles.groupLine}>
 													
 													<View  style={{alignItems: 'center'}}>
-														<Text style={styles.subtitle}>{DISEASE[item.dis]} Vaccine {subitem.item.seq}/{item.vd.length}</Text>
+														<Text style={styles.subtitle}>{DISEASE[item.dis]} Vaccine {subitem.item.seq}</Text>
 													</View>
 												
 													<View  style={{alignItems: 'center'}}>
