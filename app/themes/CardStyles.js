@@ -28,11 +28,11 @@ const CardStyles = StyleSheet.create({
 		paddingBottom: 0
 	},
 	title: {
-		fontSize:34,
+		fontSize:30,
 		color:'#fff', textTransform: 'capitalize'
 	},
 	subtitle: {
-		fontSize:28,
+		fontSize:26,
 		color:'#fff',
 	},
 	notes: {
