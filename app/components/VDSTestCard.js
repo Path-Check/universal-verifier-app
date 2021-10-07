@@ -24,7 +24,9 @@ const VACCINE_TYPES = {
 	"XM0GQ8": "RNA based"
 }
 
-
+const TRUST_REGISTRY = {
+	"AUS": "Gov of Australia"
+}
    
 export default class VDSTestCard extends Component {
 
@@ -72,10 +74,13 @@ export default class VDSTestCard extends Component {
 			return "Unkown";
 	}
 
-	formatSignedBy = () => {
+formatSignedBy = () => {
 		let line = "Signed by ";
 		if (this.cert().data.hdr.is) 
-			line += this.cert().data.hdr.is;
+		 	if (TRUST_REGISTRY[this.cert().data.hdr.is])
+			 	line += TRUST_REGISTRY[this.cert().data.hdr.is]
+			else
+				line += this.cert().data.hdr.is;
 		else 
 			line += this.props.detail.pub_key.toLowerCase();
 
