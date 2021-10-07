@@ -64,7 +64,6 @@ export default class DCCYUCard extends Component {
 	}
 
 	renderCard = () => {
-		console.log(this.props.detail.pub_key.toLowerCase());
 		return (
 			<View style={[styles.card, {backgroundColor:this.props.colors.primary}]}>
 				<View style={{flexDirection:'row', justifyContent:'space-between', alignItems:'center'}}>

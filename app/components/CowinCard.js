@@ -96,7 +96,6 @@ export default class CowinCard extends Component {
 	}
 
   renderCard = () => {
-    console.log(this.cert().evidence[0]);
     return (
       <View style={[styles.card, {backgroundColor: this.props.colors.primary}]}>
         <View
