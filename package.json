@@ -12,7 +12,6 @@
     "build:ios": "react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios'"
   },
   "dependencies": {
-    "@cto.af/textdecoder": "*",
     "@pathcheck/cred-sdk": "^0.0.6",
     "@pathcheck/dcc-sdk": "^0.0.21",
     "@pathcheck/divoc-sdk": "^0.1.2",
