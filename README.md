@@ -6,8 +6,6 @@ Universal Verifiable Credentials Verifier app for android and iOS using PathChec
 
 The app helps business and organizations save time and labor whe verifying the veracity of digial or paper covid credentials/pass. Typical use cases include: (i) confirming that a student or employees has been vaccinated for their HR files and (ii) verificaton of a clean health for individuals physically entering a school, stadium, office building, etc.
 
-There is no widely accepted technicals standard for Verifiable QR codes and variations are growing. The goal of this app is to verify them all, including the ones from IBM, CLEAR, Divoc, WHO, EU, VCI, PathCheck, Linux CCI and others.
-
 ## Download the latest release
 
 - [Apple Store](https://apps.apple.com/us/app/pathcheck-qr-check/id1567077398)
