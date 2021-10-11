@@ -87,13 +87,6 @@ export default class VDSVaxCard extends Component {
 		return line;
 	}
 
-	issuerName = card => {
-    if (TRUST_REGISTRY[card.pub_key.toLowerCase()]) {
-      return TRUST_REGISTRY[card.pub_key.toLowerCase()];
-    }
-    return card.pub_key.toLowerCase();
-  };
-
 	renderCard = () => {
 		return (
 			<View style={[styles.card, {backgroundColor:this.props.colors.primary}]}>
