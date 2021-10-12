@@ -29,59 +29,60 @@ The app helps business and organizations save time and labor whe verifying the v
 - [x] State of Louisiana
 - [x] State of Massachusetts
 - [x] State of New York
-- [x] Prov of British Columbia
-- [x] Prov of Nova Scotia
-- [x] Prov of Quebec
-- [x] Prov of the Northwest Territories
-- [x] Prov of Yukon
-- [x] Gov of Albania
-- [x] Gov of Andorra
-- [x] Gov of Austria
-- [x] Gov of Barbados
-- [x] Gov of Belgium
-- [x] Gov of Bulgaria
-- [x] Gov of Croatia
-- [x] Gov of Cyprus
-- [x] Gov of Czechia
-- [x] Gov of Denmark
-- [x] Gov of Estonia
-- [x] Gov of Faroe Islands
-- [x] Gov of Finland
-- [x] Gov of France
-- [x] Gov of Germany
-- [x] Gov of Greece
-- [x] Gov of Holy See (Vatican City State)
-- [x] Gov of Hungary
-- [x] Gov of Iceland
-- [x] Gov of India
-- [x] Gov of Ireland
-- [x] Gov of Israel
-- [x] Gov of Italy
-- [x] Gov of Latvia
-- [x] Gov of Liechtenstein
-- [x] Gov of Lithuania
-- [x] Gov of Luxembourg
-- [x] Gov of Malta
-- [x] Gov of Monaco
-- [x] Gov of Morocco
-- [x] Gov of Netherlands
-- [x] Gov of North Macedonia
-- [x] Gov of Norway
-- [x] Gov of Panama
-- [x] Gov of Philippines
-- [x] Gov of Poland
-- [x] Gov of Portugal
-- [x] Gov of Romania
-- [x] Gov of San Marino
-- [x] Gov of Slovakia
-- [x] Gov of Slovenia
-- [x] Gov of Spain
-- [x] Gov of Sri Lanka
-- [x] Gov of Sweden
-- [x] Gov of Switzerland
-- [x] Gov of Turkey
-- [x] Gov of Ukraine
-- [x] Gov of Uruguay
+- [x] Province of British Columbia
+- [x] Province of Nova Scotia
+- [x] Province of Quebec
+- [x] Province of the Northwest Territories
+- [x] Province of Yukon
+- [x] Government of Albania
+- [x] Government of Andorra
+- [x] Government of Austria
+- [x] Government of Barbados
+- [x] Government of Belgium
+- [x] Government of Bulgaria
+- [x] Government of Croatia
+- [x] Government of Cyprus
+- [x] Government of Czechia
+- [x] Government of Denmark
+- [x] Government of Estonia
+- [x] Government of Finland
+- [x] Government of France
+- [x] Government of Germany
+- [x] Government of Greece
+- [x] Government of Hungary
+- [x] Government of Iceland
+- [x] Government of India
+- [x] Government of Ireland
+- [x] Government of Israel
+- [x] Government of Italy
+- [x] Government of Latvia
+- [x] Government of Liechtenstein
+- [x] Government of Lithuania
+- [x] Government of Luxembourg
+- [x] Government of Malta
+- [x] Government of Monaco
+- [x] Government of Morocco
+- [x] Government of North Macedonia
+- [x] Government of Norway
+- [x] Government of Panama
+- [x] Government of Philippines
+- [x] Government of Poland
+- [x] Government of Portugal
+- [x] Government of Romania
+- [x] Government of San Marino
+- [x] Government of Slovakia
+- [x] Government of Slovenia
+- [x] Government of Spain
+- [x] Government of Sri Lanka
+- [x] Government of Sweden
+- [x] Government of Switzerland
+- [x] Government of the Faroe Islands
+- [x] Government of the Holy See (Vatican City State)
+- [x] Government of the Netherlands
+- [x] Government of the United Kingdom
+- [x] Government of Turkey
+- [x] Government of Ukraine
+- [x] Government of Uruguay
 - [x] Adventist Health
 - [x] Advocate Aurora Health
 - [x] Alaska Tribal Health System
