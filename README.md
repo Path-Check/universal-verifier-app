@@ -2,9 +2,9 @@
 
 <img align="right" src="./docs/shc_walkthrough/3.%20Scan%20Results.png" data-canonical-src="./docs/shc_walkthrough/3.%20Scan%20Results.png" width="350px"/>
 
-Universal Verifiable Credentials Verifier app for android and iOS using PathCheck's SDKs. The app scans a QR code for a credential/pass, cryptographically verifies it and displays the results on the phone. 
+Universal Verifiable Credentials Verifier app for Android and iOS using PathCheck's SDKs. The app scans a QR code for a credential/pass, cryptographically verifies it and displays the results on the phone. Our goal is to make a Verifier App with the widest possible verification capabilities. 
 
-The app helps business and organizations save time and labor whe verifying the veracity of digial or paper covid credentials/pass. Typical use cases include: (i) confirming that a student or employees has been vaccinated for their HR files and (ii) verificaton of a clean health for individuals physically entering a school, stadium, office building, etc.
+Join the team on [Slack](https://join.slack.com/t/pathcheck/shared_invite/zt-gs0bf4h0-2I92eiVThkNLojL2e_VQvA).
 
 ## Download the latest release
 
