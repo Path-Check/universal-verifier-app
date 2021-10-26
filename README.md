@@ -4,7 +4,7 @@
 
 Universal Verifiable Credentials Verifier app for Android and iOS using PathCheck's SDKs. The app scans a QR code for a credential/pass, cryptographically verifies it and displays the results on the phone. Our goal is to make a Verifier App with the widest possible verification capabilities. 
 
-Join the team on [Slack](https://join.slack.com/t/pathcheck/shared_invite/zt-gs0bf4h0-2I92eiVThkNLojL2e_VQvA).
+Join the team on [Matrix/Element](https://matrix.to/#/#pcf-universal-verifier:matrix.org) or [Slack](https://join.slack.com/t/pathcheck/shared_invite/zt-gs0bf4h0-2I92eiVThkNLojL2e_VQvA).
 
 ## Download the latest release
 
